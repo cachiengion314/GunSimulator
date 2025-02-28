@@ -2,7 +2,6 @@ using UnityEngine;
 using HoangNam;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.ShaderGraph.Internal;
 using Unity.Mathematics;
 
 
@@ -37,16 +36,19 @@ public partial class UiIngameRoot : BaseUIRoot
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
   }
-  void SetTypeSingleButton(float2 _test , float2 _test2)
+
+  void SetTypeSingleButton(float2 _test, float2 _test2)
   {
     TypeFireModes[0].gameObject.SetActive(true);
     TypeFireModes[1].gameObject.SetActive(false);
   }
+
   void UpdateButtonType(bool _isAuto)
   {
     TypeFireModes[0].gameObject.SetActive(!_isAuto);
     TypeFireModes[1].gameObject.SetActive(_isAuto);
   }
+
   void UpdateBullet(int _value)
   {
     DataGunManager.Instance.UpdateGunCurrenValue(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, _value);
@@ -54,6 +56,7 @@ public partial class UiIngameRoot : BaseUIRoot
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
   }
+
   public void UpdateTextCurrentBullet()
   {
     var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
@@ -72,11 +75,13 @@ public partial class UiIngameRoot : BaseUIRoot
     _btnShowShopCoin.interactable = false;
 
   }
+
   public void BtnBackLobbyIngame()
   {
     GameSystem.Instance.LoadSceneByName(KeyStr.NAME_SCENE_LOBBY);
 
   }
+
   void SetupButtons()
   {
     foreach (var type in TypeFireModes)

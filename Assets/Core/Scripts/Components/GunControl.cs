@@ -21,6 +21,7 @@ public class GunControl : MonoBehaviour,
   }
 
   [Header("Datas")]
+  Quaternion _initRotation;
   int _bodyRendererIndex;
   bool _isTweening;
   int _initAmmo;
@@ -65,6 +66,7 @@ public class GunControl : MonoBehaviour,
       bodyRenderers[i].gameObject.SetActive(false);
       if (i == idx) bodyRenderers[i].gameObject.SetActive(true);
     }
+    _initRotation = transform.rotation;
   }
 
   /// <summary>
@@ -142,6 +144,6 @@ public class GunControl : MonoBehaviour,
 
   public Quaternion GetInitRotation()
   {
-    return transform.rotation;
+    return _initRotation;
   }
 }
