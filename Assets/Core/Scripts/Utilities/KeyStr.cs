@@ -82,6 +82,7 @@ namespace HoangNam
     public const string NAME_HOME_MODAL = "Home Modal";
     public const string NAME_SHOP_MODAL = "Shop Modal(Clone)";
     public const string NAME_LEADER_BOARD_MODAL = "LeaderBoard Modal";
+    public const string NAME_SHOP_LIGHTSABER = "ShopLightsaberCanvas(Clone)";
 
     public const string NAME_SCENE_LOADING = "Loading";
     public const string NAME_SCENE_LOBBY = "Lobby";

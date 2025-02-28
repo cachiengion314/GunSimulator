@@ -116,6 +116,7 @@ public class TouchDetect : MonoBehaviour
     if (GameSystem.Instance.IdFireModes == 2) return; // Burst mode
 
     var currentGun = ItemSystem.Instance.GetCurrentGun();
+    if (currentGun == null) return;
     if (currentGun.GetComponent<GunControl>().HaveAutoMode)
     {
       ItemSystem.Instance.AutoModeFireInvoke();

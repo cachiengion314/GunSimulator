@@ -25,6 +25,7 @@ public partial class ItemSystem : MonoBehaviour
 
   void Update()
   {
+    BladeLengthen();
     if (GunParent.childCount == 0) return;
 
     if (Input.GetKeyDown(KeyCode.A))
@@ -44,6 +45,7 @@ public partial class ItemSystem : MonoBehaviour
   public GameObject GetCurrentGun()
   {
     var gun = GunParent.GetChild(0);
+    if (gun == null) return null;
     return gun.gameObject;
   }
 
@@ -139,6 +141,7 @@ public partial class ItemSystem : MonoBehaviour
     int intCurrentAmmo = _dataGunTarget._currentValue;
 
     var _currentGun = ItemSystem.Instance.GetCurrentGun();
+    if (_currentGun == null) return;
     _currentGun.GetComponent<GunControl>().SetInitAmmo(intInitAmmo);
     _currentGun.GetComponent<GunControl>().SetInitAmmo(intCurrentAmmo);
   }
@@ -147,6 +150,7 @@ public partial class ItemSystem : MonoBehaviour
   public void BurstModeFireInvoke()
   {
     var currentGun = GetCurrentGun();
+    if (currentGun == null) return;
 
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
@@ -186,6 +190,7 @@ public partial class ItemSystem : MonoBehaviour
   public void AutoModeFireInvoke()
   {
     var currentGun = GetCurrentGun();
+    if (currentGun == null) return;
 
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
@@ -219,6 +224,7 @@ public partial class ItemSystem : MonoBehaviour
   public void SingleModeFireInvoke()
   {
     var currentGun = GetCurrentGun();
+    if (currentGun == null) return;
 
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {

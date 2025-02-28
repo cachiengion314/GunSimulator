@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32c9021169d94859a692673a8a6b31a, type: 3}
+  m_Name: LightsaberData5
+  m_EditorClassIdentifier: 
+  Name: 5
+  SwordHilt: {fileID: 21300000, guid: 7e6e50a3fd6294f4abcbeaeb875a747a, type: 3}
+  BladeColor: {r: 0.8928212, g: 0.37068352, b: 0.9245283, a: 1}
+  Capacity: 200
+  Speed: 1
+  BladeLength: 10

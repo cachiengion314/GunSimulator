@@ -138,6 +138,8 @@ public partial class LevelSystem : MonoBehaviour
       case 2:
         break;
       case 3:
+        var LightsaberData = GameSystem.Instance.GetCurrentLightsaberData();
+        ItemSystem.Instance.SpawnLightsaber(LightsaberData);
         break;
     }
 

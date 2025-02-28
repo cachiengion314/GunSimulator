@@ -20,11 +20,14 @@ public partial class UiIngameRoot : BaseUIRoot
   [SerializeField] GameObject[] arrayButton;
   [Header("---Gun---")]
   [SerializeField] TMP_Text textCurrentBullet;
-  public Button[] TypeFireModes; // id 0 =  button Single. id 1 =  button Auto . 2 = burst
-
+  public Button[] TypeFireModes;
+  [SerializeField] GunControl gunControl;
+  public ColorPickerControl colorPickerControl;
+  private void Awake() {
+    Instance = this;
+  }
   private void Start()
   {
-    Instance = this;
     // UpdateTextCurrentBullet();
     SetupButtons();
     // SetUpTextCurrentBullet();
