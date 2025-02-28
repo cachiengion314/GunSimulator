@@ -130,7 +130,8 @@ public partial class LevelSystem : MonoBehaviour
     {
       case 0:
         ItemSystem.Instance.SpawnGunBy(
-          GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+          GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick
+        );
         break;
       case 1:
         break;

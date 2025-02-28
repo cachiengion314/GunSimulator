@@ -3,10 +3,10 @@ using UnityEngine;
 public partial class GameSystem : MonoBehaviour
 {
   [Header("---GunData---")]
-  [SerializeField] public int IdTypePick;
-  [SerializeField] public int IdGunPick;
-  [SerializeField] public int IdFireModes = 0; // id 0 = single , 1 = auto; 2  = Burst;
-  [SerializeField] public int IdShopMode = 0; // id 0 = GunSound , 1 = Explosion; 2  = TaserGun 3 = LightSaber;
+  public int IdTypePick;
+  public int IdGunPick;
+  public int IdFireModes = 0; // id 0 = single , 1 = auto; 2  = Burst;
+  public int IdShopMode = 0; // id 0 = GunSound , 1 = Explosion; 2  = TaserGun 3 = LightSaber;
 
   void Start()
   {

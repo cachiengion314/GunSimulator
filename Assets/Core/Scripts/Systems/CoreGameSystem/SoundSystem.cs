@@ -2,6 +2,7 @@ using UnityEngine;
 using Lofelt.NiceVibrations;
 using UnityEngine.SceneManagement;
 using HoangNam;
+using System;
 
 /// <summary> Fix haptic issue when build in IOS
 /// https://github.com/asmadsen/react-native-unity-view/issues/35
@@ -27,10 +28,26 @@ public class SoundSystem : MonoBehaviour
   [SerializeField] AudioClip _levelComplete;
   [SerializeField] AudioClip _levelFail;
   [SerializeField] AudioClip pistolFireSfx;
+  [System.Serializable]
+  public struct GunAudioClips
+  {
+    public int idTypeGun;         // ID loại súng
+
+    public AudioClip[] audioClips;// Danh sách âm thanh của loại súng đó
+  }
+  [Header("---ListPistolFireSfx---")] //Type theo id type DatdGunManager
+  public GunAudioClips[] gunAudioClipsArray;
+  private void OnValidate()
+  {
+    for (int i = 0; i < gunAudioClipsArray.Length; i++)
+    {
+      gunAudioClipsArray[i].idTypeGun = i; // Gán ID theo index tự động
+    }
+  }
+
 
   [Header("Components")]
   [SerializeField] AudioSource audioSource;
-
   private void Awake()
   {
     if (Instance == null)
@@ -203,5 +220,37 @@ public class SoundSystem : MonoBehaviour
     if (!GameSystem.Instance.IsSoundOn) return;
     AudioSource.PlayClipAtPoint(pistolFireSfx, Vector3.forward * -9, 1);
   }
-
+  public void PlayGunSoundSfx(int idType, int idGun)
+  {
+    if (GameSystem.Instance.IsHapticOn)
+    {
+      HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+    }
+    if (!GameSystem.Instance.IsSoundOn) return;
+    AudioClip _audioClipTarget = GetGunSound(idType, idGun);
+    if (_audioClipTarget == null) return;
+    // auidoFireTypeSingle.PlayOneShot(_audioClipTarget);
+    AudioSource.PlayClipAtPoint(_audioClipTarget, Vector3.forward * -9, 1);
+  }
+  public AudioClip GetGunSound(int idType, int idGun)
+  {
+    foreach (var gunAudio in gunAudioClipsArray)
+    {
+      if (gunAudio.idTypeGun == idType)
+      {
+        if (idGun >= 0 && idGun < gunAudio.audioClips.Length)
+        {
+          return gunAudio.audioClips[idGun];
+        }
+        else
+        {
+          Debug.LogError($"❌ idGun {idGun} vượt quá danh sách âm thanh loại {idType}");
+          return null;
+        }
+      }
+    }
+    Debug.LogError($"❌ Không tìm thấy âm thanh cho loại súng {idType}");
+    return null;
+  }
+  
 }

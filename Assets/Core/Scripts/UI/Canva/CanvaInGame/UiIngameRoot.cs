@@ -2,6 +2,8 @@ using UnityEngine;
 using HoangNam;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.ShaderGraph.Internal;
+using Unity.Mathematics;
 
 
 public partial class UiIngameRoot : BaseUIRoot
@@ -18,20 +20,32 @@ public partial class UiIngameRoot : BaseUIRoot
   [SerializeField] GameObject cavanIsUsingBooster;
   [SerializeField] GameObject[] arrayButton;
   [Header("---Gun---")]
-  [SerializeField] GameObject playerController;
   [SerializeField] TMP_Text textCurrentBullet;
-  public Button[] TypeFireModes;
-  [SerializeField] GunControl gunControl;
+  public Button[] TypeFireModes; // id 0 =  button Single. id 1 =  button Auto . 2 = burst
+
   private void Start()
   {
     Instance = this;
     // UpdateTextCurrentBullet();
-    // SetupButtons();
+    SetupButtons();
     // SetUpTextCurrentBullet();
     ItemSystem.Instance.OnFire += UpdateBullet;
+    ItemSystem.Instance.OnIsAuto += UpdateButtonType;
+    TouchDetect.Instance.onTouchEnd += SetTypeSingleButton;
+
     var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
+  }
+  void SetTypeSingleButton(float2 _test , float2 _test2)
+  {
+    TypeFireModes[0].gameObject.SetActive(true);
+    TypeFireModes[1].gameObject.SetActive(false);
+  }
+  void UpdateButtonType(bool _isAuto)
+  {
+    TypeFireModes[0].gameObject.SetActive(!_isAuto);
+    TypeFireModes[1].gameObject.SetActive(_isAuto);
   }
   void UpdateBullet(int _value)
   {
@@ -40,12 +54,6 @@ public partial class UiIngameRoot : BaseUIRoot
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
   }
-
-  void SetUpTextCurrentBullet()
-  {
-    textCurrentBullet.text = gunControl.GetCurrentAmmo().ToString();
-  }
-
   public void UpdateTextCurrentBullet()
   {
     var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);

@@ -532,7 +532,10 @@ MonoBehaviour:
   arrayButton: []
   playerController: {fileID: 0}
   textCurrentBullet: {fileID: 6044584885173597839}
-  TypeFireModes: []
+  TypeFireModes:
+  - {fileID: 2704045640400985754}
+  - {fileID: 4846989081158000485}
+  - {fileID: 5475984379061856718}
   gunControl: {fileID: 0}
 --- !u!1 &2219888408054787949
 GameObject:
