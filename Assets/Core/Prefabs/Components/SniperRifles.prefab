@@ -51,10 +51,17 @@ MonoBehaviour:
   - {fileID: 2443434765669418993}
   - {fileID: 6183216326706337968}
   - {fileID: 8433261732070884166}
+  singleModeRecoilAngles: 40
+  singleModeRecoilPosition: 1
+  autoModeRecoilAngles: 40
+  autoModeRecoilPosition: 1
+  burstModeRecoilAngles: 40
+  burstModeRecoilPosition: 1
   singleModeFireRate: 0.4
   autoModeFireRate: 0.16
   burstModeFireRate: 0.5
   reduceAmmoPerShot: 1
+  haveAutoMode: 0
 --- !u!1 &1826274136148084914
 GameObject:
   m_ObjectHideFlags: 0

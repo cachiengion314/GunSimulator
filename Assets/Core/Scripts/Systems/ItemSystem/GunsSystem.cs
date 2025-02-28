@@ -154,7 +154,8 @@ public partial class ItemSystem : MonoBehaviour
             currentGun,
             duration,
             currentGun.GetComponent<GunControl>().ReduceAmmoPerShot,
-            .5f
+            currentGun.GetComponent<GunControl>().BurstModeRecoilPosition,
+            currentGun.GetComponent<GunControl>().BurstModeRecoilAngles
           );
         });
     }
@@ -182,7 +183,8 @@ public partial class ItemSystem : MonoBehaviour
       currentGun.gameObject,
       currentGun.GetComponent<GunControl>().AutoModeFireRate,
       currentGun.GetComponent<GunControl>().ReduceAmmoPerShot,
-      .5f
+      currentGun.GetComponent<GunControl>().AutoModeRecoilPosition,
+      currentGun.GetComponent<GunControl>().AutoModeRecoilAngles
     );
 
     var seq = DOTween.Sequence();
@@ -210,7 +212,8 @@ public partial class ItemSystem : MonoBehaviour
       currentGun,
       currentGun.GetComponent<GunControl>().SingleModeFireRate,
       currentGun.GetComponent<GunControl>().ReduceAmmoPerShot,
-      1.0f
+      currentGun.GetComponent<GunControl>().SingleModeRecoilPosition,
+      currentGun.GetComponent<GunControl>().SingleModeRecoilAngles
     );
 
     var seq = DOTween.Sequence();
@@ -227,8 +230,8 @@ public partial class ItemSystem : MonoBehaviour
     GameObject gunObj,
     float fireRate,
     int _reduceAmmoPerShot = 1,
-    float _recoil = .5f,
-    float _recoilAngle = 40
+    float _recoilPosition = .5f,
+    float _recoilAngles = 40
   )
   {
     if (gunObj == null) return;
@@ -247,14 +250,14 @@ public partial class ItemSystem : MonoBehaviour
 
     gunObj.GetComponent<GunControl>().BodyRenderer.transform
       .DOLocalRotate(
-          new Vector3(0, 0, -1 * _recoilAngle * fireRate),
+          new Vector3(0, 0, -1 * _recoilAngles * fireRate),
           _duration / 2f
         )
         .SetEase(Ease.Linear)
         .SetLoops(2, LoopType.Yoyo);
 
     gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(true);
-    var backPos = gunObj.transform.position + Vector3.down * _recoil;
+    var backPos = gunObj.transform.position + Vector3.down * _recoilPosition;
     DOTween.To(
       () => { return gunObj.transform.position; },
       (val) => { gunObj.transform.position = val; },
@@ -271,7 +274,7 @@ public partial class ItemSystem : MonoBehaviour
     gunObj.GetComponent<IFeedbackControl>().InjectChannel(gunObj.GetInstanceID());
     FeedbackSystem.Instance.PlayRandomShakesAt(
       gunObj.GetInstanceID(),
-      _recoil,
+      _recoilPosition,
       _duration
     );
   }

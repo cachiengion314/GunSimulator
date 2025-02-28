@@ -25,6 +25,21 @@ public class GunControl : MonoBehaviour,
   bool _isTweening;
   int _initAmmo;
   int _currentAmmo;
+  [Header("Recoil position")]
+  [SerializeField] float singleModeRecoilPosition;
+  public float SingleModeRecoilPosition { get { return singleModeRecoilPosition; } }
+  [SerializeField] float autoModeRecoilPosition;
+  public float AutoModeRecoilPosition { get { return autoModeRecoilPosition; } }
+  [SerializeField] float burstModeRecoilPosition;
+  public float BurstModeRecoilPosition { get { return burstModeRecoilPosition; } }
+  [Header("Recoil angles")]
+  [SerializeField] float singleModeRecoilAngles;
+  public float SingleModeRecoilAngles { get { return singleModeRecoilAngles; } }
+  [SerializeField] float autoModeRecoilAngles;
+  public float AutoModeRecoilAngles { get { return autoModeRecoilAngles; } }
+  [SerializeField] float burstModeRecoilAngles;
+  public float BurstModeRecoilAngles { get { return burstModeRecoilAngles; } }
+  [Header("Fire rate")]
   [SerializeField] float singleModeFireRate;
   public float SingleModeFireRate { get { return singleModeFireRate; } }
   [SerializeField] float autoModeFireRate;
@@ -33,6 +48,8 @@ public class GunControl : MonoBehaviour,
   public float BurstModeFireRate { get { return burstModeFireRate; } }
   [SerializeField] int reduceAmmoPerShot;
   public int ReduceAmmoPerShot { get { return reduceAmmoPerShot; } }
+  [SerializeField] bool haveAutoMode;
+  public bool HaveAutoMode { get { return haveAutoMode; } }
 
   public void ChangeBodyRendererBaseOn(int idx)
   {

@@ -47,10 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyRenderers:
   - {fileID: 2443434765669418993}
+  singleModeRecoilAngles: 40
+  singleModeRecoilPosition: 1
+  autoModeRecoilAngles: 40
+  autoModeRecoilPosition: 1
+  burstModeRecoilAngles: 40
+  burstModeRecoilPosition: 1
   singleModeFireRate: 0.4
   autoModeFireRate: 0.16
   burstModeFireRate: 0.5
   reduceAmmoPerShot: 1
+  haveAutoMode: 1
 --- !u!1 &3671534312377995244
 GameObject:
   m_ObjectHideFlags: 0

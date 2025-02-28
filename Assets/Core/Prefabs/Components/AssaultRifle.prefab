@@ -51,10 +51,17 @@ MonoBehaviour:
   - {fileID: 2443434765669418993}
   - {fileID: 1942600202986810708}
   - {fileID: 5725885610575708150}
+  singleModeRecoilAngles: 40
+  singleModeRecoilPosition: 1
+  autoModeRecoilAngles: 40
+  autoModeRecoilPosition: 1
+  burstModeRecoilAngles: 40
+  burstModeRecoilPosition: 1
   singleModeFireRate: 0.4
   autoModeFireRate: 0.16
   burstModeFireRate: 0.5
   reduceAmmoPerShot: 1
+  haveAutoMode: 1
 --- !u!1 &4034901040966370553
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7836089044086984679
 Transform:
   m_ObjectHideFlags: 0
@@ -395,7 +402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7184819754110411441
 Transform:
   m_ObjectHideFlags: 0
