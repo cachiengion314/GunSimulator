@@ -9,7 +9,6 @@ Library: /Users/mac/Downloads/GunSimulator/Temp/BurstOutput/tempburstlibs/arm64-
 --target-framework=NetFramework
 --generate-link-xml=Temp/burst.link.xml
 --temp-folder=/Users/mac/Downloads/GunSimulator/Temp/Burst
---debug=Full
 --key-folder=/Applications/Unity/Hub/Editor/6000.0.37f1/PlaybackEngines/AndroidPlayer
 --decode-folder=/Users/mac/Downloads/GunSimulator/Library/Burst
 --output=/Users/mac/Downloads/GunSimulator/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_burst_generated
@@ -125,7 +124,6 @@ Library: /Users/mac/Downloads/GunSimulator/Temp/BurstOutput/tempburstlibs/arm64-
 --target-framework=NetFramework
 --generate-link-xml=Temp/burst.link.xml
 --temp-folder=/Users/mac/Downloads/GunSimulator/Temp/Burst
---debug=Full
 --key-folder=/Applications/Unity/Hub/Editor/6000.0.37f1/PlaybackEngines/AndroidPlayer
 --decode-folder=/Users/mac/Downloads/GunSimulator/Library/Burst
 --output=/Users/mac/Downloads/GunSimulator/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_burst_generated
@@ -149,7 +147,6 @@ Library: /Users/mac/Downloads/GunSimulator/Temp/BurstOutput/tempburstlibs/arm64-
 --float-mode=Fast
 --generate-link-xml=Temp/burst.link.xml
 --temp-folder=/Users/mac/Downloads/GunSimulator/Temp/Burst
---debug=Full
 --key-folder=/Applications/Unity/Hub/Editor/6000.0.37f1/PlaybackEngines/AndroidPlayer
 --decode-folder=/Users/mac/Downloads/GunSimulator/Library/Burst
 --output=/Users/mac/Downloads/GunSimulator/Temp/BurstOutput/tempburstlibs/arm64-v8a/lib_burst_generated

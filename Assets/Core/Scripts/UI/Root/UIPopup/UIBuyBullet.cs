@@ -7,10 +7,15 @@ public class UIBuyBullet : BaseUIRoot
     {
         // LevelPlayAds.Instance.ShowRewardedAd(() =>
         // {
-            DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdGunPick, GameSystem.Instance.IdTypePick);
-            UiIngameRoot.Instance.UpdateTextCurrentBullet();
-            this.Hide();
-            GameSystem.Instance.SetGameState(GameState.Gameplay);
+        DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdGunPick, GameSystem.Instance.IdTypePick);
+        UiIngameRoot.Instance.UpdateTextCurrentBullet();
+        this.Hide();
+
         // }, " BuyBullet");
+    }
+    protected override void OnHideCompleted()
+    {
+        base.OnHideCompleted();
+        GameSystem.Instance.SetGameState(GameState.Gameplay);
     }
 }
