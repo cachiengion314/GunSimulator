@@ -20,6 +20,8 @@ public partial class ItemSystem : MonoBehaviour
   [Header("Datas")]
   float3 defaultLocalScale = new(1, 1, 0);
   public Action<int> OnFire;
+  public Action<bool> OnIsAuto;
+  public Action OnSingle;
 
   void Update()
   {
@@ -189,7 +191,9 @@ public partial class ItemSystem : MonoBehaviour
       currentGun.GetComponent<GunControl>().AutoModeRecoilPosition,
       currentGun.GetComponent<GunControl>().AutoModeRecoilAngles
     );
+
     OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
+    OnIsAuto?.Invoke(true);
 
     var seq = DOTween.Sequence();
     var currentAnimDuration = 0f;
@@ -197,6 +201,7 @@ public partial class ItemSystem : MonoBehaviour
       currentAnimDuration + currentGun.GetComponent<GunControl>().AutoModeFireRate,
       () =>
       {
+
         _isFireInvoke = false;
       });
   }
@@ -227,6 +232,7 @@ public partial class ItemSystem : MonoBehaviour
       currentAnimDuration + currentGun.GetComponent<GunControl>().SingleModeFireRate,
       () =>
       {
+
         _isFireInvoke = false;
       });
   }
@@ -241,7 +247,7 @@ public partial class ItemSystem : MonoBehaviour
   {
     if (gunObj == null) return;
 
-    SoundSystem.Instance.PlayPistolSfx();
+    SoundSystem.Instance.PlayGunSoundSfx(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
 
     var muzzlePosition = gunObj.GetComponent<IGunFire>().GetMuzzlePosition();
     EffectSystem.Instance.SpawnMuzzleEfxAt(muzzlePosition);
@@ -274,6 +280,7 @@ public partial class ItemSystem : MonoBehaviour
       .OnComplete(() =>
         {
           gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(false);
+
         });
 
     gunObj.GetComponent<IFeedbackControl>().InjectChannel(gunObj.GetInstanceID());
@@ -283,4 +290,6 @@ public partial class ItemSystem : MonoBehaviour
       _duration
     );
   }
+
+
 }

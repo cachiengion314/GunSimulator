@@ -23,8 +23,8 @@ public class GunControl : MonoBehaviour,
   [Header("Datas")]
   int _bodyRendererIndex;
   bool _isTweening;
-  int _initAmmo;
-  int _currentAmmo;
+  [SerializeField]int _initAmmo;
+  [SerializeField]int _currentAmmo;
   [Header("Recoil position")]
   [SerializeField] float singleModeRecoilPosition;
   public float SingleModeRecoilPosition { get { return singleModeRecoilPosition; } }

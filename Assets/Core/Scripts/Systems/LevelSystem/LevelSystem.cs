@@ -131,6 +131,15 @@ public partial class LevelSystem : MonoBehaviour
       case 0:
         ItemSystem.Instance.SpawnGunBy(
           GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+        var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
+        int intInitAmmo = _dataGunTarget._currentStartValue;
+
+        int intCurrentAmmo = _dataGunTarget._currentValue;
+
+        var _currentAmmo = ItemSystem.Instance.GetCurrentGun();
+        _currentAmmo.GetComponent<GunControl>().SetInitAmmo(intInitAmmo);
+        _currentAmmo.GetComponent<GunControl>().SetInitAmmo(intCurrentAmmo);
+
         break;
       case 1:
         break;
