@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Cup
+  - Water
+  - UI
+  - Bottle
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Item
+    uniqueID: 327004453
+    locked: 0
+  - name: Booster
+    uniqueID: 933154233
+    locked: 0
+  - name: UI
+    uniqueID: 3578349039
+    locked: 0
+  - name: Camera
+    uniqueID: 3376979953
+    locked: 0
+  m_RenderingLayers:
+  - Default

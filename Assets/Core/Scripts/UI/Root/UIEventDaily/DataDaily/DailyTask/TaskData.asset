@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9664846fd6bb4a5a8623cd0faf268a9, type: 3}
+  m_Name: TaskData
+  m_EditorClassIdentifier: 
+  AllTasks:
+  - _idTask: 0
+    _strNameTask: Use Sort 1 times!
+    _currentValue: 0
+    _targetValue: 1
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 0
+  - _idTask: 1
+    _strNameTask: Use Shuffle 1 times!
+    _currentValue: 0
+    _targetValue: 1
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 0
+  - _idTask: 2
+    _strNameTask: Use Clear 1 times!
+    _currentValue: 0
+    _targetValue: 1
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 0
+  - _idTask: 3
+    _strNameTask: Use Revive 3 times!
+    _currentValue: 0
+    _targetValue: 3
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 1
+  - _idTask: 4
+    _strNameTask: Complete 3 levels!
+    _currentValue: 0
+    _targetValue: 3
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 1
+  - _idTask: 5
+    _strNameTask: Collect 500 boba cups!
+    _currentValue: 0
+    _targetValue: 500
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 2
+  - _idTask: 6
+    _strNameTask: Unlock 5 locked slots!
+    _currentValue: 0
+    _targetValue: 5
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 2
+  - _idTask: 7
+    _strNameTask: Collect 300 cash from levels!
+    _currentValue: 0
+    _targetValue: 300
+    _isSuccess: 0
+    _isPick: 0
+    _isTypeTask: 2

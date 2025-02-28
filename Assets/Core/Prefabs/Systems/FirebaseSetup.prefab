@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7940842418078011305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5089224485790425102}
+  - component: {fileID: 5463717918534926635}
+  m_Layer: 0
+  m_Name: FirebaseSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5089224485790425102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7940842418078011305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5463717918534926635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7940842418078011305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b5ac5d0f57d4e4489f915c8b2dfcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsCompletedUpdate: 0
+  updateModal: {fileID: 0}
+  _firebaseRemoteData:
+    parameterGroups:
+      Lobby:
+        parameters:
+          Admob:
+            ios:
+              admob_AOA:
+                isShow: 1
+                value: 
+            android:
+              admob_AOA:
+                isShow: 1
+                value: 
+          update_config:
+            ios:
+              version: 1.0
+              link_app: https://google.com/
+              reward: 50
+            android:
+              version: 1.0
+              link_app: https://google.com/
+              reward: 50
+          config_game:
+            energy_refill_time: 0
+            max_energy: 0

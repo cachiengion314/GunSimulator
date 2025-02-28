@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0e2882b25d24708807bfb2385839b8, type: 3}
+  m_Name: LuckyData
+  m_EditorClassIdentifier: 
+  AllItem:
+  - _idItem: 0
+    _strItem: Coin1
+    _percentage: 0
+    _typeItem:
+    - _currentValue: 0
+      _typeItem: 0
+  - _idItem: 1
+    _strItem: Coin2
+    _percentage: 0
+    _typeItem: []
+  - _idItem: 2
+    _strItem: Coin3
+    _percentage: 0
+    _typeItem: []
+  - _idItem: 3
+    _strItem: booster1
+    _percentage: 0
+    _typeItem: []
+  - _idItem: 4
+    _strItem: 
+    _percentage: 0
+    _typeItem: []
+  - _idItem: 5
+    _strItem: booster2
+    _percentage: 0
+    _typeItem: []
+  - _idItem: 6
+    _strItem: booster3
+    _percentage: 0
+    _typeItem: []
+  - _idItem: 7
+    _strItem: Custom
+    _percentage: 0
+    _typeItem:
+    - _currentValue: 0
+      _typeItem: 0
+    - _currentValue: 0
+      _typeItem: 0

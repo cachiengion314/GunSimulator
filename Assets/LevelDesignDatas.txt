@@ -1,0 +1,966 @@
+{
+    "datas": [
+        {
+            "Index": 0,
+            "GridSize": {
+                "x": 6,
+                "y": 6
+            },
+            "Moves": 0,
+            "TrayDatas": [
+                {
+                    "Color": 0
+                },
+                {
+                    "Color": 2
+                },
+                {
+                    "Color": 2
+                },
+                {
+                    "Color": 0
+                }
+            ],
+            "BottleDatas": [
+                {
+                    "bottleDatas": [
+                        {
+                            "ColorIndex": 2,
+                            "BottleCapacity": 1
+                        },
+                        {
+                            "ColorIndex": 2,
+                            "BottleCapacity": 1
+                        },
+                        {
+                            "ColorIndex": 2,
+                            "BottleCapacity": 1
+                        }
+                    ],
+                    "PosIndex": 6
+                },
+                {
+                    "bottleDatas": [
+                        {
+                            "ColorIndex": 2,
+                            "BottleCapacity": 1
+                        }
+                    ],
+                    "PosIndex": 18
+                },
+                {
+                    "bottleDatas": [
+                        {
+                            "ColorIndex": 0,
+                            "BottleCapacity": 1
+                        },
+                        {
+                            "ColorIndex": 0,
+                            "BottleCapacity": 1
+                        },
+                        {
+                            "ColorIndex": 0,
+                            "BottleCapacity": 1
+                        }
+                    ],
+                    "PosIndex": 20
+                },
+                {
+                    "bottleDatas": [
+                        {
+                            "ColorIndex": 2,
+                            "BottleCapacity": 1
+                        },
+                        {
+                            "ColorIndex": 2,
+                            "BottleCapacity": 1
+                        }
+                    ],
+                    "PosIndex": 30
+                },
+                {
+                    "bottleDatas": [
+                        {
+                            "ColorIndex": 0,
+                            "BottleCapacity": 1
+                        }
+                    ],
+                    "PosIndex": 31
+                },
+                {
+                    "bottleDatas": [
+                        {
+                            "ColorIndex": 0,
+                            "BottleCapacity": 1
+                        },
+                        {
+                            "ColorIndex": 0,
+                            "BottleCapacity": 1
+                        }
+                    ],
+                    "PosIndex": 32
+                }
+            ],
+            "CupDatas": [
+                {
+                    "ColorIndex": 2,
+                    "CupCapacity": 3,
+                    "PosIndex": 5
+                },
+                {
+                    "ColorIndex": 0,
+                    "CupCapacity": 3,
+                    "PosIndex": 17
+                },
+                {
+                    "ColorIndex": 2,
+                    "CupCapacity": 3,
+                    "PosIndex": 23
+                },
+                {
+                    "ColorIndex": 0,
+                    "CupCapacity": 3,
+                    "PosIndex": 35
+                }
+            ],
+            "GridTableCells": [
+                0,
+                0,
+                -1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "GridBoxes": [
+                0,
+                3,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "IsUnlockedBoosters": [
+                false,
+                false,
+                false
+            ],
+            "Difficulty": 2
+        },
+        {
+            "Index": 1,
+            "GridSize": {
+                "x": 2,
+                "y": 2
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [
+                {
+                    "bottleDatas": [],
+                    "PosIndex": 0
+                },
+                {
+                    "bottleDatas": [],
+                    "PosIndex": 0
+                },
+                {
+                    "bottleDatas": [],
+                    "PosIndex": 0
+                },
+                {
+                    "bottleDatas": [],
+                    "PosIndex": 0
+                }
+            ],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [
+                false,
+                false,
+                false
+            ],
+            "Difficulty": 3
+        },
+        {
+            "Index": 2,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 3,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 4,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 5,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 6,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 7,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 8,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 9,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 10,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 11,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 12,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 13,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 14,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 15,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 16,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 17,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 18,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 19,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 20,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 21,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 22,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 23,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 24,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 25,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 26,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 27,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 28,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 29,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 30,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 31,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 32,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 33,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 34,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 35,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 36,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 37,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 38,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 39,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 40,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 41,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 42,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 43,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 44,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 45,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 46,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 47,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 48,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        },
+        {
+            "Index": 49,
+            "GridSize": {
+                "x": 0,
+                "y": 0
+            },
+            "Moves": 0,
+            "TrayDatas": [],
+            "BottleDatas": [],
+            "CupDatas": [],
+            "GridTableCells": [],
+            "GridBoxes": [],
+            "IsUnlockedBoosters": [],
+            "Difficulty": 3
+        }
+    ]
+}

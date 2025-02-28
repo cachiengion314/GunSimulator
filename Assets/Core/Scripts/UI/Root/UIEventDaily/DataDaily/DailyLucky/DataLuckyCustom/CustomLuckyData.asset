@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebad17f444864b5485b9cda9d609079, type: 3}
+  m_Name: CustomLuckyData
+  m_EditorClassIdentifier: 
+  AllCustomItem:
+  - _currentValue: 50
+    _typeItem: 0
+  - _currentValue: 2
+    _typeItem: 1
+  - _currentValue: 1
+    _typeItem: 2

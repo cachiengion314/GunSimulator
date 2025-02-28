@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: RootUI
+  m_EditorClassIdentifier: 
+  m_GroupName: RootUI
+  m_GUID: f3d7e21b1b4024d039be9fdcef0d7b48
+  m_SerializeEntries:
+  - m_GUID: 6279a61648eeb4cdeb6e7632bc2916e6
+    m_Address: BuyHeartModal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fe2bf4aba8c34e7e927a13e7e60e105
+    m_Address: RemoveAds Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72e5fa1409b9f4510945862a8dcb52aa
+    m_Address: Setting 2 Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87ffb4d84d08d4b408b9109b13225302
+    m_Address: BuyBoosterModal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 920651d2689744a24b76190bf2c4d44e
+    m_Address: Lose 1 Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a82bac741d9a54436b59619a6d040889
+    m_Address: Lose 2 Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad7ebf67f11054bcc91ebe56c6a19565
+    m_Address: Setting 1 Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd63b521061dd4854976a5cdffff5fc6
+    m_Address: Shop Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbb854e3ea97447df9e26029a55ee694
+    m_Address: Win Level Modal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bc19c9a4b392c4a5fa9d1e94c904ff90, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9efb6112bcf2c4764ad39a04adb104ac, type: 2}
+    - {fileID: 11400000, guid: 775843d4c37664525ab8aae54ea5f60a, type: 2}

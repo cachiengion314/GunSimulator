@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc98a4d974dc4dd294d06c5c2f682d5, type: 3}
+  m_Name: ThemeObj
+  m_EditorClassIdentifier: 
+  LiquidColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.9987322, g: 1, b: 0, a: 1}
+  - {r: 0.0664978, g: 0, b: 1, a: 1}
+  - {r: 0.087417364, g: 1, b: 0, a: 1}
+  - {r: 0.6969166, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.57798433, a: 1}
+  - {r: 1, g: 0.42398834, b: 0, a: 1}
+  - {r: 0.4433962, g: 0, b: 0, a: 1}
+  LiquidSurfaceColors:
+  - {r: 1, g: 0.5235849, b: 0.5235849, a: 1}
+  - {r: 1, g: 1, b: 0.4669811, a: 1}
+  - {r: 0.48490563, g: 0.4481132, b: 1, a: 1}
+  - {r: 0.50434697, g: 1, b: 0.4575472, a: 1}
+  - {r: 0.8362004, g: 0.4575472, b: 1, a: 1}
+  - {r: 1, g: 0.4669811, b: 0.774251, a: 1}
+  - {r: 1, g: 0.6709767, b: 0.4292453, a: 1}
+  - {r: 0.5188679, g: 0.2765664, b: 0.2765664, a: 1}
+  TrayRenderers:
+  - {fileID: 21300000, guid: 4bb1ab471f2f243dca870b71091329c2, type: 3}
+  - {fileID: 21300000, guid: a878280665ba840e296791e0295a1c73, type: 3}
+  - {fileID: 21300000, guid: 96607dbd836fa4a0c9f9d335ad983e21, type: 3}
+  - {fileID: 21300000, guid: 34c22ac20f1224536bb8c680a9b79b59, type: 3}
+  - {fileID: 21300000, guid: d3e5d203087c047b480b507021af3f06, type: 3}
+  - {fileID: 21300000, guid: 2af08ef2778c84fb9b48d6e4a56ef383, type: 3}
+  - {fileID: 21300000, guid: 6409efca4ec4548bfbe1afa9fc42020e, type: 3}
+  - {fileID: 21300000, guid: 22281e847082240119f8baeb50d2b264, type: 3}
+  BoxRenderers:
+  - {fileID: 21300000, guid: c7494242a5f1149cd87599d06958ecce, type: 3}
+  - {fileID: 21300000, guid: e082bd95f7d3340ae9b9987c81272d09, type: 3}
+  - {fileID: 21300000, guid: 7eca913c5a42647829387de6985fd369, type: 3}
+  SpriteIconPistol:
+  - {fileID: 21300000, guid: 536a473fa9adb1146982141e54963433, type: 3}
+  - {fileID: 21300000, guid: 7e81c0a7920dec544807f9555d7917b0, type: 3}
+  SpriteIconSMGGun:
+  - {fileID: 21300000, guid: 2d29e6e184f71134489359599b1a1d62, type: 3}
+  - {fileID: 21300000, guid: 464f38ad41e26394e845e6f9d5945eca, type: 3}
+  SpriteIconShotGun:
+  - {fileID: 21300000, guid: 21362401e3338714da339a239baabc2a, type: 3}
+  - {fileID: 21300000, guid: 199e92e6c9dd7254abc54fdd38409f4b, type: 3}
+  SpriteIconRiffleGun:
+  - {fileID: 21300000, guid: 101c3ff3832799d40b8703adbfb34c35, type: 3}
+  - {fileID: 21300000, guid: b7cad2917d053294aa83873fbd3d047a, type: 3}
+  SpriteIconSniperGun:
+  - {fileID: 21300000, guid: b65e2f326d0c2f14e972ccac8db3d077, type: 3}
+  - {fileID: 21300000, guid: 3eb676946e7b62e47bab79363a58aa9f, type: 3}

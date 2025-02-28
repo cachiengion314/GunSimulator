@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d099e950f8fdb4eef8aee72f0bcbfaf9, type: 3}
+  m_Name: LevelDesignObj 1
+  m_EditorClassIdentifier: 
+  Index: 0
+  GridSize:
+    x: 6
+    y: 6
+  Moves: 0
+  TrayDatas:
+  - Color: 0
+  - Color: 2
+  - Color: 2
+  - Color: 0
+  BottleDatas:
+  - bottleDatas:
+    - ColorIndex: 2
+      BottleCapacity: 1
+    - ColorIndex: 2
+      BottleCapacity: 1
+    - ColorIndex: 2
+      BottleCapacity: 1
+    PosIndex: 6
+  - bottleDatas:
+    - ColorIndex: 2
+      BottleCapacity: 1
+    PosIndex: 18
+  - bottleDatas:
+    - ColorIndex: 0
+      BottleCapacity: 1
+    - ColorIndex: 0
+      BottleCapacity: 1
+    - ColorIndex: 0
+      BottleCapacity: 1
+    PosIndex: 20
+  - bottleDatas:
+    - ColorIndex: 2
+      BottleCapacity: 1
+    - ColorIndex: 2
+      BottleCapacity: 1
+    PosIndex: 30
+  - bottleDatas:
+    - ColorIndex: 0
+      BottleCapacity: 1
+    PosIndex: 31
+  - bottleDatas:
+    - ColorIndex: 0
+      BottleCapacity: 1
+    - ColorIndex: 0
+      BottleCapacity: 1
+    PosIndex: 32
+  CupDatas:
+  - ColorIndex: 2
+    CupCapacity: 3
+    PosIndex: 5
+  - ColorIndex: 0
+    CupCapacity: 3
+    PosIndex: 17
+  - ColorIndex: 2
+    CupCapacity: 3
+    PosIndex: 23
+  - ColorIndex: 0
+    CupCapacity: 3
+    PosIndex: 35
+  GridTableCells: 0000000000000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  GridBoxes: 000000000300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  IsUnlockedBoosters: 000000
+  Difficulty: 2
