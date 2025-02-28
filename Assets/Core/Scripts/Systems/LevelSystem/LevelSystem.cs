@@ -126,10 +126,20 @@ public partial class LevelSystem : MonoBehaviour
   public void SetupCurrentLevel()
   {
     var levelDesignObj = GetCurrentLevelDesign();
+    switch (GameSystem.Instance.IdShopMode)
+    {
+      case 0:
+        ItemSystem.Instance.SpawnGunBy(
+          GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
 
-    ItemSystem.Instance.SpawnGunBy(
-      GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick
-    );
+    }
 
     /// events
     onInitedLevel?.Invoke();

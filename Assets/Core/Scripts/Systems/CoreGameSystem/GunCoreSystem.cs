@@ -3,10 +3,10 @@ using UnityEngine;
 public partial class GameSystem : MonoBehaviour
 {
   [Header("---GunData---")]
-  [SerializeField] public int _idTypePick;
-  [SerializeField] public int _idGunPick;
-  [SerializeField] public int _IdFireModes = 0; // id 0 = single , 1 = auto; 2  = Burst;
-  [SerializeField] public int _idShopMode = 0; // id 0 = GunSound , 1 = Explosion; 2  = TaserGun 3 = LightSaber;
+  [SerializeField] public int IdTypePick;
+  [SerializeField] public int IdGunPick;
+  [SerializeField] public int IdFireModes = 0; // id 0 = single , 1 = auto; 2  = Burst;
+  [SerializeField] public int IdShopMode = 0; // id 0 = GunSound , 1 = Explosion; 2  = TaserGun 3 = LightSaber;
 
   void Start()
   {
@@ -18,13 +18,13 @@ public partial class GameSystem : MonoBehaviour
       Gunpick._isOwned = true;
       Gunpick._isPick = true;
 
-      _idTypePick = gunData._typeGun;
-      _idGunPick = gunData._idGun;
+      IdTypePick = gunData._typeGun;
+      IdGunPick = gunData._idGun;
 
       DataGunManager.Instance.SaveDataJsonTask();
       return;
     }
-    _idTypePick = gunData._typeGun;
-    _idGunPick = gunData._idGun;
+    IdTypePick = gunData._typeGun;
+    IdGunPick = gunData._idGun;
   }
 }

@@ -7,7 +7,7 @@ public class UIBuyBullet : BaseUIRoot
     {
         // LevelPlayAds.Instance.ShowRewardedAd(() =>
         // {
-            DataGunManager.Instance.ResetDataTest(GameSystem.Instance._idGunPick, GameSystem.Instance._idTypePick);
+            DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdGunPick, GameSystem.Instance.IdTypePick);
             UiIngameRoot.Instance.UpdateTextCurrentBullet();
             this.Hide();
             GameSystem.Instance.SetGameState(GameState.Gameplay);

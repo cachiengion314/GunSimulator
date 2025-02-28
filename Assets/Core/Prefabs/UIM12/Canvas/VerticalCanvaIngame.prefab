@@ -526,19 +526,14 @@ MonoBehaviour:
   easeTypeShow: 27
   easeTypeHide: 26
   _btnShowShopCoin: {fileID: 0}
-  _textTatget: {fileID: 0}
-  _strTextTarget: 
-  _CavanIsUsingBooster: {fileID: 0}
-  ArrayButton:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _playerController: {fileID: 0}
-  _textCurrentBullet: {fileID: 6044584885173597839}
-  _typeFireModes:
-  - {fileID: 2704045640400985754}
-  - {fileID: 4846989081158000485}
-  - {fileID: 5475984379061856718}
+  textTatget: {fileID: 0}
+  strTextTarget: 
+  cavanIsUsingBooster: {fileID: 0}
+  arrayButton: []
+  playerController: {fileID: 0}
+  textCurrentBullet: {fileID: 6044584885173597839}
+  TypeFireModes: []
+  gunControl: {fileID: 0}
 --- !u!1 &2219888408054787949
 GameObject:
   m_ObjectHideFlags: 0

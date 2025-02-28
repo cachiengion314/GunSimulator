@@ -30,11 +30,11 @@ public class PlayerController : MonoBehaviour
         TouchDetect.Instance.onTouchBegan += OnDetect;
         // TouchDetect.Instance.onTouchMoved += OnHoldDetect;
         TouchDetect.Instance.onTouchEnd += HideAnim;
-        UnityEngine.Debug.Log("GameSystem.Instance._idGunPick: " + GameSystem.Instance._idGunPick);
-        var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick);
+        UnityEngine.Debug.Log("GameSystem.Instance._idGunPick: " + GameSystem.Instance.IdGunPick);
+        var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
         float _speed = gunData._bulletSpeed;
         _BulletSpeed = _speed;
-        CreatPlayer(GameSystem.Instance._idShopMode);
+        CreatPlayer(GameSystem.Instance.IdShopMode);
     }
 
     void Update()
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void OnDetect(float2 pos, Collider2D[] _Collider2Ds)
     {
-        switch (GameSystem.Instance._idShopMode)
+        switch (GameSystem.Instance.IdShopMode)
         {
             case 0:
                 GunModeTap(pos, _Collider2Ds[0]);
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     void OnHoldDetect(float2 pos, Collider2D[] _Collider2Ds)
     {
         // Mặc định chuyển về chế độ Single khi chạm
-        switch (GameSystem.Instance._idShopMode)
+        switch (GameSystem.Instance.IdShopMode)
         {
             case 0:
                 GunModeHold(pos, _Collider2Ds);
@@ -95,8 +95,8 @@ public class PlayerController : MonoBehaviour
 
     void CreatGunTarget()
     {
-        int TypePick = GameSystem.Instance._idTypePick;
-        int GunPick = GameSystem.Instance._idGunPick;
+        int TypePick = GameSystem.Instance.IdTypePick;
+        int GunPick = GameSystem.Instance.IdGunPick;
         GameObject GunTarget = null;
 
         switch (TypePick)
@@ -262,12 +262,12 @@ public class PlayerController : MonoBehaviour
 
     public void HideAnim(float2 pos1, float2 pos2)
     {
-        if (GameSystem.Instance._IdFireModes == 2)
+        if (GameSystem.Instance.IdFireModes == 2)
         {
             return;
         }
-        UiIngameRoot.Instance._typeFireModes[0].gameObject.SetActive(true);
-        UiIngameRoot.Instance._typeFireModes[1].gameObject.SetActive(false);
+        UiIngameRoot.Instance.TypeFireModes[0].gameObject.SetActive(true);
+        UiIngameRoot.Instance.TypeFireModes[1].gameObject.SetActive(false);
     }
     void UpdateCoundownBulle()
     {
@@ -282,7 +282,7 @@ public class PlayerController : MonoBehaviour
     void GunModeTap(float2 pos, Collider2D _Collider2D)
     {
         // Mặc định chuyển về chế độ Single khi chạm
-        if (GameSystem.Instance._IdFireModes == 2)
+        if (GameSystem.Instance.IdFireModes == 2)
         {
             if (_BoxCollider2D == _Collider2D)
             {
@@ -290,21 +290,21 @@ public class PlayerController : MonoBehaviour
                 {
                     return;
                 }
-                Fire(GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick, 3);
+                Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 3);
             }
             return;
         }
-        GameSystem.Instance._IdFireModes = 0;
+        GameSystem.Instance.IdFireModes = 0;
 
 
         if (_BoxCollider2D == _Collider2D)
         {
-            Fire(GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick, 1);
+            Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 1);
         }
     }
     void GunModeHold(float2 pos, Collider2D[] _Collider2D)
     {
-        if (GameSystem.Instance._IdFireModes == 2)
+        if (GameSystem.Instance.IdFireModes == 2)
         {
             if (_isbursting == true) // đang bắn thì dừng
             {
@@ -314,23 +314,23 @@ public class PlayerController : MonoBehaviour
             {
                 if (_BoxCollider2D == _collider2d)
                 {
-                    Fire(GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick, 3);
+                    Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 3);
                     _isbursting = true;
                 }
             }
             return;
         }
         // Chuyển sang chế độ Auto
-        GameSystem.Instance._IdFireModes = 1;
+        GameSystem.Instance.IdFireModes = 1;
         UnityEngine.Debug.Log("Chuyển sang chế độ Auto");
-        UiIngameRoot.Instance._typeFireModes[0].gameObject.SetActive(false);
-        UiIngameRoot.Instance._typeFireModes[1].gameObject.SetActive(true);
+        UiIngameRoot.Instance.TypeFireModes[0].gameObject.SetActive(false);
+        UiIngameRoot.Instance.TypeFireModes[1].gameObject.SetActive(true);
 
         foreach (Collider2D _collider2d in _Collider2D)
         {
             if (_BoxCollider2D == _collider2d)
             {
-                Fire(GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick, 1);
+                Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 1);
             }
         }
     }

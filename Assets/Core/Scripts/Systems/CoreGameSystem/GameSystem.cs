@@ -297,7 +297,7 @@ public partial class GameSystem : MonoBehaviour
   {
     if (scene.name == "Lobby")
     {
-      _IdFireModes = 0;
+      IdFireModes = 0;
     }
   }
 

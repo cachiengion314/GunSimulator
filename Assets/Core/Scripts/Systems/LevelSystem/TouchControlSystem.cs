@@ -16,7 +16,7 @@ public partial class LevelSystem : MonoBehaviour
   void OnTouchBegan(float2 touchPos, Collider2D[] touchedColliders)
   {
     // // gắn ở button từ 0 - 2, 0 = single, 1 = auto, 2 = burst  
-    switch (GameSystem.Instance._IdFireModes)
+    switch (GameSystem.Instance.IdFireModes)
     {
       case 0:
         break;
