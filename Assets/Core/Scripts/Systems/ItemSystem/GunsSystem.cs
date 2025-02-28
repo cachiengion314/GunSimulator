@@ -22,8 +22,9 @@ public partial class ItemSystem : MonoBehaviour
   public Action<int> OnFire;
   public Action<bool> OnIsAuto;
   public Action OnSingle;
+  public Action OnOutOfAmmo;
 
-  void Update()
+ void Update()
   {
     if (GunParent.childCount == 0) return;
 
@@ -138,9 +139,9 @@ public partial class ItemSystem : MonoBehaviour
 
     int intCurrentAmmo = _dataGunTarget._currentValue;
 
-    var _currentGun = ItemSystem.Instance.GetCurrentGun();
+    var _currentGun = GetCurrentGun();
     _currentGun.GetComponent<GunControl>().SetInitAmmo(intInitAmmo);
-    _currentGun.GetComponent<GunControl>().SetInitAmmo(intCurrentAmmo);
+    _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
   }
 
   bool _isFireInvoke;
@@ -153,6 +154,7 @@ public partial class ItemSystem : MonoBehaviour
       print("Please standby");
       return;
     }
+
     _isFireInvoke = true;
 
     var seq = DOTween.Sequence();
@@ -223,6 +225,11 @@ public partial class ItemSystem : MonoBehaviour
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
       print("Please standby");
+      return;
+    }
+    if (currentGun.GetComponent<GunControl>().CurrentAmmo <= 0)
+    {
+      OnOutOfAmmo?.Invoke();
       return;
     }
     _isFireInvoke = true;

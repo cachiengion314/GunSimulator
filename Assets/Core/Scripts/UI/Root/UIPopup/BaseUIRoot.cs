@@ -47,8 +47,13 @@ public class BaseUIRoot : MonoBehaviour
   {
     modal.transform.localScale = Vector2.one;
     modal.DOScale(0, time).SetEase(easeTypeHide).OnComplete(
-        () => gameObject.SetActive(false)
+        () =>
+        {
+          gameObject.SetActive(false);
+          OnHideCompleted();
+        }
     );
+
   }
 
   public virtual void Exit()
@@ -64,6 +69,10 @@ public class BaseUIRoot : MonoBehaviour
   protected virtual void OnShowCompleted()
   {
     // Phương thức này sẽ được override trong lớp con
+  }
+  protected virtual void OnHideCompleted()
+  {
+    // 🔥 Phương thức mới để xử lý sau khi UI đã ẩn hoàn toàn
   }
   public void SetGameStateUnPause()
   {

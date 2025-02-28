@@ -32,13 +32,13 @@ public class UIShopIngame : UiShop
 
   void Awake()
   {
-
+    SetDefault();
   }
   void OnEnable()
   {
+    
+    SetupAnimShop();
     SetupItemShop();
-    // SetDefault();
-    // SetupAnimShop();
   }
   void SetupItemShop()
   {
@@ -111,7 +111,6 @@ public class UIShopIngame : UiShop
   // }
   void CreatItemShopNew() // chuyền IdTypeGun  ,chuyền _prefabItem , chuyền parent
   {
-
     CreatShopGunSound();
     CreatShopExplosion();
   }
@@ -303,46 +302,51 @@ public class UIShopIngame : UiShop
   void StartAnimShop(int _idShop)
   {
     _bgShop.DOKill();
-    // _contentsShop.DOKill();
+    _contentsShop.DOKill();
 
-    // float timebg = _timeAnimeShop * 0.5f;
-    // float timeContent = _timeAnimeShop * 0.35f;
-    // float delayContent = _timeAnimeShop * 0.15f;
-    // Sequence sequence = DOTween.Sequence();
-    // sequence.Join(_bgShop.DOAnchorPos(SavePositonBGShop, timebg)
-    //                   .SetEase(Ease.OutBack));// Hiệu ứng nảy
+    float timebg = _timeAnimeShop * 0.5f;
+    float timeContent = _timeAnimeShop * 0.35f;
+    float delayContent = _timeAnimeShop * 0.15f;
+    Sequence sequence = DOTween.Sequence();
+    sequence.Join(_bgShop.DOAnchorPos(SavePositonBGShop, timebg)
+                      .SetEase(Ease.OutBack));// Hiệu ứng nảy
 
-    // sequence.Insert(delayContent, _contentsShop.DOAnchorPos(SavePositonContentShop, timeContent)
-    //               .SetEase(Ease.OutBack))
-    //               .OnComplete(() =>
-    //               {
-    //                 _btnExit.interactable = true;
-    //               });
-    // ; // Hiệu ứng mượt
     RectTransform ObjTarget = _arrayScollParentItem[_idShop].gameObject.GetComponent<RectTransform>();
     if (ObjTarget != null)
     {
       ObjTarget.gameObject.transform.DOKill();
     }
+    sequence.Insert(delayContent, ObjTarget.DOAnchorPos(SavePositonContentShop, timeContent)
+                  .SetEase(Ease.OutBack))
+                  .OnComplete(() =>
+                  {
+                    _btnExit.interactable = true;
+                  });
+    ; // Hiệu ứng mượt
+    // RectTransform ObjTarget = _arrayScollParentItem[_idShop].gameObject.GetComponent<RectTransform>();
+    // if (ObjTarget != null)
+    // {
+    //   ObjTarget.gameObject.transform.DOKill();
+    // }
 
-    float timebg = _timeAnimeShop * 0.5f;
-    float timeContent = _timeAnimeShop * 0.35f;
-    float delayContent = _timeAnimeShop * 0.15f;
+    // float timebg = _timeAnimeShop * 0.5f;
+    // float timeContent = _timeAnimeShop * 0.35f;
+    // float delayContent = _timeAnimeShop * 0.15f;
 
-    Sequence sequence = DOTween.Sequence();
+    // Sequence sequence = DOTween.Sequence();
 
-    sequence.Join(_bgShop.DOAnchorPos(SavePositonBGShop, timebg)
-                      .SetEase(Ease.OutBack)); // Hiệu ứng nảy
+    // sequence.Join(_bgShop.DOAnchorPos(SavePositonBGShop, timebg)
+    //                   .SetEase(Ease.OutBack)); // Hiệu ứng nảy
 
-    if (ObjTarget != null)
-    {
-      sequence.Insert(delayContent, ObjTarget.DOAnchorPos(SavePositonContentShop, timeContent)
-                    .SetEase(Ease.OutBack))
-                    .OnComplete(() =>
-                    {
-                      _btnExit.interactable = true;
-                    });
-    }
+    // if (ObjTarget != null)
+    // {
+    //   sequence.Insert(delayContent, ObjTarget.DOAnchorPos(SavePositonContentShop, timeContent)
+    //                 .SetEase(Ease.OutBack))
+    //                 .OnComplete(() =>
+    //                 {
+    //                   _btnExit.interactable = true;
+    //                 });
+    // }
 
   }
 
@@ -354,12 +358,12 @@ public class UIShopIngame : UiShop
   protected override void OnShowCompleted()
   {
     base.OnShowCompleted(); // Gọi base để đảm bảo logic cơ bản vẫn chạy
-    // PlayAnimShop(); // Thực hiện anim win sau khi OnShow hoàn tất
+    PlayAnimShop(); // Thực hiện anim win sau khi OnShow hoàn tất
 
   }
   public void BTNExitShop()
   {
-    this.Exit();
+    this.Hide();
     // UiIngameRoot.Instance._btnShowShopCoin.interactable = true;
   }
   public void BtnShowShopType(int _IdType) // từ 0 - 4 loại súng gắn vào button để hiện thị shop

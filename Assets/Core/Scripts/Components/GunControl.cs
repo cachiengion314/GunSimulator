@@ -23,8 +23,9 @@ public class GunControl : MonoBehaviour,
   [Header("Datas")]
   int _bodyRendererIndex;
   bool _isTweening;
-  int _initAmmo;
-  int _currentAmmo;
+  [SerializeField]int _initAmmo;
+  [SerializeField]int _currentAmmo;
+  public int CurrentAmmo { get { return _currentAmmo; } }
   [SerializeField] int gunType;
   public int GunType { get { return gunType; } }
   [Header("Recoil position")]
@@ -74,7 +75,7 @@ public class GunControl : MonoBehaviour,
   public void SetInitAmmo(int ammo)
   {
     _initAmmo = ammo;
-    SetCurrentAmmo(ammo);
+    // SetCurrentAmmo(ammo);
   }
 
   /// <summary>
