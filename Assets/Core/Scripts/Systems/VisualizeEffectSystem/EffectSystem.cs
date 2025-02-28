@@ -10,9 +10,14 @@ public class EffectSystem : MonoBehaviour
   [SerializeField] CoinsParticle coinPsPrefab;
   [SerializeField] ParticleSystem birthdayConfenttiEfx;
   [SerializeField] ParticleSystem arcaneSparkEfx;
-  [SerializeField] ParticleSystem muzzleEfx;
   [SerializeField] Animator fireFrameAnim;
   [SerializeField] ParticleSystem bulletBurstUpEfx;
+  [SerializeField] ParticleSystem assaultRifleMuzzleEfx;
+  [SerializeField] ParticleSystem machineGunMuzzleEfx;
+  [SerializeField] ParticleSystem pistolMuzzleEfx;
+  [SerializeField] ParticleSystem shotGunMuzzleEfx;
+  [SerializeField] ParticleSystem SMGMuzzleEfx;
+  [SerializeField] ParticleSystem sniperRiflesMuzzleEfx;
 
   void Start()
   {
@@ -43,10 +48,24 @@ public class EffectSystem : MonoBehaviour
     return birthdayConfentti;
   }
 
-  public ParticleSystem SpawnMuzzleEfxAt(float3 pos)
+  public ParticleSystem SpawnMuzzleEfxAt(float3 pos, int gunType)
   {
-    var obj = Instantiate(muzzleEfx, pos, muzzleEfx.transform.rotation);
-    return obj;
+    switch (gunType)
+    {
+      case 0:
+        return Instantiate(pistolMuzzleEfx, pos, pistolMuzzleEfx.transform.rotation);
+      case 1:
+        return Instantiate(SMGMuzzleEfx, pos, SMGMuzzleEfx.transform.rotation);
+      case 2:
+        return Instantiate(shotGunMuzzleEfx, pos, shotGunMuzzleEfx.transform.rotation);
+      case 3:
+        return Instantiate(assaultRifleMuzzleEfx, pos, assaultRifleMuzzleEfx.transform.rotation);
+      case 4:
+        return Instantiate(sniperRiflesMuzzleEfx, pos, sniperRiflesMuzzleEfx.transform.rotation);
+      case 5:
+        return Instantiate(machineGunMuzzleEfx, pos, machineGunMuzzleEfx.transform.rotation);
+    }
+    return Instantiate(pistolMuzzleEfx, pos, pistolMuzzleEfx.transform.rotation);
   }
 
   public Animator SpawnFireFrameAnimAt(float3 pos)

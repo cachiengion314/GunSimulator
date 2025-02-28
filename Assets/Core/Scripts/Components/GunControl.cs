@@ -25,6 +25,8 @@ public class GunControl : MonoBehaviour,
   bool _isTweening;
   int _initAmmo;
   int _currentAmmo;
+  [SerializeField] int gunType;
+  public int GunType { get { return gunType; } }
   [Header("Recoil position")]
   [SerializeField] float singleModeRecoilPosition;
   public float SingleModeRecoilPosition { get { return singleModeRecoilPosition; } }
@@ -46,9 +48,10 @@ public class GunControl : MonoBehaviour,
   public float AutoModeFireRate { get { return autoModeFireRate; } }
   [SerializeField] float burstModeFireRate;
   public float BurstModeFireRate { get { return burstModeFireRate; } }
+  [Header("ReduceAmmoPerShot")]
   [SerializeField] int reduceAmmoPerShot;
   public int ReduceAmmoPerShot { get { return reduceAmmoPerShot; } }
-  [Header("mode")]
+  [Header("Mode")]
   [SerializeField] bool haveAutoMode;
   public bool HaveAutoMode { get { return haveAutoMode; } }
   [SerializeField] bool haveBurstMode;
@@ -135,5 +138,10 @@ public class GunControl : MonoBehaviour,
   public float3 GetBulletBurstUpPosition()
   {
     return BodyRenderer.transform.GetChild(1).position;
+  }
+
+  public Quaternion GetInitRotation()
+  {
+    return transform.rotation;
   }
 }

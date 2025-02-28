@@ -51,17 +51,19 @@ MonoBehaviour:
   - {fileID: 2443434765669418993}
   - {fileID: 7920058829747901055}
   - {fileID: 3543522399478507053}
-  singleModeRecoilAngles: 40
-  singleModeRecoilPosition: 1
-  autoModeRecoilAngles: 40
-  autoModeRecoilPosition: 1
-  burstModeRecoilAngles: 40
-  burstModeRecoilPosition: 1
-  singleModeFireRate: 0.4
-  autoModeFireRate: 0.16
-  burstModeFireRate: 0.5
+  gunType: 1
+  singleModeRecoilPosition: 1.2
+  autoModeRecoilPosition: 0.55
+  burstModeRecoilPosition: 0.4
+  singleModeRecoilAngles: 22
+  autoModeRecoilAngles: 14
+  burstModeRecoilAngles: 15
+  singleModeFireRate: 0.2
+  autoModeFireRate: 0.08
+  burstModeFireRate: 0.3
   reduceAmmoPerShot: 1
   haveAutoMode: 1
+  haveBurstMode: 1
 --- !u!1 &1351840564384496363
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,8 +92,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.2, y: 2.2, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1345381578128447435}
   - {fileID: 1190636184581391086}
@@ -382,8 +384,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.2, y: 2.2, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6861790669721050766}
   - {fileID: 5516903913224836030}
@@ -581,8 +583,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.2, y: 2.2, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7136953618130153138}
   - {fileID: 7271342265856868160}

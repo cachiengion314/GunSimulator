@@ -146,21 +146,22 @@ public partial class ItemSystem : MonoBehaviour
 
     var seq = DOTween.Sequence();
     var currentAnimDuration = 0f;
-    var duration = currentGun.GetComponent<GunControl>().BurstModeFireRate / 3f;
+    var oneshotDuration = currentGun.GetComponent<GunControl>().BurstModeFireRate / 3f;
     for (int i = 0; i < 3; ++i)
     {
-      seq.InsertCallback(currentAnimDuration + duration * i,
+      var currDur = currentAnimDuration + oneshotDuration * i;
+      seq.InsertCallback(currDur,
         () =>
         {
           InvokeFireAnim(
             currentGun,
-            duration,
+            oneshotDuration,
             currentGun.GetComponent<GunControl>().ReduceAmmoPerShot,
             currentGun.GetComponent<GunControl>().BurstModeRecoilPosition,
             currentGun.GetComponent<GunControl>().BurstModeRecoilAngles
           );
+          OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
         });
-      OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
     }
 
     seq.InsertCallback(
@@ -244,7 +245,10 @@ public partial class ItemSystem : MonoBehaviour
     SoundSystem.Instance.PlayPistolSfx();
 
     var muzzlePosition = gunObj.GetComponent<IGunFire>().GetMuzzlePosition();
-    EffectSystem.Instance.SpawnMuzzleEfxAt(muzzlePosition);
+    EffectSystem.Instance.SpawnMuzzleEfxAt(
+      muzzlePosition,
+      gunObj.GetComponent<GunControl>().GunType
+    );
 
     var bulletPos = gunObj.GetComponent<IGunFire>().GetBulletBurstUpPosition();
     for (int i = 0; i < _reduceAmmoPerShot; ++i)
@@ -252,14 +256,20 @@ public partial class ItemSystem : MonoBehaviour
 
     var _duration = fireRate * .5f;
     if (_duration < .2f) _duration = fireRate;
+    if (_duration > .6f) _duration = .6f;
 
     gunObj.GetComponent<GunControl>().BodyRenderer.transform
       .DOLocalRotate(
-          new Vector3(0, 0, -1 * _recoilAngles * fireRate),
+          new Vector3(0, 0, -1 * _recoilAngles),
           _duration / 2f
         )
         .SetEase(Ease.Linear)
-        .SetLoops(2, LoopType.Yoyo);
+        .SetLoops(2, LoopType.Yoyo)
+        .OnComplete(() =>
+          {
+            var rot = gunObj.GetComponent<GunControl>().GetInitRotation();
+            gunObj.transform.localRotation = rot;
+          });
 
     gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(true);
     var backPos = gunObj.transform.position + Vector3.down * _recoilPosition;

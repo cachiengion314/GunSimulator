@@ -47,6 +47,11 @@ MonoBehaviour:
   coinPsPrefab: {fileID: 3383568378186257148, guid: 28c1532402bc74e3ea933f871e168dad, type: 3}
   birthdayConfenttiEfx: {fileID: 2983425650540423935, guid: c2b3b283705c2458aa9a228b7c943532, type: 3}
   arcaneSparkEfx: {fileID: 2691878318767050071, guid: dcddb7e4db91146f3aeeb612703fa3f2, type: 3}
-  muzzleEfx: {fileID: 4869207491575185548, guid: da8c34b81471a4c1793a78df58d512ef, type: 3}
   fireFrameAnim: {fileID: 6802393671792991665, guid: 6e5dcc397dddc476fabe406310af6128, type: 3}
   bulletBurstUpEfx: {fileID: 7201184404526197318, guid: 6ee25b389b374454fbfca504d4828211, type: 3}
+  assaultRifleMuzzleEfx: {fileID: 4869207491575185548, guid: 9e8b695cd81a84410bf4a9f178a7df0f, type: 3}
+  machineGunMuzzleEfx: {fileID: 4869207491575185548, guid: 71ad14a4770834456af9134cdedeb8c7, type: 3}
+  pistolMuzzleEfx: {fileID: 4869207491575185548, guid: da8c34b81471a4c1793a78df58d512ef, type: 3}
+  shotGunMuzzleEfx: {fileID: 4869207491575185548, guid: 57df409bee52343b285bb8313459ed65, type: 3}
+  SMGMuzzleEfx: {fileID: 4869207491575185548, guid: 9fd397374c6f34d4fb41e82968826f34, type: 3}
+  sniperRiflesMuzzleEfx: {fileID: 4869207491575185548, guid: 1eb8612a8c49d4526828cfa48c50c503, type: 3}
