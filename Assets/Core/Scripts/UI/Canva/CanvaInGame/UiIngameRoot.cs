@@ -22,9 +22,12 @@ public partial class UiIngameRoot : BaseUIRoot
   [SerializeField] TMP_Text textCurrentBullet;
   public Button[] TypeFireModes;
   [SerializeField] GunControl gunControl;
+  public ColorPickerControl colorPickerControl;
+  private void Awake() {
+    Instance = this;
+  }
   private void Start()
   {
-    Instance = this;
     // UpdateTextCurrentBullet();
     // SetupButtons();
     // SetUpTextCurrentBullet();
