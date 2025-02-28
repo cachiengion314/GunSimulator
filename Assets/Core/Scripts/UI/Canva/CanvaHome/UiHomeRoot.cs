@@ -31,28 +31,28 @@ public class UiHomeRoot : MonoBehaviour
   {
     // SoundSystem.Instance.PlayButtonSfx();
     UIManager.Instance.Show(KeyStr.NAME_SHOP_MODAL);
-    GameSystem.Instance._idShopMode = 0;
+    GameSystem.Instance.IdShopMode = 0;
     UIManager.Instance.GetUI<UIShopIngame>(KeyStr.NAME_SHOP_MODAL).BtnShowShopType(0);
   }
   public void ShowShopExplosion()
   {
     // SoundSystem.Instance.PlayButtonSfx();
     UIManager.Instance.Show(KeyStr.NAME_SHOP_MODAL);
-    GameSystem.Instance._idShopMode = 1;
+    GameSystem.Instance.IdShopMode = 1;
     UIManager.Instance.GetUI<UIShopIngame>(KeyStr.NAME_SHOP_MODAL).BtnShowShopType(1);
   }
   public void ShowShopTaserGun()
   {
     // SoundSystem.Instance.PlayButtonSfx();
     UIManager.Instance.Show(KeyStr.NAME_SHOP_MODAL);
-    GameSystem.Instance._idShopMode = 2;
+    GameSystem.Instance.IdShopMode = 2;
     UIManager.Instance.GetUI<UIShopIngame>(KeyStr.NAME_SHOP_MODAL).BtnShowShopType(2);
   }
   public void ShowShopLightSaber()
   {
     // SoundSystem.Instance.PlayButtonSfx();
     UIManager.Instance.Show(KeyStr.NAME_SHOP_MODAL);
-    GameSystem.Instance._idShopMode = 3;
+    GameSystem.Instance.IdShopMode = 3;
     UIManager.Instance.GetUI<UIShopIngame>(KeyStr.NAME_SHOP_MODAL).BtnShowShopType(3);
   }
 

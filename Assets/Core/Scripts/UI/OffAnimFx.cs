@@ -4,7 +4,7 @@ public class OffAnimFx : MonoBehaviour
 {
     public void SetOffGameObjAnimFx()
     {
-        if (GameSystem.Instance._IdFireModes == 2)
+        if (GameSystem.Instance.IdFireModes == 2)
         {
             PlayerController.Instance.countBurst += 1;
             if (PlayerController.Instance.countBurst >= 3)
@@ -19,7 +19,7 @@ public class OffAnimFx : MonoBehaviour
         {
             // if (GameSystem.Instance._IdFireModes != 2)
             // {
-            GameSystem.Instance._IdFireModes = 0;
+            GameSystem.Instance.IdFireModes = 0;
             PlayerController.Instance._isbursting = false;
          
             // }

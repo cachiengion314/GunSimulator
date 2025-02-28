@@ -89,7 +89,7 @@ public class TouchDetect : MonoBehaviour
 
     ///
     if (startTouchPos.x > 2.7f || startTouchPos.x < -2.7f) return;
-    switch (GameSystem.Instance._IdFireModes)
+    switch (GameSystem.Instance.IdFireModes)
     {
       case 0:
         ItemSystem.Instance.SingleModeFireInvoke();
@@ -113,7 +113,7 @@ public class TouchDetect : MonoBehaviour
 
     ///
     if (_touchedPosition.x > 2.7f || _touchedPosition.x < -2.7f) return;
-    if (GameSystem.Instance._IdFireModes == 2) return; // Burst mode
+    if (GameSystem.Instance.IdFireModes == 2) return; // Burst mode
 
     var currentGun = ItemSystem.Instance.GetCurrentGun();
     if (currentGun.GetComponent<GunControl>().HaveAutoMode)

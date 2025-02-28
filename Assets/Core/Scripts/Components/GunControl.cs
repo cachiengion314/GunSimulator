@@ -48,8 +48,11 @@ public class GunControl : MonoBehaviour,
   public float BurstModeFireRate { get { return burstModeFireRate; } }
   [SerializeField] int reduceAmmoPerShot;
   public int ReduceAmmoPerShot { get { return reduceAmmoPerShot; } }
+  [Header("mode")]
   [SerializeField] bool haveAutoMode;
   public bool HaveAutoMode { get { return haveAutoMode; } }
+  [SerializeField] bool haveBurstMode;
+  public bool HaveBurstMode { get { return haveBurstMode; } }
 
   public void ChangeBodyRendererBaseOn(int idx)
   {
@@ -70,7 +73,6 @@ public class GunControl : MonoBehaviour,
     _initAmmo = ammo;
     SetCurrentAmmo(ammo);
   }
-
 
   /// <summary>
   /// hàm set lượng đạn hiện tại

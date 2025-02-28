@@ -3,6 +3,7 @@ using HoangNam;
 using UnityEngine.UI;
 using TMPro;
 
+
 public partial class UiIngameRoot : BaseUIRoot
 {
   static public UiIngameRoot Instance { get; private set; }
@@ -10,36 +11,46 @@ public partial class UiIngameRoot : BaseUIRoot
   public Button _btnShowShopCoin;
 
   [Header("---TextTarget---")]
-  [SerializeField] TMP_Text _textTatget;
-  [SerializeField] string _strTextTarget;
+  [SerializeField] TMP_Text textTatget;
+  [SerializeField] string strTextTarget;
 
   [Header("---IsUsingBooster---")]
-  [SerializeField] GameObject _CavanIsUsingBooster;
-  [SerializeField] GameObject[] ArrayButton;
+  [SerializeField] GameObject cavanIsUsingBooster;
+  [SerializeField] GameObject[] arrayButton;
   [Header("---Gun---")]
-  [SerializeField] GameObject _playerController;
-  [SerializeField] TMP_Text _textCurrentBullet;
-  public Button[] _typeFireModes;
-
+  [SerializeField] GameObject playerController;
+  [SerializeField] TMP_Text textCurrentBullet;
+  public Button[] TypeFireModes;
+  [SerializeField] GunControl gunControl;
   private void Start()
   {
     Instance = this;
-    UpdateTextCurrentBullet();
-    SetupButtons();
+    // UpdateTextCurrentBullet();
+    // SetupButtons();
+    // SetUpTextCurrentBullet();
+    ItemSystem.Instance.OnFire += UpdateBullet;
+    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+    int _currentValueGun = gunData._currentValue;
+    textCurrentBullet.text = _currentValueGun.ToString();
   }
-  void Update()
+  void UpdateBullet(int _value)
   {
-    // UpdateStatButton(GameSystem.Instance._IdFireModes);
+    DataGunManager.Instance.UpdateGunCurrenValue(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, _value);
+    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+    int _currentValueGun = gunData._currentValue;
+    textCurrentBullet.text = _currentValueGun.ToString();
   }
-  // void UpdateStatButton(int _index)
-  // {
-  //   _typeFireModes[_index].gameObject.GetComponent<Image>().color = Color.green;
-  // }
+
+  void SetUpTextCurrentBullet()
+  {
+    textCurrentBullet.text = gunControl.GetCurrentAmmo().ToString();
+  }
+
   public void UpdateTextCurrentBullet()
   {
-    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance._idTypePick, GameSystem.Instance._idGunPick);
+    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
     int _currentValueGun = gunData._currentValue;
-    _textCurrentBullet.text = _currentValueGun.ToString();
+    textCurrentBullet.text = _currentValueGun.ToString();
   }
 
   public void BtnSettingIngame()
@@ -60,7 +71,7 @@ public partial class UiIngameRoot : BaseUIRoot
   }
   void SetupButtons()
   {
-    foreach (var type in _typeFireModes)
+    foreach (var type in TypeFireModes)
     {
       type.gameObject.SetActive(false);
     }
@@ -69,20 +80,20 @@ public partial class UiIngameRoot : BaseUIRoot
     {
       if (GunData._fireModes.Length == 3)
       {
-        _typeFireModes[0].gameObject.SetActive(true);
-        _typeFireModes[1].gameObject.SetActive(false);
-        _typeFireModes[2].gameObject.SetActive(true);
+        TypeFireModes[0].gameObject.SetActive(true);
+        TypeFireModes[1].gameObject.SetActive(false);
+        TypeFireModes[2].gameObject.SetActive(true);
       }
       else
       {
-        _typeFireModes[i].gameObject.SetActive(true);
+        TypeFireModes[i].gameObject.SetActive(true);
       }
     }
   }
 
   public void BtnSetTypeGun(int _idType) // gắn ở button từ 0 - 2 0= single 1= auto. 2  = bủrt  
   {
-    GameSystem.Instance._IdFireModes = _idType;
+    GameSystem.Instance.IdFireModes = _idType;
   }
 
 

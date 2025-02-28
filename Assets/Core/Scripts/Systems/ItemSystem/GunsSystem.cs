@@ -1,4 +1,5 @@
 
+using System;
 using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
@@ -18,6 +19,7 @@ public partial class ItemSystem : MonoBehaviour
 
   [Header("Datas")]
   float3 defaultLocalScale = new(1, 1, 0);
+  public Action<int> OnFire;
 
   void Update()
   {
@@ -158,6 +160,7 @@ public partial class ItemSystem : MonoBehaviour
             currentGun.GetComponent<GunControl>().BurstModeRecoilAngles
           );
         });
+      OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
     }
 
     seq.InsertCallback(
@@ -186,6 +189,7 @@ public partial class ItemSystem : MonoBehaviour
       currentGun.GetComponent<GunControl>().AutoModeRecoilPosition,
       currentGun.GetComponent<GunControl>().AutoModeRecoilAngles
     );
+    OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
 
     var seq = DOTween.Sequence();
     var currentAnimDuration = 0f;
@@ -215,6 +219,7 @@ public partial class ItemSystem : MonoBehaviour
       currentGun.GetComponent<GunControl>().SingleModeRecoilPosition,
       currentGun.GetComponent<GunControl>().SingleModeRecoilAngles
     );
+    OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
 
     var seq = DOTween.Sequence();
     var currentAnimDuration = 0f;
