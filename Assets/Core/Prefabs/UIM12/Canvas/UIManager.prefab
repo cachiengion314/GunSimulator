@@ -60,6 +60,7 @@ MonoBehaviour:
   - {fileID: 1984148073019420700, guid: 5cd0cd2383d2346aaad4fcf587cfe7e3, type: 3}
   - {fileID: 5399796598071652131, guid: 8ac57db806d2348a58fef3f03eb9823b, type: 3}
   - {fileID: 6676460503719194959, guid: bfbaabd6780394f7b8659468191b7ef6, type: 3}
+  - {fileID: 1744035388222159604, guid: 7dde8c0142d5e461b8cacf47c5f9173c, type: 3}
   uIVerticalPrefabs:
   - {fileID: 6676460503719194959, guid: 920651d2689744a24b76190bf2c4d44e, type: 3}
   parentHorizontalCanva: {fileID: 6803914938262846049}
@@ -106,6 +107,11 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   - m_AssetGUID: bfbaabd6780394f7b8659468191b7ef6
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 7dde8c0142d5e461b8cacf47c5f9173c
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 

@@ -51,11 +51,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee71c6317d3df4c6d8b7590e74411281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lightsaberDatas:
+  - {fileID: 11400000, guid: 400a7d1df4cb741e892e501b5351acc0, type: 2}
+  - {fileID: 11400000, guid: 5572dd4e00ee74f9399c6c389dafa5fb, type: 2}
+  - {fileID: 11400000, guid: b8c150b96bec4469fb40727324f813bb, type: 2}
+  - {fileID: 11400000, guid: 5634ed7c1825c4069b9dc77ec251e4f8, type: 2}
+  - {fileID: 11400000, guid: fee0ac3ce64a0473a83931c4b2428dfa, type: 2}
   maxlevelIndex: 19
-  _idTypePick: 0
-  _idGunPick: 0
-  _IdFireModes: 0
-  _idShopMode: 0
+  IdTypePick: 0
+  IdGunPick: 0
+  IdFireModes: 0
+  IdShopMode: 0
 --- !u!114 &782243895131351842
 MonoBehaviour:
   m_ObjectHideFlags: 0

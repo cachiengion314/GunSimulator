@@ -23,6 +23,7 @@ public partial class ItemSystem : MonoBehaviour
 
   void Update()
   {
+    BladeLengthen();
     if (GunParent.childCount == 0) return;
 
     if (Input.GetKeyDown(KeyCode.A))

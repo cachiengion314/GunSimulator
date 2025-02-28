@@ -768,7 +768,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 879066905}
         m_TargetAssemblyTypeName: UiHomeRoot, Assembly-CSharp
-        m_MethodName: ShowShopRiffleGun
+        m_MethodName: ShowShopLightSaber
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1442,7 +1442,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 879066905}
         m_TargetAssemblyTypeName: UiHomeRoot, Assembly-CSharp
-        m_MethodName: ShowShopSMGGun
+        m_MethodName: ShowShopExplosion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1621,7 +1621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 879066905}
         m_TargetAssemblyTypeName: UiHomeRoot, Assembly-CSharp
-        m_MethodName: ShowShopShotGun
+        m_MethodName: ShowShopTaserGun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1796,7 +1796,6 @@ MonoBehaviour:
   - {fileID: 4285338095598481420, guid: e6ee2a0e86b304be397e34d5e7b30f96, type: 3}
   - {fileID: 6804905419193905513, guid: 02e9ab71ee44e4a72bdf943c703f4172, type: 3}
   _levelEditor: {fileID: 0}
-  lineRenderer: {fileID: 0}
 --- !u!1001 &1610978342989365502
 PrefabInstance:
   m_ObjectHideFlags: 0

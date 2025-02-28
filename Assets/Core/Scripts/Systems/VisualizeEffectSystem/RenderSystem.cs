@@ -82,5 +82,18 @@ public class RenderSystem : MonoBehaviour
     }
     return null;
   }
+
+  public LightsaberData GetLightsaberDataAt(int _id)
+  {
+    if (_id <= themes[CurrentThemeIndex].lightsaberDatas.Length)
+    {
+      return themes[CurrentThemeIndex].lightsaberDatas[_id];
+    }
+    return null;
+  }
+  public LightsaberData[] GetLightsaberDatas()
+  {
+    return themes[CurrentThemeIndex].lightsaberDatas;
+  }
 }
 

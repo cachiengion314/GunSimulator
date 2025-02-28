@@ -254,6 +254,17 @@ public partial class GameSystem : MonoBehaviour
     }
   }
 
+  public int CurrentLightsaberIndex
+  {
+    get => PlayerPrefs.GetInt("lightsaber", 0);
+    set => PlayerPrefs.SetInt("lightsaber", value);
+  }
+
+  public LightsaberData GetCurrentLightsaberData()
+  {
+    return RenderSystem.Instance.GetLightsaberDataAt(CurrentLightsaberIndex);
+  }
+
   /// <summary>
   /// Event section
   /// </summary>
