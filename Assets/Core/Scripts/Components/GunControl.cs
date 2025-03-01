@@ -148,11 +148,12 @@ public class GunControl : MonoBehaviour,
   {
     return _initRotation;
   }
+
   public void SetHaveBurst(bool _isBurst)
   {
     haveBurstMode = _isBurst;
-
   }
+
   public void SetHaveAuto(bool _isAuto)
   {
     haveAutoMode = _isAuto;

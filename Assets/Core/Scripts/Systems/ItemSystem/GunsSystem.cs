@@ -152,7 +152,7 @@ public partial class ItemSystem : MonoBehaviour
     bool hasBurstMode = Array.Exists(_dataGunTarget._fireModes, mode => mode == (int)DataGun.FireMode.Burst);
     _gunControl.SetHaveBurst(hasBurstMode);
     bool hasAutoMode = Array.Exists(_dataGunTarget._fireModes, mode => mode == (int)DataGun.FireMode.Auto);
-    _gunControl.SetHaveBurst(hasAutoMode);
+    _gunControl.SetHaveAuto(hasAutoMode);
   }
 
   bool _isFireInvoke;
