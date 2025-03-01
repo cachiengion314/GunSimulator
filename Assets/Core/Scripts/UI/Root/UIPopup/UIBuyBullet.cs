@@ -7,9 +7,17 @@ public class UIBuyBullet : BaseUIRoot
     {
         // LevelPlayAds.Instance.ShowRewardedAd(() =>
         // {
-        DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdGunPick, GameSystem.Instance.IdTypePick);
+        DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+        var Test = DataGunManager.Instance.GetGunDataClassPick();
+        int valueTest = Test._currentValue;
+        Debug.Log("Test.valueTest" + valueTest);
+
+        var currentGun = ItemSystem.Instance.GetCurrentGun();
+        int startcurrent = currentGun.GetComponent<GunControl>().InitAmmo;
+        Debug.Log("Test.startcurrent" + startcurrent);
+        currentGun.GetComponent<GunControl>().SetCurrentAmmo(startcurrent);
         UiIngameRoot.Instance.UpdateTextCurrentBullet();
-        this.Hide();
+        this.Exit();
 
         // }, " BuyBullet");
     }

@@ -25,6 +25,7 @@ public class GunControl : MonoBehaviour,
   int _bodyRendererIndex;
   bool _isTweening;
   [SerializeField]int _initAmmo;
+  public int InitAmmo { get { return _initAmmo; } }
   [SerializeField]int _currentAmmo;
   public int CurrentAmmo { get { return _currentAmmo; } }
   [SerializeField] int gunType;

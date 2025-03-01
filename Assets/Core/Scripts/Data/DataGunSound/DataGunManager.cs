@@ -45,7 +45,6 @@ public class DataGunManager : MonoBehaviour
                 _strGun = Gun._strGun,
                 _currentStartValue = Gun._currentStartValue,
                 _currentValue = Gun._currentValue,
-                _bulletSpeed = Gun._speedATK,
                 _fireModes = Array.ConvertAll(Gun._fireModes, mode => (int)mode), // Lưu danh sách chế độ bắn
                 _typeGun = (int)Gun._typeGun,
                 _isOwned = Gun._isOwned,
@@ -172,7 +171,7 @@ public class DataGunManager : MonoBehaviour
             public string _strGun; // Tên Item
             public int _currentStartValue;   // Giá trị hiện tại
             public int _currentValue;   // Giá trị hiện tại
-            public float _bulletSpeed; // tốc độ ra đạn
+  
             public int _typeGun; // dạng súng 
             public int[] _fireModes; // Chế độ bắn (danh sách kiểu số nguyên)
             public bool _isOwned; // sở hữu

@@ -24,7 +24,7 @@ public partial class ItemSystem : MonoBehaviour
   public Action OnSingle;
   public Action OnOutOfAmmo;
 
- void Update()
+  void Update()
   {
     BladeLengthen();
     if (GunParent.childCount == 0) return;
@@ -141,10 +141,15 @@ public partial class ItemSystem : MonoBehaviour
 
     int intCurrentAmmo = _dataGunTarget._currentValue;
 
-    var _currentGun = ItemSystem.Instance.GetCurrentGun();
+    var _currentGun = GetCurrentGun();
     if (_currentGun == null) return;
-    _currentGun.GetComponent<GunControl>().SetInitAmmo(intInitAmmo);
-    _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
+
+    var _gunControl = _currentGun.GetComponent<GunControl>();
+    _gunControl.SetInitAmmo(intInitAmmo);
+    _gunControl.SetCurrentAmmo(intCurrentAmmo);
+
+    // bool hasBurstMode = Array.Exists(_dataGunTarget._fireModes, mode => mode == (int)DataGun.FireMode.Burst);
+    // _gunControl.HaveBurstMode = hasBurstMode;
   }
 
   bool _isFireInvoke;
@@ -156,6 +161,11 @@ public partial class ItemSystem : MonoBehaviour
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
       print("Please standby");
+      return;
+    }
+    if (currentGun.GetComponent<GunControl>().CurrentAmmo <= 0)
+    {
+      OnOutOfAmmo?.Invoke();
       return;
     }
 
@@ -197,6 +207,11 @@ public partial class ItemSystem : MonoBehaviour
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
       print("Please standby");
+      return;
+    }
+    if (currentGun.GetComponent<GunControl>().CurrentAmmo <= 0)
+    {
+      OnOutOfAmmo?.Invoke();
       return;
     }
     _isFireInvoke = true;

@@ -24,7 +24,7 @@ MonoBehaviour:
     _isPick: 1
   - _typeGun: 0
     _idGun: 1
-    _strGun: "Sheriff\xCF"
+    _strGun: Sheriff
     _currentStartValue: 1000
     _currentValue: 1000
     _speedATK: 0.7
@@ -52,8 +52,8 @@ MonoBehaviour:
   - _typeGun: 2
     _idGun: 0
     _strGun: Bucky
-    _currentStartValue: 1000
-    _currentValue: 1000
+    _currentStartValue: 15
+    _currentValue: 15
     _speedATK: 0.8
     _fireModes: 00000000
     _isOwned: 0

@@ -27,13 +27,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        TouchDetect.Instance.onTouchBegan += OnDetect;
-        // TouchDetect.Instance.onTouchMoved += OnHoldDetect;
-        TouchDetect.Instance.onTouchEnd += HideAnim;
-        UnityEngine.Debug.Log("GameSystem.Instance._idGunPick: " + GameSystem.Instance.IdGunPick);
         var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
-        float _speed = gunData._bulletSpeed;
-        _BulletSpeed = _speed;
+       
         CreatPlayer(GameSystem.Instance.IdShopMode);
     }
 

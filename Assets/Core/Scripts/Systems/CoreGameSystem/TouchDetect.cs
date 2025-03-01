@@ -120,6 +120,7 @@ public class TouchDetect : MonoBehaviour
     if (currentGun.GetComponent<GunControl>().HaveAutoMode)
     {
       ItemSystem.Instance.AutoModeFireInvoke();
+      onTouchMoved?.Invoke(_touchedPosition, TouchingDirection);
     }
   }
 

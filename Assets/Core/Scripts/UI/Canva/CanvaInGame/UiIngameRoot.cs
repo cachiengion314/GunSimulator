@@ -23,7 +23,8 @@ public partial class UiIngameRoot : BaseUIRoot
   public Button[] TypeFireModes;
   [SerializeField] GunControl gunControl;
   public ColorPickerControl colorPickerControl;
-  private void Awake() {
+  private void Awake()
+  {
     Instance = this;
   }
   private void Start()
@@ -52,23 +53,23 @@ public partial class UiIngameRoot : BaseUIRoot
     TypeFireModes[1].gameObject.SetActive(_isAuto);
   }
 
-  void UpdateBullet(int _value)
+  public void UpdateBullet(int _value)
   {
     DataGunManager.Instance.UpdateGunCurrenValue(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, _value);
-    var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
-
-    int intCurrentAmmo = _dataGunTarget._currentValue;
-    var _currentGun = ItemSystem.Instance.GetCurrentGun();
-    _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
-    int _currentValueGun = _currentGun.GetComponent<GunControl>().CurrentAmmo;
-
-    textCurrentBullet.text = _currentValueGun.ToString();
+    UpdateTextCurrentBullet();
   }
 
   public void UpdateTextCurrentBullet()
   {
-    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
-    int _currentValueGun = gunData._currentValue;
+    var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
+
+    int intCurrentAmmo = _dataGunTarget._currentValue;
+     Debug.Log("intCurrentAmmo" + intCurrentAmmo);
+    var _currentGun = ItemSystem.Instance.GetCurrentGun();
+    _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
+
+    int _currentValueGun = _currentGun.GetComponent<GunControl>().CurrentAmmo;
+    Debug.Log("_currentValueGun" + _currentValueGun);
     textCurrentBullet.text = _currentValueGun.ToString();
   }
   void ShowPoPupBuyBullet()

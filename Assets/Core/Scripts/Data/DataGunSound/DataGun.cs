@@ -14,7 +14,6 @@ public class DataGun : ScriptableObject
         public string _strGun; // Tên Item
         public int _currentStartValue;   // Giá trị hiện tại
         public int _currentValue;   // Giá trị hiện tại
-        public float _speedATK; // thời gian nạp đạn
         public FireMode[] _fireModes; // Các chế độ bắn
         public bool _isOwned; // súng đang được chọn
         public bool _isPick; // súng đang được chọn
