@@ -23,7 +23,7 @@ public partial class ItemSystem : MonoBehaviour
   public Action<bool> OnIsAuto;
   public Action OnSingle;
   public Action OnOutOfAmmo;
-
+  public FlashlightController androidCamera;
 
   void Update()
   {
@@ -257,6 +257,8 @@ public partial class ItemSystem : MonoBehaviour
     }
     _isFireInvoke = true;
 
+    androidCamera.TurnOnFlashlight();
+
     InvokeFireAnim(
       currentGun,
       currentGun.GetComponent<GunControl>().SingleModeFireRate,
@@ -273,6 +275,7 @@ public partial class ItemSystem : MonoBehaviour
       () =>
       {
         _isFireInvoke = false;
+        androidCamera.TurnOffFlashlight();
       });
   }
 

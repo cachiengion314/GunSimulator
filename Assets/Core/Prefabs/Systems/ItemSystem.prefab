@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &919389824729440788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3551598264438581170}
+  - component: {fileID: 3116654676410878460}
+  m_Layer: 0
+  m_Name: FlashlightController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3551598264438581170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919389824729440788}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3540288095446896773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3116654676410878460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919389824729440788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f92d80d561b40369e4becf365006ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4367886352315961127
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +79,7 @@ Transform:
   - {fileID: 5960793813804154954}
   - {fileID: 3140149410043437440}
   - {fileID: 3591272547214524698}
+  - {fileID: 3551598264438581170}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2966870119073704530
@@ -49,8 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44245bc5aa50411d941c7027bf1f001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightsaberPref: {fileID: 3899169694131343574, guid: 4311fe595130f42b7a291d4a6da2f819, type: 3}
-  _lightsaberParent: {fileID: 3591272547214524698}
   pistolPref: {fileID: 7949610661633494984, guid: cd5c71dbb589340838f7497a3ea6227d, type: 3}
   SMGPref: {fileID: 7949610661633494984, guid: 066c1c1ac83e6406091bb7da3d054a5b, type: 3}
   shotgunPref: {fileID: 7949610661633494984, guid: ac55ef5a658544406bd19228cb3c933e, type: 3}
@@ -58,8 +101,11 @@ MonoBehaviour:
   sniperRiflePref: {fileID: 7949610661633494984, guid: 9346c85f23961438382005ee9a66d950, type: 3}
   machineGunPref: {fileID: 7949610661633494984, guid: 286bcb8b681d54e3dae8c56cb38052e4, type: 3}
   gunParent: {fileID: 5960793813804154954}
+  androidCamera: {fileID: 3116654676410878460}
   tempRemovedObjParent: {fileID: 8016533322761467091}
   destroyedObjParent: {fileID: 4525521858795985644}
+  lightsaberPref: {fileID: 3899169694131343574, guid: 4311fe595130f42b7a291d4a6da2f819, type: 3}
+  _lightsaberParent: {fileID: 3591272547214524698}
 --- !u!1 &5243542284952932632
 GameObject:
   m_ObjectHideFlags: 0
