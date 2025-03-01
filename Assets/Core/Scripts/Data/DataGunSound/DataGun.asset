@@ -24,8 +24,8 @@ MonoBehaviour:
   - _typeGun: 0
     _idGun: 1
     _strGun: Sheriff
-    _currentStartValue: 20
-    _currentValue: 20
+    _currentStartValue: 7
+    _currentValue: 7
     _fireModes: 00000000
     _isOwned: 0
     _isPick: 0

@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 391.26062}
-  m_SizeDelta: {x: 0, y: 397.12793}
+  m_AnchoredPosition: {x: 16.862812, y: 391.26062}
+  m_SizeDelta: {x: -377.7141, y: 397.1279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3911459946707971674
 MonoBehaviour:
@@ -687,6 +687,8 @@ MonoBehaviour:
   - {fileID: 2704045640400985754}
   - {fileID: 4846989081158000485}
   - {fileID: 5475984379061856718}
+  parentBullet: {fileID: 595215704834150359}
+  PrefabBullet: {fileID: 2330195420675086801, guid: 82a247b2c11684e3a8b47b0465b3f446, type: 3}
   colorPickerControl: {fileID: 7037407035110521216}
 --- !u!1 &2219888408054787949
 GameObject:
@@ -1685,7 +1687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &374504407920576678
 RectTransform:
   m_ObjectHideFlags: 0
