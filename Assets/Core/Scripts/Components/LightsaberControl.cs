@@ -9,6 +9,7 @@ public class LightsaberControl : MonoBehaviour
     float _capacity;
     public float Capacity { get { return _capacity; } }
     float _currentCapacity;
+    bool _isCapacityEmpty = false;
     public float CurrentCapacity
     {
         get { return _currentCapacity; }
@@ -36,12 +37,12 @@ public class LightsaberControl : MonoBehaviour
 
     public void SetColorBlade(Color color)
     {
-        bladeRdr.color = color;
+        bladeRdr.material.SetColor("_EmissionColor", color * 5);
     }
 
     public Color GetColorBlade()
     {
-        return bladeRdr.color;
+        return bladeRdr.material.GetColor("_EmissionColor");
     }
 
     public void SetCapacity(float capacity)
@@ -65,13 +66,12 @@ public class LightsaberControl : MonoBehaviour
         var size = bladeRdr.size;
         var pos = bladeRdr.transform.localPosition;
 
-        if (isExpanding)
+        if (isExpanding && !_isCapacityEmpty)
         {
-            if (CurrentCapacity <= 0) return;
-            CurrentCapacity -= Time.deltaTime;
-
             size.y = Mathf.Lerp(size.y, _bladeLength, _speed * Time.deltaTime);
             if (_bladeLength - size.y < 0.05f) size.y = _bladeLength;
+
+            ReduceCurrentCapacity();
         }
         else
         {
@@ -87,5 +87,12 @@ public class LightsaberControl : MonoBehaviour
     public void Recharge()
     {
         CurrentCapacity = _capacity;
+        _isCapacityEmpty = false;
+    }
+
+    public void ReduceCurrentCapacity()
+    {
+        CurrentCapacity -= Time.deltaTime;
+        if(CurrentCapacity <= 0) _isCapacityEmpty = true;
     }
 }

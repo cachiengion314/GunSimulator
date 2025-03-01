@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 1988454d0d8fb4a35992790b0c64140f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,6 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 466803463524796870}
   - component: {fileID: 3899169694131343574}
+  - component: {fileID: 3889554389668831897}
   m_Layer: 0
   m_Name: Lightsaber
   m_TagString: Untagged
@@ -223,3 +224,20 @@ MonoBehaviour:
   swordHiltRdr: {fileID: 3747442335422458942}
   bladeRdr: {fileID: 8435349149923801509}
   isExpanding: 0
+--- !u!114 &3889554389668831897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6793394530762868053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: f2be7c1aaeb4b4b5c87660b2c789a30c, type: 2}
