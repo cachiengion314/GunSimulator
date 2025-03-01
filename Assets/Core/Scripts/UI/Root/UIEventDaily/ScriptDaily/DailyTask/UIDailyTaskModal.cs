@@ -58,10 +58,7 @@ public class UIDailyTaskModal : BaseUIRoot
   }
   public void CheckUpdateDataTaskVersion() // kiểm tra dữ liệu các nhiệm vụ xem có khớp với dữ lụu trong ScriptableObject
   {
-    // Kiểm tra số lượng nhiệm vụ
-    // Debug.Log("--CheckUpdateDataTaskVersion1--");
-    // Debug.Log("--DailyTaskManager.Instance._taskDataJsonBase.TasksTodayJson.Count-- " + DailyTaskManager.Instance._taskDataJsonBase.TasksTodayJson.Count);
-    // Debug.Log("--DailyTaskManager.Instance._taskData.AllTasks.Count-- " + DailyTaskManager.Instance._taskData.AllTasks.Count);
+    
     if (DailyTaskManager.Instance._taskDataJsonBase.TasksTodayJson.Count != DailyTaskManager.Instance._taskData.AllTasks.Count)
     {
       // Nếu số lượng khác nhau hoặc file JSON không tồn tại, chạy lại ChangeScriptableObjectToJson

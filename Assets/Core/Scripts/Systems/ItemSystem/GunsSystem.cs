@@ -23,7 +23,7 @@ public partial class ItemSystem : MonoBehaviour
   public Action<bool> OnIsAuto;
   public Action OnSingle;
   public Action OnOutOfAmmo;
-  public Action OnHaveBurst;
+ 
 
   void Update()
   {
@@ -153,11 +153,6 @@ public partial class ItemSystem : MonoBehaviour
     _gunControl.SetHaveBurst(hasBurstMode);
     bool hasAutoMode = Array.Exists(_dataGunTarget._fireModes, mode => mode == (int)DataGun.FireMode.Auto);
     _gunControl.SetHaveBurst(hasAutoMode);
-    if (hasBurstMode == true)
-    {
-      OnHaveBurst?.Invoke();
-    }
-
   }
 
   bool _isFireInvoke;

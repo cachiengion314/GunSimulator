@@ -18,6 +18,7 @@ public class UIBuyBullet : BaseUIRoot
         currentGun.GetComponent<GunControl>().SetCurrentAmmo(startcurrent);
         UiIngameRoot.Instance.UpdateTextCurrentBullet();
         this.Exit();
+        SoundSystem.Instance.GunReloadSfx();
 
         // }, " BuyBullet");
     }
