@@ -21,7 +21,7 @@ public partial class UiIngameRoot : BaseUIRoot
   [Header("---Gun---")]
   [SerializeField] TMP_Text textCurrentBullet;
   public Button[] TypeFireModes;
-  [SerializeField] GunControl gunControl;
+
   public ColorPickerControl colorPickerControl;
   private void Awake()
   {
@@ -29,17 +29,16 @@ public partial class UiIngameRoot : BaseUIRoot
   }
   private void Start()
   {
-    // UpdateTextCurrentBullet();
     SetupButtons();
-    // SetUpTextCurrentBullet();
     ItemSystem.Instance.OnFire += UpdateBullet;
     ItemSystem.Instance.OnIsAuto += UpdateButtonType;
     TouchDetect.Instance.onTouchEnd += SetTypeSingleButton;
     ItemSystem.Instance.OnOutOfAmmo += ShowPoPupBuyBullet;
-
+    ItemSystem.Instance.OnHaveBurst += GunHaveBurt;
     var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
+
   }
   void SetTypeSingleButton(float2 _test, float2 _test2)
   {
@@ -64,7 +63,7 @@ public partial class UiIngameRoot : BaseUIRoot
     var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
 
     int intCurrentAmmo = _dataGunTarget._currentValue;
-     Debug.Log("intCurrentAmmo" + intCurrentAmmo);
+    Debug.Log("intCurrentAmmo" + intCurrentAmmo);
     var _currentGun = ItemSystem.Instance.GetCurrentGun();
     _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
 
@@ -102,24 +101,45 @@ public partial class UiIngameRoot : BaseUIRoot
       type.gameObject.SetActive(false);
     }
     var GunData = DataGunManager.Instance.GetGunDataClassPick();
-    for (int i = 0; i < GunData._fireModes.Length; i++)
-    {
-      if (GunData._fireModes.Length == 3)
-      {
-        TypeFireModes[0].gameObject.SetActive(true);
-        TypeFireModes[1].gameObject.SetActive(false);
-        TypeFireModes[2].gameObject.SetActive(true);
-      }
-      else
-      {
-        TypeFireModes[i].gameObject.SetActive(true);
-      }
-    }
+    // var _gunControl = ItemSystem.Instance.GetCurrentGun();
+    // if (_gunControl == null)
+    // {
+    //   Debug.Log("_gunControl == null");
+    //   return;
+    // }
+    // // for (int i = 0; i < GunData._fireModes.Length; i++)
+    // // {
+    // //   if (GunData._fireModes.Length == 3)
+    // //   {
+    // //     TypeFireModes[0].gameObject.SetActive(true);
+    // //     TypeFireModes[1].gameObject.SetActive(false);
+    // //     TypeFireModes[2].gameObject.SetActive(true);
+    // //   }
+    // //   else
+    // //   {
+    // //     TypeFireModes[i].gameObject.SetActive(true);
+    // //   }
+    // // }
+    // if (_gunControl.GetComponent<GunControl>().HaveBurstMode == true)
+    // {
+    //   TypeFireModes[2].gameObject.SetActive(true);
+    // }
+    // else
+    // {
+    //   TypeFireModes[2].gameObject.SetActive(false);
+    // }
+    // TypeFireModes[0].gameObject.SetActive(true);
+    // TypeFireModes[1].gameObject.SetActive(true);
+
   }
 
   public void BtnSetTypeGun(int _idType) // gắn ở button từ 0 - 2 0= single 1= auto. 2  = bủrt  
   {
     GameSystem.Instance.IdFireModes = _idType;
+  }
+  void GunHaveBurt()
+  {
+    TypeFireModes[2].gameObject.SetActive(true);
   }
 
 
