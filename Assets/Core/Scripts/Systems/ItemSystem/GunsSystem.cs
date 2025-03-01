@@ -23,7 +23,7 @@ public partial class ItemSystem : MonoBehaviour
   public Action<bool> OnIsAuto;
   public Action OnSingle;
   public Action OnOutOfAmmo;
- 
+
 
   void Update()
   {
@@ -269,7 +269,6 @@ public partial class ItemSystem : MonoBehaviour
       currentAnimDuration + currentGun.GetComponent<GunControl>().SingleModeFireRate,
       () =>
       {
-
         _isFireInvoke = false;
       });
   }
@@ -334,6 +333,4 @@ public partial class ItemSystem : MonoBehaviour
       _duration
     );
   }
-
-
 }

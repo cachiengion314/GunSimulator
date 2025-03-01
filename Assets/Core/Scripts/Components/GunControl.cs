@@ -155,6 +155,6 @@ public class GunControl : MonoBehaviour,
   }
   public void SetHaveAuto(bool _isAuto)
   {
-    haveBurstMode = _isAuto;
+    haveAutoMode = _isAuto;
   }
 }
