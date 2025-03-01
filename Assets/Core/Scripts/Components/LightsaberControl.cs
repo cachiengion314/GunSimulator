@@ -9,6 +9,7 @@ public class LightsaberControl : MonoBehaviour
     [SerializeField] SpriteRenderer swordHiltRdr;
     [SerializeField] SpriteRenderer bladeRdr;
     public Action OnCurrentCapacityChange;
+    public Action OnCapacityEmpty;
     float _capacity;
     public float Capacity { get { return _capacity; } }
     float _currentCapacity;
@@ -123,7 +124,12 @@ public class LightsaberControl : MonoBehaviour
     void ReduceCurrentCapacity()
     {
         CurrentCapacity -= Time.deltaTime;
-        if (CurrentCapacity <= 0) _isCapacityEmpty = true;
+        if (CurrentCapacity <= 0)
+        {
+            OnCapacityEmpty?.Invoke();
+            _isCapacityEmpty = true;
+        }
+
     }
 
     void SetPositionLightningBolt()
