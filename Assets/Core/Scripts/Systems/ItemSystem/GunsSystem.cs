@@ -173,6 +173,9 @@ public partial class ItemSystem : MonoBehaviour
 
     _isFireInvoke = true;
 
+    var initRot = currentGun.GetComponent<GunControl>().GetInitRotation();
+    currentGun.transform.localRotation = initRot;
+
     var seq = DOTween.Sequence();
     var currentAnimDuration = 0f;
     var oneshotDuration = currentGun.GetComponent<GunControl>().BurstModeFireRate / 3f;
