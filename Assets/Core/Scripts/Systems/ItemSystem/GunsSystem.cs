@@ -1,4 +1,3 @@
-
 using System;
 using DG.Tweening;
 using Unity.Mathematics;
@@ -16,6 +15,7 @@ public partial class ItemSystem : MonoBehaviour
   [SerializeField] GunControl machineGunPref;
   [SerializeField] Transform gunParent;
   public Transform GunParent { get { return gunParent; } }
+  [SerializeField] FlashlightController flashlightController;
 
   [Header("Datas")]
   float3 defaultLocalScale = new(1, 1, 0);
@@ -23,7 +23,6 @@ public partial class ItemSystem : MonoBehaviour
   public Action<bool> OnIsAuto;
   public Action OnSingle;
   public Action OnOutOfAmmo;
-  public FlashlightController androidCamera;
 
   void Update()
   {
@@ -257,8 +256,6 @@ public partial class ItemSystem : MonoBehaviour
     }
     _isFireInvoke = true;
 
-    androidCamera.TurnOnFlashlight();
-
     InvokeFireAnim(
       currentGun,
       currentGun.GetComponent<GunControl>().SingleModeFireRate,
@@ -275,7 +272,6 @@ public partial class ItemSystem : MonoBehaviour
       () =>
       {
         _isFireInvoke = false;
-        androidCamera.TurnOffFlashlight();
       });
   }
 
@@ -288,6 +284,8 @@ public partial class ItemSystem : MonoBehaviour
   )
   {
     if (gunObj == null) return;
+
+    flashlightController.TurnOnFlashlight();
 
     SoundSystem.Instance.PlayGunSoundSfx(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
 
@@ -330,6 +328,7 @@ public partial class ItemSystem : MonoBehaviour
       .OnComplete(() =>
         {
           gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(false);
+          flashlightController.TurnOffFlashlight();
         });
 
     gunObj.GetComponent<IFeedbackControl>().InjectChannel(gunObj.GetInstanceID());

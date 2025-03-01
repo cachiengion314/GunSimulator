@@ -101,7 +101,7 @@ MonoBehaviour:
   sniperRiflePref: {fileID: 7949610661633494984, guid: 9346c85f23961438382005ee9a66d950, type: 3}
   machineGunPref: {fileID: 7949610661633494984, guid: 286bcb8b681d54e3dae8c56cb38052e4, type: 3}
   gunParent: {fileID: 5960793813804154954}
-  androidCamera: {fileID: 3116654676410878460}
+  flashlightController: {fileID: 3116654676410878460}
   tempRemovedObjParent: {fileID: 8016533322761467091}
   destroyedObjParent: {fileID: 4525521858795985644}
   lightsaberPref: {fileID: 3899169694131343574, guid: 4311fe595130f42b7a291d4a6da2f819, type: 3}
