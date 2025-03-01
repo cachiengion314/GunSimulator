@@ -369,6 +369,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2105920711484421870, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
+      propertyPath: gunReload
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e840f6bb84214069b7994827326de79, type: 3}
+    - target: {fileID: 2105920711484421870, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
       propertyPath: 'gunAudioClipsArray.Array.data[1].audioClips.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 4c55316074621428a85ddca49ea1f4cc, type: 3}

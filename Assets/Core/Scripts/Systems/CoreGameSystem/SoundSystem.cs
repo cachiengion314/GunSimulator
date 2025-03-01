@@ -28,6 +28,7 @@ public class SoundSystem : MonoBehaviour
   [SerializeField] AudioClip _levelComplete;
   [SerializeField] AudioClip _levelFail;
   [SerializeField] AudioClip pistolFireSfx;
+  [SerializeField] AudioClip gunReload;
   [System.Serializable]
   public struct GunAudioClips
   {
@@ -224,7 +225,7 @@ public class SoundSystem : MonoBehaviour
   {
     if (GameSystem.Instance.IsHapticOn)
     {
-      HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+      HapticPatterns.PlayPreset(GetTypeHaptic(idType));
     }
     if (!GameSystem.Instance.IsSoundOn) return;
     AudioClip _audioClipTarget = GetGunSound(idType, idGun);
@@ -252,5 +253,31 @@ public class SoundSystem : MonoBehaviour
     Debug.LogError($"❌ Không tìm thấy âm thanh cho loại súng {idType}");
     return null;
   }
-  
+
+  HapticPatterns.PresetType GetTypeHaptic(int idType)
+  {
+    switch (idType)
+    {
+      case 0: return HapticPatterns.PresetType.LightImpact;  // 🔹 Nhẹ, rung ngắn, phù hợp với bắn lẻ, chạm nhẹ UI
+      case 1: return HapticPatterns.PresetType.MediumImpact; // 🔸 Trung bình, rung vừa, phù hợp với bắn liên thanh nhẹ
+      case 2: return HapticPatterns.PresetType.HeavyImpact;  // 🔴 Mạnh, rung dài hơn, phù hợp với súng hạng nặng (Shotgun, Sniper)
+      case 3: return HapticPatterns.PresetType.MediumImpact;      // ✅ Nhẹ nhàng, dành cho thông báo thành công (reload xong, headshot)
+      case 4: return HapticPatterns.PresetType.HeavyImpact;      // ⚠️ Cảnh báo, rung dài hơn bình thường, phù hợp khi sắp hết đạn
+      case 5: return HapticPatterns.PresetType.HeavyImpact;      // ❌ Cảnh báo mạnh, dành cho lỗi (hết đạn, súng kẹt)
+      default:
+        Debug.LogWarning($"⚠️ idType {idType} không hợp lệ, mặc định sử dụng LightImpact");
+        return HapticPatterns.PresetType.LightImpact;
+    }
+  }
+  public void GunReloadSfx()
+  {
+    if (GameSystem.Instance.IsHapticOn)
+    {
+      HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+    }
+    if (!GameSystem.Instance.IsSoundOn) return;
+    AudioSource.PlayClipAtPoint(gunReload, Vector3.forward * -9, 1f);
+  }
+
+
 }

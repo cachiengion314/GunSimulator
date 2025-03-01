@@ -16,36 +16,32 @@ MonoBehaviour:
   - _typeGun: 0
     _idGun: 0
     _strGun: classic
-    _currentStartValue: 1000
-    _currentValue: 1000
-    _speedATK: 0.3
+    _currentStartValue: 15
+    _currentValue: 15
     _fireModes: 00000000
     _isOwned: 1
     _isPick: 1
   - _typeGun: 0
     _idGun: 1
     _strGun: Sheriff
-    _currentStartValue: 1000
-    _currentValue: 1000
-    _speedATK: 0.7
+    _currentStartValue: 7
+    _currentValue: 7
     _fireModes: 00000000
     _isOwned: 0
     _isPick: 0
   - _typeGun: 1
     _idGun: 0
     _strGun: Stinger
-    _currentStartValue: 1000
-    _currentValue: 1000
-    _speedATK: 0.5
+    _currentStartValue: 50
+    _currentValue: 50
     _fireModes: 000000000100000002000000
     _isOwned: 0
     _isPick: 0
   - _typeGun: 1
     _idGun: 1
     _strGun: Spectre
-    _currentStartValue: 1000
-    _currentValue: 1000
-    _speedATK: 0.6
+    _currentStartValue: 45
+    _currentValue: 45
     _fireModes: 000000000100000002000000
     _isOwned: 0
     _isPick: 0
@@ -54,34 +50,30 @@ MonoBehaviour:
     _strGun: Bucky
     _currentStartValue: 15
     _currentValue: 15
-    _speedATK: 0.8
     _fireModes: 00000000
     _isOwned: 0
     _isPick: 0
   - _typeGun: 2
     _idGun: 1
     _strGun: Judge
-    _currentStartValue: 1000
-    _currentValue: 1000
-    _speedATK: 0.7
+    _currentStartValue: 15
+    _currentValue: 15
     _fireModes: 00000000
     _isOwned: 0
     _isPick: 0
   - _typeGun: 3
     _idGun: 0
     _strGun: Phantom
-    _currentStartValue: 5000
-    _currentValue: 5000
-    _speedATK: 0.4
+    _currentStartValue: 30
+    _currentValue: 30
     _fireModes: 000000000100000002000000
     _isOwned: 0
     _isPick: 0
   - _typeGun: 3
     _idGun: 1
     _strGun: Vandal
-    _currentStartValue: 5000
-    _currentValue: 5000
-    _speedATK: 0.3
+    _currentStartValue: 30
+    _currentValue: 30
     _fireModes: 000000000100000002000000
     _isOwned: 0
     _isPick: 0
@@ -90,7 +82,6 @@ MonoBehaviour:
     _strGun: Mashal1
     _currentStartValue: 3
     _currentValue: 3
-    _speedATK: 0.8
     _fireModes: 00000000
     _isOwned: 0
     _isPick: 0
@@ -99,7 +90,6 @@ MonoBehaviour:
     _strGun: Marshal2
     _currentStartValue: 3
     _currentValue: 3
-    _speedATK: 1
     _fireModes: 00000000
     _isOwned: 0
     _isPick: 0

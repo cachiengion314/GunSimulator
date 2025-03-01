@@ -100,7 +100,8 @@ public class UIManager : MonoBehaviour
       // SoundSystem.Instance.PlayHidePopupSfx();
       uIRoots[currentName].Hide();
       ShowCurrentName();
-      if (currentName == "") GameSystem.Instance.SetGameState(GameState.Gameplay);
+      // if (currentName == "") 
+      // GameSystem.Instance.SetGameState(GameState.Gameplay);
     }
   }
 

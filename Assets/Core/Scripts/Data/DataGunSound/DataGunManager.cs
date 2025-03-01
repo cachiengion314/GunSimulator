@@ -17,6 +17,7 @@ public class DataGunManager : MonoBehaviour
             Instance = this;
         }
         SetupDataTask();
+
     }
     public void SetupDataTask()
     {
@@ -27,9 +28,59 @@ public class DataGunManager : MonoBehaviour
         }
         else
         {
+            CheckUpdateDataGunVersion();
             LoadDataJsonTask();
         }
     }
+    public void CheckUpdateDataGunVersion() // kiểm tra dữ liệu các nhiệm vụ xem có khớp với dữ lụu trong ScriptableObject
+    {
+
+        if (_GunDataJsonBase.ListGunsJson.Count != _dataGun.ListDataGun.Count)
+        {
+            // Nếu số lượng khác nhau hoặc file JSON không tồn tại, chạy lại ChangeScriptableObjectToJson
+            ChangeScriptableObjectToJson();
+            return;
+        }
+
+        // Duyệt từng súng trong ScriptableObject để kiểm tra sự thay đổi
+        for (int i = 0; i < _dataGun.ListDataGun.Count; i++)
+        {
+            var scriptableGun = _dataGun.ListDataGun[i];
+
+            // 🔥 Tìm kiếm theo cả typeGun và idGun
+            var jsonGun = _GunDataJsonBase.ListGunsJson.Find(t => t._idGun == scriptableGun._idGun && t._typeGun == (int)scriptableGun._typeGun);
+
+            if (jsonGun == null)
+            {
+                Debug.LogWarning($"⚠️ Không tìm thấy súng (ID: {scriptableGun._idGun}, Type: {scriptableGun._typeGun}) trong JSON. Cập nhật lại...");
+                ChangeScriptableObjectToJson();
+                return;
+            }
+
+            // Kiểm tra nếu tên súng, giá trị đạn hoặc chế độ bắn khác nhau -> Cập nhật lại JSON
+            if (jsonGun._strGun != scriptableGun._strGun ||
+                jsonGun._currentStartValue != scriptableGun._currentStartValue ||
+                jsonGun._currentValue != scriptableGun._currentValue ||
+                !AreFireModesEqual(jsonGun._fireModes, scriptableGun._fireModes))
+            {
+                Debug.LogWarning($"🔄 Dữ liệu súng {scriptableGun._strGun} đã thay đổi, cập nhật JSON...");
+                ChangeScriptableObjectToJson();
+                return;
+            }
+        }
+    }
+    // 🛠 Hàm hỗ trợ: Kiểm tra chế độ bắn giữa JSON và ScriptableObject
+    private bool AreFireModesEqual(int[] jsonModes, DataGun.FireMode[] scriptableModes)
+    {
+        if (jsonModes.Length != scriptableModes.Length) return false;
+
+        for (int i = 0; i < jsonModes.Length; i++)
+        {
+            if (jsonModes[i] != (int)scriptableModes[i]) return false;
+        }
+        return true;
+    }
+
 
     public void ChangeScriptableObjectToJson()
     {
@@ -171,7 +222,7 @@ public class DataGunManager : MonoBehaviour
             public string _strGun; // Tên Item
             public int _currentStartValue;   // Giá trị hiện tại
             public int _currentValue;   // Giá trị hiện tại
-  
+
             public int _typeGun; // dạng súng 
             public int[] _fireModes; // Chế độ bắn (danh sách kiểu số nguyên)
             public bool _isOwned; // sở hữu
