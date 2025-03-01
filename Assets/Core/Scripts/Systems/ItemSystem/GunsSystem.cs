@@ -285,8 +285,7 @@ public partial class ItemSystem : MonoBehaviour
   {
     if (gunObj == null) return;
 
-    flashlightController.TurnOnFlashlight();
-
+    flashlightController.ToggleFlashlight();
     SoundSystem.Instance.PlayGunSoundSfx(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
 
     var muzzlePosition = gunObj.GetComponent<IGunFire>().GetMuzzlePosition();
@@ -328,7 +327,7 @@ public partial class ItemSystem : MonoBehaviour
       .OnComplete(() =>
         {
           gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(false);
-          flashlightController.TurnOffFlashlight();
+          flashlightController.ToggleFlashlight();
         });
 
     gunObj.GetComponent<IFeedbackControl>().InjectChannel(gunObj.GetInstanceID());

@@ -1,11 +1,12 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Android;
+using System.Collections;
 
 public class FlashlightController : MonoBehaviour
 {
-  private new AndroidJavaObject camera;
-  private AndroidJavaObject cameraParameters;
+  private AndroidJavaObject cameraManager;
+  private string cameraID;
+  private bool isFlashlightOn = false;
 
   void Start()
   {
@@ -13,77 +14,62 @@ public class FlashlightController : MonoBehaviour
     {
       StartCoroutine(RequestPermissionAndInitialize());
     }
+    else
+    {
+      Debug.LogWarning("FlashlightController is running on a non-Android platform.");
+    }
   }
 
   IEnumerator RequestPermissionAndInitialize()
   {
-    // Request permission if not granted
     if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
     {
       Permission.RequestUserPermission(Permission.Camera);
 
-      // Wait until the user grants permission
       while (!Permission.HasUserAuthorizedPermission(Permission.Camera))
       {
-        yield return null; // Wait until the next frame
+        yield return null;
       }
     }
 
-    // Now that we have permission, initialize the camera
-    InitializeCamera();
+    InitializeFlashlight();
   }
 
-  public void InitializeCamera()
+  void InitializeFlashlight()
   {
     try
     {
-      AndroidJavaClass cameraClass = new AndroidJavaClass("android.hardware.Camera");
-      camera = cameraClass.CallStatic<AndroidJavaObject>("open", 0);
-      cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
+      // Get CameraManager instance
+      AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+      AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+      cameraManager = currentActivity.Call<AndroidJavaObject>("getSystemService", "camera");
 
-      Debug.Log("Camera initialized successfully.");
+      // Get the list of camera IDs
+      string[] cameraIDList = cameraManager.Call<string[]>("getCameraIdList");
+
+      if (cameraIDList != null && cameraIDList.Length > 0)
+      {
+        cameraID = cameraIDList[0]; // Use the first camera (usually rear)
+        Debug.Log("Camera initialized with ID: " + cameraID);
+      }
+      else
+      {
+        Debug.LogError("No camera found on this device.");
+      }
     }
     catch (System.Exception e)
     {
-      Debug.LogError("Failed to access camera: " + e.Message);
+      Debug.LogError("Failed to initialize Camera2 API: " + e.Message);
     }
   }
 
-  public void TurnOnFlashlight()
+  public void ToggleFlashlight()
   {
-    if (Application.platform == RuntimePlatform.Android && camera != null)
+    if (Application.platform == RuntimePlatform.Android && cameraManager != null && !string.IsNullOrEmpty(cameraID))
     {
-      cameraParameters.Call("setFlashMode", "torch");
-      camera.Call("setParameters", cameraParameters);
-      camera.Call("startPreview");
+      isFlashlightOn = !isFlashlightOn; // Toggle state
+      cameraManager.Call("setTorchMode", cameraID, isFlashlightOn);
+      Debug.Log("Flashlight toggled: " + isFlashlightOn);
     }
-  }
-
-  public void TurnOffFlashlight()
-  {
-    if (Application.platform == RuntimePlatform.Android && camera != null)
-    {
-      cameraParameters.Call("setFlashMode", "off");
-      camera.Call("setParameters", cameraParameters);
-      camera.Call("stopPreview");
-    }
-  }
-
-  void Release()
-  {
-    if (camera != null)
-    {
-      camera.Call("release");
-    }
-  }
-
-  void OnApplicationQuit()
-  {
-    Release();
-  }
-
-  void OnDestroy()
-  {
-    Release();
   }
 }
