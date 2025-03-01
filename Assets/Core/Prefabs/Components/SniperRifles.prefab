@@ -51,13 +51,15 @@ MonoBehaviour:
   - {fileID: 2443434765669418993}
   - {fileID: 6183216326706337968}
   - {fileID: 8433261732070884166}
+  _initAmmo: 0
+  _currentAmmo: 0
   gunType: 4
   singleModeRecoilPosition: 3
   autoModeRecoilPosition: 3
   burstModeRecoilPosition: 3
-  singleModeRecoilAngles: 22
-  autoModeRecoilAngles: 22
-  burstModeRecoilAngles: 22
+  singleModeRecoilAngles: 5
+  autoModeRecoilAngles: 5
+  burstModeRecoilAngles: 5
   singleModeFireRate: 1
   autoModeFireRate: 1
   burstModeFireRate: 1

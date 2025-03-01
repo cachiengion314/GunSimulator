@@ -160,7 +160,6 @@ public partial class ItemSystem : MonoBehaviour
 
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
-      print("Please standby");
       return;
     }
     if (currentGun.GetComponent<GunControl>().CurrentAmmo <= 0)
@@ -196,6 +195,8 @@ public partial class ItemSystem : MonoBehaviour
       () =>
       {
         _isFireInvoke = false;
+        var rot = currentGun.GetComponent<GunControl>().GetInitRotation();
+        currentGun.transform.localRotation = rot;
       });
   }
 
@@ -206,7 +207,6 @@ public partial class ItemSystem : MonoBehaviour
 
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
-      print("Please standby");
       return;
     }
     if (currentGun.GetComponent<GunControl>().CurrentAmmo <= 0)
@@ -245,7 +245,6 @@ public partial class ItemSystem : MonoBehaviour
 
     if (currentGun.GetComponent<IDoTweenControl>().IsTweening() || _isFireInvoke)
     {
-      print("Please standby");
       return;
     }
     if (currentGun.GetComponent<GunControl>().CurrentAmmo <= 0)
@@ -310,8 +309,7 @@ public partial class ItemSystem : MonoBehaviour
         .SetLoops(2, LoopType.Yoyo)
         .OnComplete(() =>
           {
-            var rot = gunObj.GetComponent<GunControl>().GetInitRotation();
-            gunObj.transform.localRotation = rot;
+
           });
 
     gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(true);
@@ -327,7 +325,6 @@ public partial class ItemSystem : MonoBehaviour
       .OnComplete(() =>
         {
           gunObj.GetComponent<IDoTweenControl>().ChangeTweeningTo(false);
-
         });
 
     gunObj.GetComponent<IFeedbackControl>().InjectChannel(gunObj.GetInstanceID());

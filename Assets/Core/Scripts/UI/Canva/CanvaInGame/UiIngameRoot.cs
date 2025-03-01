@@ -64,12 +64,12 @@ public partial class UiIngameRoot : BaseUIRoot
     var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
 
     int intCurrentAmmo = _dataGunTarget._currentValue;
-     Debug.Log("intCurrentAmmo" + intCurrentAmmo);
+
     var _currentGun = ItemSystem.Instance.GetCurrentGun();
     _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
 
     int _currentValueGun = _currentGun.GetComponent<GunControl>().CurrentAmmo;
-    Debug.Log("_currentValueGun" + _currentValueGun);
+
     textCurrentBullet.text = _currentValueGun.ToString();
   }
   void ShowPoPupBuyBullet()
