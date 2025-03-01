@@ -18,7 +18,6 @@ public partial class ItemSystem : MonoBehaviour
     else Destroy(gameObject);
     
     UiIngameRoot.Instance.colorPickerControl.OnColorChange += OnColorChange;
-    Debug.Log("gan");
   }
 
   private void OnDestroy()
