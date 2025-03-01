@@ -27,8 +27,10 @@ public class UIShopIngame : UiShop
   [SerializeField] GameObject[] _arrayPrefabItemExplosion;
   [Header("---ItemTaserGun---")]
   [SerializeField] GameObject[] _arrayPrefabItemTaserGun;
-  [Header("---ItemTLightSaber---")]
+  [Header("---ItemTLightSaber---")] //kích cỡ kiếm , dạng kiếm dài ngắn KHÁC NHAU thì dùng cái này 
   [SerializeField] GameObject[] _arrayPrefabItemLightSaber;
+  [Header("---ItemLighTest---")]
+  [SerializeField] GameObject ItemLightSaber;//kích cỡ kiếm , dạng kiếm và độ dài GIỐNG NHAU thì dùng cái này 
 
   void Awake()
   {
@@ -36,7 +38,7 @@ public class UIShopIngame : UiShop
   }
   void OnEnable()
   {
-    
+
     SetupAnimShop();
     SetupItemShop();
   }
@@ -46,73 +48,10 @@ public class UIShopIngame : UiShop
     CreatItemShopNew();
     SetupShowShopType();
   }
-  // void CreatItemShop(int IdTypeGun) // chuyền IdTypeGun  ,chuyền _prefabItem , chuyền parent
-  // {
-  //   if (_arrayParentItem[IdTypeGun] == null || _arrayPrefabItemGunSound[IdTypeGun] == null)
-  //   {
-  //     Debug.LogError($"❌ Lỗi: Parent hoặc Prefab cho loại {IdTypeGun} chưa được gán!");
-  //     return;
-  //   }
-
-  //   foreach (var Item in DataGunManager.Instance._GunDataJsonBase.ListGunsJson)
-  //   {
-  //     if (Item._typeGun == IdTypeGun)
-  //     {
-  //       int idGun = Item._idGun; // lấy ra IdGun
-  //       GameObject ItemPistol = Instantiate(_arrayPrefabItemGunSound[IdTypeGun], _arrayParentItem[IdTypeGun].transform); // khởi tạo Item
-  //       Image _ImageIcon = ItemPistol.transform.GetChild(1).GetComponent<Image>();
-  //       TMP_Text _TextInfo = ItemPistol.transform.GetChild(2).GetComponent<TMP_Text>();
-  //       Button ButtonBuy = ItemPistol.transform.GetChild(3).GetComponent<Button>();
-  //       Button ButtonUse = ItemPistol.transform.GetChild(4).GetComponent<Button>();
-  //       GameObject ObjPick = ItemPistol.transform.GetChild(5).gameObject;
-  //       ObjPick.gameObject.SetActive(false);
-
-  //       if (Item._isOwned == true) // đã sở hữu
-  //       {
-  //         ButtonUse.gameObject.SetActive(true);
-  //         ButtonBuy.gameObject.SetActive(false);
-  //         ButtonUse.onClick.RemoveAllListeners();
-  //         ButtonUse.onClick.AddListener(() =>
-  //         {
-  //           BTNClickUse(IdTypeGun, idGun);
-  //         });
-  //       }
-  //       else // đã chưa sổ hữu
-  //       {
-  //         ButtonUse.gameObject.SetActive(false);
-  //         ButtonBuy.gameObject.SetActive(true);
-  //         ButtonBuy.onClick.RemoveAllListeners();
-  //         ButtonBuy.onClick.AddListener(() =>
-  //         {
-  //           BTNClickBuy(ButtonBuy, ButtonUse, IdTypeGun, idGun);
-
-  //         });
-  //       }
-  //       switch (IdTypeGun)
-  //       {
-  //         case 0:
-  //           _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconPistol(idGun);
-  //           break;
-  //         case 1:
-  //           _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconSMGgun(idGun);
-  //           break;
-  //         case 2:
-  //           _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconShotGun(idGun);
-  //           break;
-  //         case 3:
-  //           _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconRiffle(idGun);
-  //           break;
-  //         case 4:
-  //           _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconSniper(idGun);
-  //           break;
-  //       }
-  //     }
-  //   }
-  // }
   void CreatItemShopNew() // chuyền IdTypeGun  ,chuyền _prefabItem , chuyền parent
   {
     CreatShopGunSound();
-    CreatShopExplosion();
+    CreatShopLightSaber();
   }
   void ClearContentAllShop()
   {
@@ -134,17 +73,16 @@ public class UIShopIngame : UiShop
   }
   void CreatShopGunSound()
   {
-
     foreach (var Item in DataGunManager.Instance._GunDataJsonBase.ListGunsJson)
     {
       int idGun = Item._idGun; // lấy ra IdGun
       int IdTypeGun = Item._typeGun;
-      GameObject ItemPistol = Instantiate(_arrayPrefabItemGunSound[IdTypeGun], _arrayParentItem[0].transform); // khởi tạo Item
-      Image _ImageIcon = ItemPistol.transform.GetChild(1).GetComponent<Image>();
-      TMP_Text _TextInfo = ItemPistol.transform.GetChild(2).GetComponent<TMP_Text>();
-      Button ButtonBuy = ItemPistol.transform.GetChild(3).GetComponent<Button>();
-      Button ButtonUse = ItemPistol.transform.GetChild(4).GetComponent<Button>();
-      GameObject ObjPick = ItemPistol.transform.GetChild(5).gameObject;
+      GameObject ItemGunShop = Instantiate(_arrayPrefabItemGunSound[IdTypeGun], _arrayParentItem[0].transform); // khởi tạo Item
+      Image _ImageIcon = ItemGunShop.transform.GetChild(1).GetComponent<Image>();
+      TMP_Text _TextInfo = ItemGunShop.transform.GetChild(2).GetComponent<TMP_Text>();
+      Button ButtonBuy = ItemGunShop.transform.GetChild(3).GetComponent<Button>();
+      Button ButtonUse = ItemGunShop.transform.GetChild(4).GetComponent<Button>();
+      GameObject ObjPick = ItemGunShop.transform.GetChild(5).gameObject;
       ObjPick.gameObject.SetActive(false);
 
       if (Item._isOwned == true) // đã sở hữu
@@ -189,59 +127,35 @@ public class UIShopIngame : UiShop
     }
   }
 
-  void CreatShopExplosion()
+  void CreatShopLightSaber()
   {
-    foreach (var Item in DataExplosionManager.Instance._ExplosionDataJsonBase.ListExplosionsJson)
+    LightsaberData[] lightsaberDatas = RenderSystem.Instance.GetLightsaberDatas();
+
+    for (int i = 0; i < lightsaberDatas.Length; i++)
     {
-      int IdTypeExplosion = Item._typExplosion;
-      int idExplosoin = Item._idExplosion; // lấy ra IdGun
-      GameObject ItemPistol = Instantiate(_arrayPrefabItemGunSound[IdTypeExplosion], _arrayParentItem[1].transform); // khởi tạo Item
-      Image _ImageIcon = ItemPistol.transform.GetChild(1).GetComponent<Image>();
-      TMP_Text _TextInfo = ItemPistol.transform.GetChild(2).GetComponent<TMP_Text>();
-      Button ButtonBuy = ItemPistol.transform.GetChild(3).GetComponent<Button>();
-      Button ButtonUse = ItemPistol.transform.GetChild(4).GetComponent<Button>();
-      GameObject ObjPick = ItemPistol.transform.GetChild(5).gameObject;
-      ObjPick.gameObject.SetActive(false);
+      GameObject ItemLightSaberShop = Instantiate(ItemLightSaber, _arrayParentItem[3].transform); // khởi tạo Item
+      Image _ImageIcon = ItemLightSaberShop.transform.GetChild(1).GetComponent<Image>();
+      TMP_Text _TextInfo = ItemLightSaberShop.transform.GetChild(2).GetComponent<TMP_Text>();
+      Button ButtonBuy = ItemLightSaberShop.transform.GetChild(3).GetComponent<Button>();
+      Button ButtonUse = ItemLightSaberShop.transform.GetChild(4).GetComponent<Button>();
+      GameObject ObjPick = ItemLightSaberShop.transform.GetChild(5).gameObject;
 
-      if (Item._isOwned == true) // đã sở hữu
-      {
-        ButtonUse.gameObject.SetActive(true);
-        ButtonBuy.gameObject.SetActive(false);
-        ButtonUse.onClick.RemoveAllListeners();
-        ButtonUse.onClick.AddListener(() =>
-        {
-          BTNClickUse(IdTypeExplosion, idExplosoin); //
-        });
-      }
-      else // đã chưa sổ hữu
-      {
-        ButtonUse.gameObject.SetActive(false);
-        ButtonBuy.gameObject.SetActive(true);
-        ButtonBuy.onClick.RemoveAllListeners();
-        ButtonBuy.onClick.AddListener(() =>
-        {
-          BTNClickBuy(ButtonBuy, ButtonUse, IdTypeExplosion, idExplosoin);
+      LightsaberData data = lightsaberDatas[i];
+      
+      _ImageIcon.sprite = data.SwordHilt;
+      _TextInfo.text = data.Name;
 
-        });
-      }
-      switch (IdTypeExplosion)
+      ObjPick.SetActive(false);
+      ButtonBuy.gameObject.SetActive(false);
+      ButtonUse.gameObject.SetActive(true);
+      int index = i;
+      ButtonUse.onClick.AddListener(() =>
       {
-        case 0:
-          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconPistol(idExplosoin);
-          break;
-        case 1:
-          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconSMGgun(idExplosoin);
-          break;
-        case 2:
-          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconShotGun(idExplosoin);
-          break;
-        case 3:
-          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconRiffle(idExplosoin);
-          break;
-        case 4:
-          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconSniper(idExplosoin);
-          break;
-      }
+        GameSystem.Instance.CurrentLightsaberIndex = index;
+        PlayGame();
+      });
+
+
     }
   }
   void BTNClickUse(int _idTypeGun, int _IdGun)
@@ -250,7 +164,7 @@ public class UIShopIngame : UiShop
     GameSystem.Instance.IdTypePick = Gunpick._typeGun;
     GameSystem.Instance.IdGunPick = Gunpick._idGun;
     PlayGame();
-    // _objPick.SetActive(true);
+
   }
   void BTNClickBuy(Button _ButtonBuy, Button _ButtonSelect, int _idTypeGun, int _IdGun) // button buy
   {
@@ -277,9 +191,6 @@ public class UIShopIngame : UiShop
     GameSystem.Instance.IdTypePick = Gunpick._typeGun;
     GameSystem.Instance.IdGunPick = Gunpick._idGun;
     PlayGame();
-
-    // });
-
   }
   void SetDefault()
   {
@@ -322,32 +233,6 @@ public class UIShopIngame : UiShop
                   {
                     _btnExit.interactable = true;
                   });
-    ; // Hiệu ứng mượt
-    // RectTransform ObjTarget = _arrayScollParentItem[_idShop].gameObject.GetComponent<RectTransform>();
-    // if (ObjTarget != null)
-    // {
-    //   ObjTarget.gameObject.transform.DOKill();
-    // }
-
-    // float timebg = _timeAnimeShop * 0.5f;
-    // float timeContent = _timeAnimeShop * 0.35f;
-    // float delayContent = _timeAnimeShop * 0.15f;
-
-    // Sequence sequence = DOTween.Sequence();
-
-    // sequence.Join(_bgShop.DOAnchorPos(SavePositonBGShop, timebg)
-    //                   .SetEase(Ease.OutBack)); // Hiệu ứng nảy
-
-    // if (ObjTarget != null)
-    // {
-    //   sequence.Insert(delayContent, ObjTarget.DOAnchorPos(SavePositonContentShop, timeContent)
-    //                 .SetEase(Ease.OutBack))
-    //                 .OnComplete(() =>
-    //                 {
-    //                   _btnExit.interactable = true;
-    //                 });
-    // }
-
   }
 
   public void PlayAnimShop()
@@ -387,6 +272,7 @@ public class UIShopIngame : UiShop
   {
     DOTween.KillAll();
     // SoundSystem.Instance.PlayButtonSfx();
+
     GameSystem.Instance.PlayGame();
   }
 
