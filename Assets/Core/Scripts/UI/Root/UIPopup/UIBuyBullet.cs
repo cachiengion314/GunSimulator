@@ -5,6 +5,23 @@ public class UIBuyBullet : BaseUIRoot
 
     public void BtnADSBuy30Bullet()
     {
+        switch (GameSystem.Instance.IdShopMode)
+        {
+            case 0:
+                BuyBulletGun();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                BuyBulletLight();
+                break;
+        }
+
+    }
+    void BuyBulletGun()
+    {
         // LevelPlayAds.Instance.ShowRewardedAd(() =>
         // {
         DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
@@ -21,6 +38,11 @@ public class UIBuyBullet : BaseUIRoot
         SoundSystem.Instance.GunReloadSfx();
 
         // }, " BuyBullet");
+    }
+    void BuyBulletLight()
+    {
+        ItemSystem.Instance.CurrentLightsaber.Recharge();
+        this.Exit();
     }
     protected override void OnHideCompleted()
     {

@@ -87,17 +87,17 @@ public class TouchDetect : MonoBehaviour
 
     onTouchBegan?.Invoke(startTouchPos, colliders);
 
-    ///
-    if (startTouchPos.x > 2.7f || startTouchPos.x < -2.7f) return;
-    switch (GameSystem.Instance.IdFireModes)
-    {
-      case 0:
-        ItemSystem.Instance.SingleModeFireInvoke();
-        break;
-      case 2:
-        ItemSystem.Instance.BurstModeFireInvoke();
-        break;
-    }
+    // ///
+    // if (startTouchPos.x > 2.7f || startTouchPos.x < -2.7f) return;
+    // switch (GameSystem.Instance.IdFireModes)
+    // {
+    //   case 0:
+    //     ItemSystem.Instance.SingleModeFireInvoke();
+    //     break;
+    //   case 2:
+    //     ItemSystem.Instance.BurstModeFireInvoke();
+    //     break;
+    // }
   }
 
   void LeanTouch_OnGesture(List<LeanFinger> leanFingers)
@@ -111,17 +111,17 @@ public class TouchDetect : MonoBehaviour
 
     onTouchMoved?.Invoke(_touchedPosition, TouchingDirection);
 
-    ///
-    if (_touchedPosition.x > 2.7f || _touchedPosition.x < -2.7f) return;
-    if (GameSystem.Instance.IdFireModes == 2) return; // Burst mode
+    // ///
+    // if (_touchedPosition.x > 2.7f || _touchedPosition.x < -2.7f) return;
+    // if (GameSystem.Instance.IdFireModes == 2) return; // Burst mode
 
-    var currentGun = ItemSystem.Instance.GetCurrentGun();
-    if (currentGun == null) return;
-    if (currentGun.GetComponent<GunControl>().HaveAutoMode)
-    {
-      ItemSystem.Instance.AutoModeFireInvoke();
-      onTouchMoved?.Invoke(_touchedPosition, TouchingDirection);
-    }
+    // var currentGun = ItemSystem.Instance.GetCurrentGun();
+    // if (currentGun == null) return;
+    // if (currentGun.GetComponent<GunControl>().HaveAutoMode)
+    // {
+    //   ItemSystem.Instance.AutoModeFireInvoke();
+    //   onTouchMoved?.Invoke(_touchedPosition, TouchingDirection);
+    // }
   }
 
   private void LeanTouch_OnFingerUp(LeanFinger finger)

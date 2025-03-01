@@ -9,23 +9,17 @@ using System.Collections;
 public partial class UiIngameRoot : BaseUIRoot
 {
   static public UiIngameRoot Instance { get; private set; }
+  [Header("--SetupIngame--")]
+  [SerializeField] GameObject parentSetupTypeGun;
+  [SerializeField] GameObject parentSetupTypeLight;
   [Header("---ShopIngame---")]
   public Button _btnShowShopCoin;
-
-  [Header("---TextTarget---")]
-  [SerializeField] TMP_Text textTatget;
-  [SerializeField] string strTextTarget;
-
-  [Header("---IsUsingBooster---")]
-  [SerializeField] GameObject cavanIsUsingBooster;
-  [SerializeField] GameObject[] arrayButton;
   [Header("---Gun---")]
   [SerializeField] TMP_Text textCurrentBullet;
   public Button[] TypeFireModes;
   [Header("--Bullet--")]
   [SerializeField] GameObject parentBullet;
   [SerializeField] GameObject PrefabBullet;
-
   public ColorPickerControl colorPickerControl;
   [SerializeField] Slider capacity;
   private void Awake()
@@ -33,6 +27,35 @@ public partial class UiIngameRoot : BaseUIRoot
     Instance = this;
   }
   private void Start()
+  {
+
+    switch (GameSystem.Instance.IdShopMode)
+    {
+      case 0:
+        SetupTypeGun();
+        parentSetupTypeGun.gameObject.SetActive(true);
+        parentSetupTypeLight.gameObject.SetActive(false);
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        StartCoroutine(AddActionToCurrentLightsaber());
+        parentSetupTypeGun.gameObject.SetActive(false);
+        parentSetupTypeLight.gameObject.SetActive(true);
+        break;
+    }
+  }
+
+
+  IEnumerator AddActionToCurrentLightsaber()
+  {
+    yield return new WaitUntil(() => ItemSystem.Instance.CurrentLightsaber);
+    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange += OnCurrentCapacityChange;
+    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty += ShowPoPupBuyBullet;
+  }
+  void SetupTypeGun()
   {
     SetupButtonsTypeFire();
     ItemSystem.Instance.OnFire += UpdateBullet;
@@ -43,21 +66,14 @@ public partial class UiIngameRoot : BaseUIRoot
     var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
-    StartCoroutine(AddActionToCurrentLightsaber());
-
     SetUpBullet();
-  }
-
-  IEnumerator AddActionToCurrentLightsaber()
-  {
-    yield return new WaitUntil(() => ItemSystem.Instance.CurrentLightsaber);
-    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange += OnCurrentCapacityChange;
   }
 
   void OnDestroy()
   {
     if (!ItemSystem.Instance.CurrentLightsaber) return;
     ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange -= OnCurrentCapacityChange;
+    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty -= ShowPoPupBuyBullet;
   }
 
   void OnCurrentCapacityChange()

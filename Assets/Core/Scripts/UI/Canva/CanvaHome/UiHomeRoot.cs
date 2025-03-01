@@ -55,5 +55,12 @@ public class UiHomeRoot : MonoBehaviour
     GameSystem.Instance.IdShopMode = 3;
     UIManager.Instance.GetUI<UIShopIngame>(KeyStr.NAME_SHOP_MODAL).BtnShowShopType(3);
   }
+  public void TestShowShopLightSaber()
+  {
+    // SoundSystem.Instance.PlayButtonSfx();
+    UIManager.Instance.Show(KeyStr.NAME_SHOP_LIGHTSABER);
+    GameSystem.Instance.IdShopMode = 3;
+  }
+
 
 }
