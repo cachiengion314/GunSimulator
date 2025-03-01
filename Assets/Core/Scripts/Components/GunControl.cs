@@ -24,9 +24,9 @@ public class GunControl : MonoBehaviour,
   Quaternion _initRotation;
   int _bodyRendererIndex;
   bool _isTweening;
-  [SerializeField]int _initAmmo;
+  [SerializeField] int _initAmmo;
   public int InitAmmo { get { return _initAmmo; } }
-  [SerializeField]int _currentAmmo;
+  [SerializeField] int _currentAmmo;
   public int CurrentAmmo { get { return _currentAmmo; } }
   [SerializeField] int gunType;
   public int GunType { get { return gunType; } }
@@ -147,5 +147,14 @@ public class GunControl : MonoBehaviour,
   public Quaternion GetInitRotation()
   {
     return _initRotation;
+  }
+  public void SetHaveBurst(bool _isBurst)
+  {
+    haveBurstMode = _isBurst;
+
+  }
+  public void SetHaveAuto(bool _isAuto)
+  {
+    haveBurstMode = _isAuto;
   }
 }
