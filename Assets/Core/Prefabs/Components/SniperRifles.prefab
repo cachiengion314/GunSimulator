@@ -54,9 +54,9 @@ MonoBehaviour:
   _initAmmo: 0
   _currentAmmo: 0
   gunType: 4
-  singleModeRecoilPosition: 3
-  autoModeRecoilPosition: 3
-  burstModeRecoilPosition: 3
+  singleModeRecoilPosition: 5
+  autoModeRecoilPosition: 1
+  burstModeRecoilPosition: 1
   singleModeRecoilAngles: 5
   autoModeRecoilAngles: 5
   burstModeRecoilAngles: 5

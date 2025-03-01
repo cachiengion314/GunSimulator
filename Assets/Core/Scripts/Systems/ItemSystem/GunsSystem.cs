@@ -199,12 +199,10 @@ public partial class ItemSystem : MonoBehaviour
     }
 
     seq.InsertCallback(
-      currentAnimDuration + currentGun.GetComponent<GunControl>().BurstModeFireRate,
+      currentAnimDuration + currentGun.GetComponent<GunControl>().BurstModeFireRate + Time.deltaTime,
       () =>
       {
         _isFireInvoke = false;
-        var rot = currentGun.GetComponent<GunControl>().GetInitRotation();
-        currentGun.transform.localRotation = rot;
       });
   }
 
@@ -241,7 +239,6 @@ public partial class ItemSystem : MonoBehaviour
       currentAnimDuration + currentGun.GetComponent<GunControl>().AutoModeFireRate,
       () =>
       {
-
         _isFireInvoke = false;
       });
   }
