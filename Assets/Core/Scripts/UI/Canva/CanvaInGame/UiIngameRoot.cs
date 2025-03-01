@@ -56,6 +56,7 @@ public partial class UiIngameRoot : BaseUIRoot
 
   void OnDestroy()
   {
+    if (!ItemSystem.Instance.CurrentLightsaber) return;
     ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange -= OnCurrentCapacityChange;
   }
 
@@ -88,10 +89,12 @@ public partial class UiIngameRoot : BaseUIRoot
   void SetUpBullet()
   {
     var _gunData = DataGunManager.Instance.GetGunDataClassPick();
-    int _bulletBase = _gunData._currentValue;
-    for (int i = 0; i < _bulletBase; i++)
+    int _bulletStart = _gunData._currentStartValue;
+    int _bulletCurrent = _gunData._currentValue;
+    for (int i = 0; i < _bulletStart; i++)
     {
-      Instantiate(PrefabBullet, parentBullet.transform);
+      GameObject bullet = Instantiate(PrefabBullet, parentBullet.transform);
+      bullet.SetActive(i < _bulletCurrent);
     }
   }
   void UpdateBullet()
@@ -102,6 +105,7 @@ public partial class UiIngameRoot : BaseUIRoot
     var _currentGun = ItemSystem.Instance.GetCurrentGun();
     _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
     int index = _currentGun.GetComponent<GunControl>().CurrentAmmo;
+    textCurrentBullet.text = "x " + index.ToString();
     Debug.Log("index : " + index);
     // cập nhật hình ảnh
     GameObject _bulletTarget = parentBullet.transform.GetChild(index).gameObject;
@@ -118,6 +122,9 @@ public partial class UiIngameRoot : BaseUIRoot
     int intCurrentAmmo = _dataGunTarget._currentValue;
     var _currentGun = ItemSystem.Instance.GetCurrentGun();
     _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
+    // update Text + imgae
+    int index = _currentGun.GetComponent<GunControl>().CurrentAmmo;
+    textCurrentBullet.text = "x " + index.ToString();
     foreach (Transform child in parentBullet.transform)
     {
       child.gameObject.SetActive(true);
