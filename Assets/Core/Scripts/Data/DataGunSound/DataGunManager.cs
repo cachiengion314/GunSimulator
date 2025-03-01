@@ -15,8 +15,12 @@ public class DataGunManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            SetupDataTask();
         }
-        SetupDataTask();
+        else
+        {
+            Destroy(gameObject); 
+        }
 
     }
     public void SetupDataTask()
@@ -32,53 +36,56 @@ public class DataGunManager : MonoBehaviour
             LoadDataJsonTask();
         }
     }
-    public void CheckUpdateDataGunVersion() // kiểm tra dữ liệu các nhiệm vụ xem có khớp với dữ lụu trong ScriptableObject
+    public void CheckUpdateDataGunVersion()
     {
-
-        if (_GunDataJsonBase.ListGunsJson.Count != _dataGun.ListDataGun.Count)
+        // Load dữ liệu hiện tại từ JSON
+        if (!File.Exists(SaveSystem.GetSaveDataPathFrom("GunData")))
         {
-            // Nếu số lượng khác nhau hoặc file JSON không tồn tại, chạy lại ChangeScriptableObjectToJson
             ChangeScriptableObjectToJson();
             return;
         }
+        _GunDataJsonBase = SaveSystem.LoadWith<GunDataJsonBase>("GunData");
+        bool isDataChanged = false;
+        Dictionary<(int, int), GunDataJsonBase.GunDataClassSave> existingGunData = new Dictionary<(int, int), GunDataJsonBase.GunDataClassSave>();
 
-        // Duyệt từng súng trong ScriptableObject để kiểm tra sự thay đổi
-        for (int i = 0; i < _dataGun.ListDataGun.Count; i++)
+        // Lưu dữ liệu JSON vào Dictionary theo (typeGun, idGun) để kiểm tra chính xác
+        foreach (var gun in _GunDataJsonBase.ListGunsJson)
         {
-            var scriptableGun = _dataGun.ListDataGun[i];
+            existingGunData[(gun._typeGun, gun._idGun)] = gun;
+        }
 
-            // 🔥 Tìm kiếm theo cả typeGun và idGun
-            var jsonGun = _GunDataJsonBase.ListGunsJson.Find(t => t._idGun == scriptableGun._idGun && t._typeGun == (int)scriptableGun._typeGun);
+        // Kiểm tra dữ liệu từ ScriptableObject
+        foreach (var gun in _dataGun.ListDataGun)
+        {
+            var key = ((int)gun._typeGun, gun._idGun);
 
-            if (jsonGun == null)
+            if (!existingGunData.ContainsKey(key))
             {
-                Debug.LogWarning($"⚠️ Không tìm thấy súng (ID: {scriptableGun._idGun}, Type: {scriptableGun._typeGun}) trong JSON. Cập nhật lại...");
-                ChangeScriptableObjectToJson();
-                return;
+                isDataChanged = true;
+                break;
             }
-
-            // Kiểm tra nếu tên súng, giá trị đạn hoặc chế độ bắn khác nhau -> Cập nhật lại JSON
-            if (jsonGun._strGun != scriptableGun._strGun ||
-                jsonGun._currentStartValue != scriptableGun._currentStartValue ||
-                jsonGun._currentValue != scriptableGun._currentValue ||
-                !AreFireModesEqual(jsonGun._fireModes, scriptableGun._fireModes))
+            else
             {
-                Debug.LogWarning($"🔄 Dữ liệu súng {scriptableGun._strGun} đã thay đổi, cập nhật JSON...");
-                ChangeScriptableObjectToJson();
-                return;
+                var existingGun = existingGunData[key];
+                if (existingGun._currentStartValue != gun._currentStartValue ||
+                    existingGun._strGun != gun._strGun)
+                {
+                    isDataChanged = true;
+                    break;
+                }
             }
         }
-    }
-    // 🛠 Hàm hỗ trợ: Kiểm tra chế độ bắn giữa JSON và ScriptableObject
-    private bool AreFireModesEqual(int[] jsonModes, DataGun.FireMode[] scriptableModes)
-    {
-        if (jsonModes.Length != scriptableModes.Length) return false;
 
-        for (int i = 0; i < jsonModes.Length; i++)
+        // Nếu có thay đổi, cập nhật lại toàn bộ dữ liệu từ ScriptableObject
+        if (isDataChanged)
         {
-            if (jsonModes[i] != (int)scriptableModes[i]) return false;
+            ChangeScriptableObjectToJson();
+            Debug.Log("🔄 Dữ liệu súng đã được cập nhật từ ScriptableObject.");
         }
-        return true;
+        else
+        {
+            Debug.Log("✅ Dữ liệu súng không có thay đổi.");
+        }
     }
 
 

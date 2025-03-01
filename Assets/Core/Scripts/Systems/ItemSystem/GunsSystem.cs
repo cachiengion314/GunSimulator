@@ -192,7 +192,7 @@ public partial class ItemSystem : MonoBehaviour
             currentGun.GetComponent<GunControl>().BurstModeRecoilPosition,
             currentGun.GetComponent<GunControl>().BurstModeRecoilAngles
           );
-          OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
+          // OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
         });
     }
 
@@ -228,7 +228,7 @@ public partial class ItemSystem : MonoBehaviour
       currentGun.GetComponent<GunControl>().AutoModeRecoilAngles
     );
 
-    OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
+    // OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
     OnIsAuto?.Invoke(true);
 
     var seq = DOTween.Sequence();
@@ -266,7 +266,7 @@ public partial class ItemSystem : MonoBehaviour
       currentGun.GetComponent<GunControl>().SingleModeRecoilPosition,
       currentGun.GetComponent<GunControl>().SingleModeRecoilAngles
     );
-    OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
+    // OnFire?.Invoke(currentGun.GetComponent<GunControl>().ReduceAmmoPerShot);
 
     var seq = DOTween.Sequence();
     var currentAnimDuration = 0f;
@@ -338,5 +338,6 @@ public partial class ItemSystem : MonoBehaviour
       _recoilPosition,
       _duration
     );
+    OnFire?.Invoke(1);
   }
 }

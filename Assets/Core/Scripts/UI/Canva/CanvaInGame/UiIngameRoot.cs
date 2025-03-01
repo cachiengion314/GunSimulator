@@ -23,6 +23,7 @@ public partial class UiIngameRoot : BaseUIRoot
   public Button[] TypeFireModes;
   [Header("--Bullet--")]
   [SerializeField] GameObject parentBullet;
+  [SerializeField] GameObject PrefabBullet;
 
   public ColorPickerControl colorPickerControl;
   private void Awake()
@@ -31,15 +32,16 @@ public partial class UiIngameRoot : BaseUIRoot
   }
   private void Start()
   {
-    SetupButtons();
+    SetupButtonsTypeFire();
     ItemSystem.Instance.OnFire += UpdateBullet;
     ItemSystem.Instance.OnIsAuto += UpdateButtonType;
     TouchDetect.Instance.onTouchEnd += SetTypeSingleButton;
     ItemSystem.Instance.OnOutOfAmmo += ShowPoPupBuyBullet;
-    
-    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
-    int _currentValueGun = gunData._currentValue;
-    textCurrentBullet.text = _currentValueGun.ToString();
+
+    // var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+    // int _currentValueGun = gunData._currentValue;
+    // textCurrentBullet.text = _currentValueGun.ToString();
+    SetUpBullet();
 
   }
   void SetTypeSingleButton(float2 _test, float2 _test2)
@@ -57,21 +59,46 @@ public partial class UiIngameRoot : BaseUIRoot
   public void UpdateBullet(int _value)
   {
     DataGunManager.Instance.UpdateGunCurrenValue(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, _value);
-    UpdateTextCurrentBullet();
+    // UpdateTextCurrentBullet();
+    UpdateBullet();
   }
-
-  public void UpdateTextCurrentBullet()
+  void SetUpBullet()
   {
+    var _gunData = DataGunManager.Instance.GetGunDataClassPick();
+    int _bulletBase = _gunData._currentValue;
+    for (int i = 0; i < _bulletBase; i++)
+    {
+      Instantiate(PrefabBullet, parentBullet.transform);
+    }
+  }
+  void UpdateBullet()
+  {
+    //lữu giữ liệu vào GunControl
     var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
-
     int intCurrentAmmo = _dataGunTarget._currentValue;
-
     var _currentGun = ItemSystem.Instance.GetCurrentGun();
     _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
+    int index = _currentGun.GetComponent<GunControl>().CurrentAmmo;
+    Debug.Log("index : " + index);
+    // cập nhật hình ảnh
+    GameObject _bulletTarget = parentBullet.transform.GetChild(index).gameObject;
+    if (_bulletTarget != null)
+    {
+      _bulletTarget.gameObject.SetActive(false);
+    }
 
-    int _currentValueGun = _currentGun.GetComponent<GunControl>().CurrentAmmo;
+  }
 
-    textCurrentBullet.text = _currentValueGun.ToString();
+  public void UpdateCurrentBulletBuyFull()
+  {
+    var _dataGunTarget = DataGunManager.Instance.GetGunDataClassPick();
+    int intCurrentAmmo = _dataGunTarget._currentValue;
+    var _currentGun = ItemSystem.Instance.GetCurrentGun();
+    _currentGun.GetComponent<GunControl>().SetCurrentAmmo(intCurrentAmmo);
+    foreach (Transform child in parentBullet.transform)
+    {
+      child.gameObject.SetActive(true);
+    }
   }
   void ShowPoPupBuyBullet()
   {
@@ -96,14 +123,14 @@ public partial class UiIngameRoot : BaseUIRoot
 
   }
 
-  void SetupButtons()
+  void SetupButtonsTypeFire()
   {
     foreach (var type in TypeFireModes)
     {
       type.gameObject.SetActive(false);
     }
     var GunData = DataGunManager.Instance.GetGunDataClassPick();
-   
+
     for (int i = 0; i < GunData._fireModes.Length; i++)
     {
       if (GunData._fireModes.Length == 3)
@@ -117,7 +144,7 @@ public partial class UiIngameRoot : BaseUIRoot
         TypeFireModes[i].gameObject.SetActive(true);
       }
     }
-    
+
 
   }
 

@@ -16,7 +16,7 @@ public class UIBuyBullet : BaseUIRoot
         int startcurrent = currentGun.GetComponent<GunControl>().InitAmmo;
         Debug.Log("Test.startcurrent" + startcurrent);
         currentGun.GetComponent<GunControl>().SetCurrentAmmo(startcurrent);
-        UiIngameRoot.Instance.UpdateTextCurrentBullet();
+        UiIngameRoot.Instance.UpdateCurrentBulletBuyFull();
         this.Exit();
         SoundSystem.Instance.GunReloadSfx();
 

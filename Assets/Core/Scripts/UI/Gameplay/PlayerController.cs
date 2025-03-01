@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
         }
         // Gửi tín hiệu cập nhật đạn
         DataGunManager.Instance.UpdateGunCurrenValue(_idTypePick, _idGunPick, vaule); // trừ đạn
-        UiIngameRoot.Instance.UpdateTextCurrentBullet(); // update lại text đạn
+        // UiIngameRoot.Instance.UpdateTextCurrentBullet(); // update lại text đạn
         _countdown = _BulletSpeed; // đặt lại thời gian chờ để bắn đạn
         SoundSystem.Instance.PlayPistolSfx();
         AnimAtk();
