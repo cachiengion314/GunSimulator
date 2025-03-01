@@ -3,6 +3,7 @@ using HoangNam;
 using UnityEngine.UI;
 using TMPro;
 using Unity.Mathematics;
+using System.Collections;
 
 
 public partial class UiIngameRoot : BaseUIRoot
@@ -26,6 +27,7 @@ public partial class UiIngameRoot : BaseUIRoot
   [SerializeField] GameObject PrefabBullet;
 
   public ColorPickerControl colorPickerControl;
+  [SerializeField] Slider capacity;
   private void Awake()
   {
     Instance = this;
@@ -38,12 +40,33 @@ public partial class UiIngameRoot : BaseUIRoot
     TouchDetect.Instance.onTouchEnd += SetTypeSingleButton;
     ItemSystem.Instance.OnOutOfAmmo += ShowPoPupBuyBullet;
 
-    // var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
-    // int _currentValueGun = gunData._currentValue;
-    // textCurrentBullet.text = _currentValueGun.ToString();
-    SetUpBullet();
+    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+    int _currentValueGun = gunData._currentValue;
+    textCurrentBullet.text = _currentValueGun.ToString();
+    StartCoroutine(AddActionToCurrentLightsaber());
 
+    SetUpBullet();
   }
+
+  IEnumerator AddActionToCurrentLightsaber()
+  {
+    yield return new WaitUntil(() => ItemSystem.Instance.CurrentLightsaber);
+    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange += OnCurrentCapacityChange;
+  }
+
+  void OnDestroy()
+  {
+    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange -= OnCurrentCapacityChange;
+  }
+
+  void OnCurrentCapacityChange()
+  {
+    var maxCapacity = ItemSystem.Instance.CurrentLightsaber.Capacity;
+    var currentCapacity = ItemSystem.Instance.CurrentLightsaber.CurrentCapacity;
+    var value = currentCapacity / maxCapacity;
+    capacity.value = value;
+  }
+
   void SetTypeSingleButton(float2 _test, float2 _test2)
   {
     TypeFireModes[0].gameObject.SetActive(true);

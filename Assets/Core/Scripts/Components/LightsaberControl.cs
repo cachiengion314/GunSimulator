@@ -1,14 +1,19 @@
 using System;
+using DigitalRuby.LightningBolt;
 using UnityEngine;
 
 public class LightsaberControl : MonoBehaviour
 {
+    [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] LightningBoltScript lightningBoltScript;
     [SerializeField] SpriteRenderer swordHiltRdr;
     [SerializeField] SpriteRenderer bladeRdr;
     public Action OnCurrentCapacityChange;
+    public Action OnCapacityEmpty;
     float _capacity;
     public float Capacity { get { return _capacity; } }
     float _currentCapacity;
+    bool _isCapacityEmpty = false;
     public float CurrentCapacity
     {
         get { return _currentCapacity; }
@@ -36,12 +41,35 @@ public class LightsaberControl : MonoBehaviour
 
     public void SetColorBlade(Color color)
     {
-        bladeRdr.color = color;
+        bladeRdr.material.SetColor("_EmissionColor", color * 5);
+        lineRenderer.colorGradient = GetGradient(color);
+    }
+
+    Gradient GetGradient(Color color)
+    {
+        Gradient myGradient = new Gradient();
+
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        colorKeys[0].color = color;
+        colorKeys[0].time = 0.0f;
+
+        colorKeys[1].color = Color.white;
+        colorKeys[1].time = 1.0f;
+
+        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+        alphaKeys[0].alpha = 1.0f;
+        alphaKeys[0].time = 0.0f;
+
+        alphaKeys[1].alpha = 1.0f;
+        alphaKeys[1].time = 1.0f;
+
+        myGradient.SetKeys(colorKeys, alphaKeys);
+        return myGradient;
     }
 
     public Color GetColorBlade()
     {
-        return bladeRdr.color;
+        return bladeRdr.material.GetColor("_EmissionColor");
     }
 
     public void SetCapacity(float capacity)
@@ -65,13 +93,12 @@ public class LightsaberControl : MonoBehaviour
         var size = bladeRdr.size;
         var pos = bladeRdr.transform.localPosition;
 
-        if (isExpanding)
+        if (isExpanding && !_isCapacityEmpty)
         {
-            if (CurrentCapacity <= 0) return;
-            CurrentCapacity -= Time.deltaTime;
-
             size.y = Mathf.Lerp(size.y, _bladeLength, _speed * Time.deltaTime);
             if (_bladeLength - size.y < 0.05f) size.y = _bladeLength;
+
+            ReduceCurrentCapacity();
         }
         else
         {
@@ -82,10 +109,36 @@ public class LightsaberControl : MonoBehaviour
 
         bladeRdr.size = size;
         bladeRdr.transform.localPosition = pos;
+
+        SetPositionLightningBolt();
     }
+
+
 
     public void Recharge()
     {
         CurrentCapacity = _capacity;
+        _isCapacityEmpty = false;
+    }
+
+    void ReduceCurrentCapacity()
+    {
+        CurrentCapacity -= Time.deltaTime;
+        if (CurrentCapacity <= 0)
+        {
+            OnCapacityEmpty?.Invoke();
+            _isCapacityEmpty = true;
+        }
+
+    }
+
+    void SetPositionLightningBolt()
+    {
+        var startPos = bladeRdr.transform.position;
+        var endPos = bladeRdr.transform.position;
+        startPos.y += bladeRdr.size.y / 2;
+        endPos.y -= bladeRdr.size.y / 2;
+        lightningBoltScript.StartPosition = startPos;
+        lightningBoltScript.EndPosition = endPos;
     }
 }
