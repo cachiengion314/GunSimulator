@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lightsaber_0: -6020150074394743850
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

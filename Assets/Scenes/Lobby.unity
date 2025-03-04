@@ -845,6 +845,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09fa17b4b2834c048bf58e91384ebd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appIOSKey: 
+  bannerAdUnitIOSId: 
+  interstitialAdUnitIOSId: 
+  appAndroidKey: 
+  bannerAdUnitAndroidId: 
+  interstitialAdUnitAndroidId: 
 --- !u!4 &841232288
 Transform:
   m_ObjectHideFlags: 0

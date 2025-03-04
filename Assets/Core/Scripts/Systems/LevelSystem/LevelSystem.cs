@@ -137,6 +137,8 @@ public partial class LevelSystem : MonoBehaviour
         ItemSystem.Instance.SpawnExplosionBy(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick);
         break;
       case 2:
+        var TaserrData = GameSystem.Instance.GetCurrentTaserData();
+        ItemSystem.Instance.SpawnTaser(TaserrData);
         break;
       case 3:
         var LightsaberData = GameSystem.Instance.GetCurrentLightsaberData();

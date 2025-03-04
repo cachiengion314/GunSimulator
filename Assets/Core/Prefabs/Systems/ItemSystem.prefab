@@ -81,6 +81,7 @@ Transform:
   - {fileID: 3140149410043437440}
   - {fileID: 3591272547214524698}
   - {fileID: 3551598264438581170}
+  - {fileID: 4137726948426492755}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2966870119073704530
@@ -110,6 +111,9 @@ MonoBehaviour:
   destroyedObjParent: {fileID: 4525521858795985644}
   lightsaberPref: {fileID: 3899169694131343574, guid: 4311fe595130f42b7a291d4a6da2f819, type: 3}
   _lightsaberParent: {fileID: 3591272547214524698}
+  isExpanding: 0
+  taserPref: {fileID: 3407319628390594453, guid: 0c0745206765b41b486fd0a9f6e8350e, type: 3}
+  _taserParent: {fileID: 4137726948426492755}
 --- !u!1 &5243542284952932632
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +137,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5243542284952932632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3540288095446896773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5679240900005574755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4137726948426492755}
+  m_Layer: 0
+  m_Name: TaserParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4137726948426492755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679240900005574755}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}

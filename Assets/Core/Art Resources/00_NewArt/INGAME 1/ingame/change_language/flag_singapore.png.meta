@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flag_singapore_0: -1220958070092459530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

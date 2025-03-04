@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flag_vietnam_0: 4014726984061915298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

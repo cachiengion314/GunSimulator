@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flag_campuchia_0: -2656126601277817202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

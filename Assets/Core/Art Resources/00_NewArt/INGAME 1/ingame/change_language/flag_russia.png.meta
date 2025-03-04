@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flag_russia_0: 3105884806426141113
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
