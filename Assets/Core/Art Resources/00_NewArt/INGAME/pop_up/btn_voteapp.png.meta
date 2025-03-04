@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      btn_voteapp_0: -1858135692029664281
+      btn_voteapp_1: -967890714745480061
+      btn_voteapp_2: -7109990671424483490
+      btn_voteapp_3: -7980158886374046839
+      btn_voteapp_4: -4584926513904679577
+      btn_voteapp_5: 913059635612739543
+      btn_voteapp_6: -9027585766772725320
+      btn_voteapp_7: -4984523773352089574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -29,8 +29,9 @@ public class UIShopIngame : UiShop
   [SerializeField] GameObject[] _arrayPrefabItemTaserGun;
   [Header("---ItemTLightSaber---")] //kích cỡ kiếm , dạng kiếm dài ngắn KHÁC NHAU thì dùng cái này 
   [SerializeField] GameObject[] _arrayPrefabItemLightSaber;
-  [Header("---ItemLighTest---")]
+  [Header("---ItemLigh---")]
   [SerializeField] GameObject ItemLightSaber;//kích cỡ kiếm , dạng kiếm và độ dài GIỐNG NHAU thì dùng cái này 
+  [SerializeField] GameObject ItemGunTaser;//kích cỡ kiếm , dạng kiếm và độ dài GIỐNG NHAU thì dùng cái này 
 
   void Awake()
   {
@@ -53,6 +54,7 @@ public class UIShopIngame : UiShop
     CreatShopGunSound();
     CreatShopExploSion();
     CreatShopLightSaber();
+    CreatShopGunTaser();
   }
   void ClearContentAllShop()
   {
@@ -216,6 +218,53 @@ public class UIShopIngame : UiShop
       {
         PlayerPrefs.SetInt("Lightsaber" + index, 0);
         GameSystem.Instance.CurrentLightsaberIndex = index;
+        PlayGame();
+      });
+
+    }
+  }
+  void CreatShopGunTaser()
+  {
+    TaserData[] TaserDatas = RenderSystem.Instance.GetTaserDatas();
+
+    for (int i = 0; i < TaserDatas.Length; i++)
+    {
+      GameObject ItemTaserShop = Instantiate(ItemGunTaser, _arrayParentItem[2].transform); // khởi tạo Item
+      Image _ImageIcon = ItemTaserShop.transform.GetChild(1).GetComponent<Image>();
+      TMP_Text _TextInfo = ItemTaserShop.transform.GetChild(2).GetComponent<TMP_Text>();
+      Button ButtonBuy = ItemTaserShop.transform.GetChild(3).GetComponent<Button>();
+      Button ButtonUse = ItemTaserShop.transform.GetChild(4).GetComponent<Button>();
+      GameObject ObjPick = ItemTaserShop.transform.GetChild(5).gameObject;
+
+      TaserData data = TaserDatas[i];
+
+      _ImageIcon.sprite = data.BodySprite;
+      _TextInfo.text = data.Name;
+      int index = i;
+
+      bool isVideoAds = PlayerPrefs.GetInt("Lightsaber" + index, data.isVideoAds) == 1;
+
+      ObjPick.SetActive(false);
+      if (isVideoAds)
+      {
+        ButtonBuy.gameObject.SetActive(true);
+        ButtonUse.gameObject.SetActive(false);
+      }
+      else
+      {
+        ButtonBuy.gameObject.SetActive(false);
+        ButtonUse.gameObject.SetActive(true);
+      }
+      ButtonUse.onClick.AddListener(() =>
+      {
+        GameSystem.Instance.CurrentTaserIndex = index;
+        PlayGame();
+      });
+
+      ButtonBuy.onClick.AddListener(() =>
+      {
+        PlayerPrefs.SetInt("Tasber" + index, 0);
+        GameSystem.Instance.CurrentTaserIndex = index;
         PlayGame();
       });
 

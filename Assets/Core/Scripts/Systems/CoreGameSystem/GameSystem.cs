@@ -265,6 +265,17 @@ public partial class GameSystem : MonoBehaviour
     return RenderSystem.Instance.GetLightsaberDataAt(CurrentLightsaberIndex);
   }
 
+  public int CurrentTaserIndex
+  {
+    get => PlayerPrefs.GetInt("taser", 0);
+    set => PlayerPrefs.SetInt("taser", value);
+  }
+
+  public TaserData GetCurrentTaserData()
+  {
+    return RenderSystem.Instance.GetTaserDataAt(CurrentTaserIndex);
+  }
+
   /// <summary>
   /// Event section
   /// </summary>
@@ -400,5 +411,5 @@ public partial class GameSystem : MonoBehaviour
   {
     LoadSceneByName(KeyStr.NAME_SCENE_GAMEPLAY);
   }
-   
+
 }

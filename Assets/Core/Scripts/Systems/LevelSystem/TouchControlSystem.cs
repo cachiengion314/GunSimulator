@@ -18,6 +18,7 @@ public partial class LevelSystem : MonoBehaviour
       case 1:
         break;
       case 2:
+        ItemSystem.Instance.OffTaser();
         break;
       case 3:
         ItemSystem.Instance.SetExpanding(false);
@@ -62,6 +63,7 @@ public partial class LevelSystem : MonoBehaviour
         ExplosionTouch();
         break;
       case 2:
+        ItemSystem.Instance.OnTaser();
         break;
       case 3:
         ItemSystem.Instance.SetExpanding(true);

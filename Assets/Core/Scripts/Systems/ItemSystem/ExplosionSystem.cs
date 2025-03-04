@@ -140,9 +140,9 @@ public partial class ItemSystem
         while (remainingTime > 0)
         {
             int seconds = Mathf.FloorToInt(remainingTime); // Lấy phần giây nguyên
-            int milliseconds = Mathf.FloorToInt((remainingTime - seconds) * 100); // Lấy phần mili giây
+            int centiseconds = Mathf.FloorToInt((remainingTime - seconds) * 100); // Lấy hai chữ số của mili giây
 
-            explosionControl.textTime.text = $"{seconds:D2}:{milliseconds:D3}"; // Định dạng XX:XXX (giây:mili giây)
+            explosionControl.textTime.text = $"{seconds:D2}:{centiseconds:D2}"; // Định dạng XX:XX (giây:centiseconds)
 
             remainingTime -= Time.deltaTime;
             yield return null; // Chờ frame tiếp theo

@@ -13,8 +13,10 @@ public partial class UiIngameRoot : BaseUIRoot
   static public UiIngameRoot Instance { get; private set; }
   [Header("--SetupIngame--")]
   [SerializeField] GameObject parentSetupTypeGun;
-  [SerializeField] GameObject parentSetupTypeLight;
   [SerializeField] GameObject parentSetupTypeExplosion;
+  [SerializeField] GameObject parentSetupTypeGunTaser;
+  [SerializeField] GameObject parentSetupTypeLight;
+
   [Header("---ShopIngame---")]
   public Button _btnShowShopCoin;
   [Header("---Gun---")]
@@ -41,12 +43,14 @@ public partial class UiIngameRoot : BaseUIRoot
         SetupTypeGun();
         parentSetupTypeGun.gameObject.SetActive(true);
         parentSetupTypeExplosion.gameObject.SetActive(false);
+        parentSetupTypeGunTaser.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(false);
 
         break;
       case 1:
         parentSetupTypeGun.gameObject.SetActive(false);
         parentSetupTypeExplosion.gameObject.SetActive(true);
+        parentSetupTypeGunTaser.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(false);
 
         _valueTimeExplosion.value = 0;
@@ -54,11 +58,18 @@ public partial class UiIngameRoot : BaseUIRoot
 
         break;
       case 2:
+        parentSetupTypeGun.gameObject.SetActive(false);
+        parentSetupTypeExplosion.gameObject.SetActive(false);
+        parentSetupTypeGunTaser.gameObject.SetActive(true);
+        parentSetupTypeLight.gameObject.SetActive(false);
+
+
         break;
       case 3:
         StartCoroutine(AddActionToCurrentLightsaber());
         parentSetupTypeGun.gameObject.SetActive(false);
         parentSetupTypeExplosion.gameObject.SetActive(false);
+        parentSetupTypeGunTaser.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(true);
         break;
     }

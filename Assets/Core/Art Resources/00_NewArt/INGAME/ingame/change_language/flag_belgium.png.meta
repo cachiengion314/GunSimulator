@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flag_belgium_0: 5416426728412977640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

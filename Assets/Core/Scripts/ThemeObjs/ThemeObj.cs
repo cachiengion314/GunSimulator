@@ -13,6 +13,7 @@ public class ThemeObj : ScriptableObject
   public Sprite[] SpriteIconRiffleGun;
   public Sprite[] SpriteIconSniperGun;
   public LightsaberData[] lightsaberDatas;
+  public TaserData[] taserDatas;
 
   public Sprite[] SpriteIconGranade;
   public Sprite[] SpriteIconBomb;

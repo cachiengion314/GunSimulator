@@ -1762,6 +1762,7 @@ MonoBehaviour:
   _arrayPrefabItemTaserGun: []
   _arrayPrefabItemLightSaber: []
   ItemLightSaber: {fileID: 1796350738479963541, guid: 65b6d50a687934644b61b5725f8d9e7c, type: 3}
+  ItemGunTaser: {fileID: 1796350738479963541, guid: 1d03a4fabca8a4520868d412fdde72ed, type: 3}
 --- !u!1 &7372899202526533691
 GameObject:
   m_ObjectHideFlags: 0

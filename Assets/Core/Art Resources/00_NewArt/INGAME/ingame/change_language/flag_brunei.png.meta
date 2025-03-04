@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flag_brunei_0: 4503608636884727487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

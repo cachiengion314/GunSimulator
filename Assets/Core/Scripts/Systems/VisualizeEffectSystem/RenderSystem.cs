@@ -95,6 +95,18 @@ public class RenderSystem : MonoBehaviour
   {
     return themes[CurrentThemeIndex].lightsaberDatas;
   }
+  public TaserData GetTaserDataAt(int _id)
+  {
+    if (_id <= themes[CurrentThemeIndex].taserDatas.Length)
+    {
+      return themes[CurrentThemeIndex].taserDatas[_id];
+    }
+    return null;
+  }
+  public TaserData[] GetTaserDatas()
+  {
+    return themes[CurrentThemeIndex].taserDatas;
+  }
   public Sprite GetSpriteIconGranade(int _id)
   {
     if (_id <= themes[CurrentThemeIndex].SpriteIconGranade.Length)
