@@ -18,3 +18,4 @@ MonoBehaviour:
   Capacity: 200
   Speed: 1
   BladeLength: 10
+  isVideoAds: 1

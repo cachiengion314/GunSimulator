@@ -191,17 +191,33 @@ public class UIShopIngame : UiShop
 
       _ImageIcon.sprite = data.SwordHilt;
       _TextInfo.text = data.Name;
+      int index = i;
+
+      bool isVideoAds = PlayerPrefs.GetInt("Lightsaber" + index, data.isVideoAds) == 1;
 
       ObjPick.SetActive(false);
-      ButtonBuy.gameObject.SetActive(false);
-      ButtonUse.gameObject.SetActive(true);
-      int index = i;
+      if (isVideoAds)
+      {
+        ButtonBuy.gameObject.SetActive(true);
+        ButtonUse.gameObject.SetActive(false);
+      }
+      else
+      {
+        ButtonBuy.gameObject.SetActive(false);
+        ButtonUse.gameObject.SetActive(true);
+      }
       ButtonUse.onClick.AddListener(() =>
       {
         GameSystem.Instance.CurrentLightsaberIndex = index;
         PlayGame();
       });
 
+      ButtonBuy.onClick.AddListener(() =>
+      {
+        PlayerPrefs.SetInt("Lightsaber" + index, 0);
+        GameSystem.Instance.CurrentLightsaberIndex = index;
+        PlayGame();
+      });
 
     }
   }

@@ -13,7 +13,6 @@ public class LightsaberControl : MonoBehaviour
     float _capacity;
     public float Capacity { get { return _capacity; } }
     float _currentCapacity;
-    bool _isCapacityEmpty = false;
     public float CurrentCapacity
     {
         get { return _currentCapacity; }
@@ -23,11 +22,12 @@ public class LightsaberControl : MonoBehaviour
             OnCurrentCapacityChange?.Invoke();
         }
     }
+    bool _isCapacityEmpty = false;
+    public bool IsCapacityEmpty { get { return _isCapacityEmpty;}}
     float _speed;
     public float Speed { get { return _speed; } }
     float _bladeLength;
     public float BladeLength { get { return _bladeLength; } }
-    public bool isExpanding = false;
 
     public void SetSpriteSwordHilt(Sprite sprite)
     {
@@ -88,34 +88,27 @@ public class LightsaberControl : MonoBehaviour
         _bladeLength = bladeLength;
     }
 
-    public void BladeLengthen()
+    public void OnBladeLengthen()
     {
         var size = bladeRdr.size;
         var pos = bladeRdr.transform.localPosition;
-
-        if (isExpanding && !_isCapacityEmpty)
-        {
-
-            size.y = Mathf.Lerp(size.y, _bladeLength, _speed * Time.deltaTime);
-            if (_bladeLength - size.y < 0.05f) size.y = _bladeLength;
-            SoundSystem.Instance.StartLightsaberPlaySfx();
-            ReduceCurrentCapacity();
-        }
-        else
-        {
-            SoundSystem.Instance.StopLightsaberPlaySfx();
-            size.y = Mathf.Lerp(size.y, 0, _speed * 2f * Time.deltaTime);
-            if (size.y < 0.05f) size.y = 0;
-        }
+        size.y = Mathf.Lerp(size.y, _bladeLength, _speed * Time.deltaTime);
+        if (_bladeLength - size.y < 0.05f) size.y = _bladeLength;
         pos.y = size.y / 2;
-
         bladeRdr.size = size;
         bladeRdr.transform.localPosition = pos;
-
-        SetPositionLightningBolt();
     }
 
-
+    public void OffBladeLengthen()
+    {
+        var size = bladeRdr.size;
+        var pos = bladeRdr.transform.localPosition;
+        size.y = Mathf.Lerp(size.y, 0, _speed * 2f * Time.deltaTime);
+        if (size.y < 0.05f) size.y = 0;
+        pos.y = size.y / 2;
+        bladeRdr.size = size;
+        bladeRdr.transform.localPosition = pos;
+    }
 
     public void Recharge()
     {
@@ -123,7 +116,7 @@ public class LightsaberControl : MonoBehaviour
         _isCapacityEmpty = false;
     }
 
-    void ReduceCurrentCapacity()
+    public void ReduceCurrentCapacity()
     {
         CurrentCapacity -= Time.deltaTime;
         if (CurrentCapacity <= 0)
@@ -134,7 +127,7 @@ public class LightsaberControl : MonoBehaviour
         }
     }
 
-    void SetPositionLightningBolt()
+    public void SetPositionLightningBolt()
     {
         var startPos = bladeRdr.transform.position;
         var endPos = bladeRdr.transform.position;
