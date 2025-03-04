@@ -25,7 +25,7 @@ public partial class ItemSystem : MonoBehaviour
   {
     // DisposeCupGrid();
     UiIngameRoot.Instance.colorPickerLightsaberControl.OnColorChange -= OnColorChange;
-    UiIngameRoot.Instance.colorPickerTaserControl.OnColorChange += OnColorChange;
+    UiIngameRoot.Instance.colorPickerTaserControl.OnColorChange -= OnColorChange;
   }
 
   /// <summary>

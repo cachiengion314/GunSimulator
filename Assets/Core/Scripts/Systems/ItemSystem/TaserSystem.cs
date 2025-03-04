@@ -14,6 +14,7 @@ public partial class ItemSystem
         _currentTaser = Instantiate(taserPref, _taserParent);
         _currentTaser.SetBodyRenderer(data.BodySprite);
         _currentTaser.SetColor(data.color);
+        _currentTaser.SetCapacity(data.Capacity);
     }
 
     public void OnTaser()
