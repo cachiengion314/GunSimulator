@@ -9,4 +9,5 @@ public class LightsaberData : ScriptableObject
     public float Capacity;
     public float Speed;
     public float BladeLength;
+    public int isVideoAds;
 }
