@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bomb4-removebg-preview_0: -5811333371068195914
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

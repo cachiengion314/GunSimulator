@@ -7,6 +7,7 @@ public partial class ItemSystem
     public Transform LightsaberParent { get { return _lightsaberParent; } }
     LightsaberControl _currentLightsaber;
     public LightsaberControl CurrentLightsaber { get { return _currentLightsaber; } }
+    public bool isExpanding = false;
 
     public void SpawnLightsaber(LightsaberData data)
     {
@@ -21,13 +22,24 @@ public partial class ItemSystem
     public void BladeLengthen()
     {
         if (!_currentLightsaber) return;
-        _currentLightsaber.BladeLengthen();
+        if (isExpanding && !_currentLightsaber.IsCapacityEmpty)
+        {
+            _currentLightsaber.OnBladeLengthen();
+            _currentLightsaber.ReduceCurrentCapacity();
+            SoundSystem.Instance.StartLightsaberPlaySfx();
+        }
+        else
+        {
+            _currentLightsaber.OffBladeLengthen();
+            SoundSystem.Instance.StopLightsaberPlaySfx();
+        }
+        _currentLightsaber.SetPositionLightningBolt();
     }
 
     public void SetExpanding(bool isExpanding)
     {
         if (!_currentLightsaber) return;
-        _currentLightsaber.isExpanding = isExpanding;
+        this.isExpanding = isExpanding;
     }
 
     public void OnColorChange(Color color)
