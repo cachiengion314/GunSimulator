@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
@@ -110,73 +111,79 @@ public partial class ItemSystem
         }
         GameSystem.Instance.isBombing = true;
 
-
-
         InvokeBombAnim(
           currentExplosion,
          GameSystem.Instance.explosionTime
         );
 
     }
-    void UpdateTextCoudoutTime()
+    private Coroutine countdownCoroutine; // Lưu trữ coroutine để tránh chạy nhiều lần
+
+    void UpdateTextCoudoutTime(ExplosionControl explosionControl, float explosionTime)
     {
-        var currentExplosion = GetCurrentExplosion();
-        if (currentExplosion == null) return;
+        if (explosionControl == null || explosionControl.textTime == null) return;
 
-        float explosionTime = GameSystem.Instance.explosionTime;
-        var explosionControl = currentExplosion.GetComponent<ExplosionControl>();
-        float remainingTime = explosionTime;
+        // Nếu đã có coroutine chạy, hủy trước khi chạy mới
+        if (countdownCoroutine != null)
+        {
+            StopCoroutine(countdownCoroutine);
+        }
 
-        DOTween.To(() => remainingTime, x => remainingTime = x, 0, explosionTime)
-            .OnUpdate(() =>
-            {
-                int minutes = Mathf.FloorToInt(remainingTime / 60);
-                int seconds = Mathf.FloorToInt(remainingTime % 60);
-                explosionControl.textTime.text = $"{minutes:D2}:{seconds:D2}";
-            })
-            .OnComplete(() =>
-            {
-                explosionControl.textTime.text = "00:00";
-                Debug.Log("Bom!");
-            });
+        // Bắt đầu coroutine mới
+        countdownCoroutine = StartCoroutine(CountdownCoroutine(explosionControl, explosionTime));
     }
 
-   
+    IEnumerator CountdownCoroutine(ExplosionControl explosionControl, float explosionTime)
+    {
+        float remainingTime = explosionTime;
+
+        while (remainingTime > 0)
+        {
+            int seconds = Mathf.FloorToInt(remainingTime); // Lấy phần giây nguyên
+            int milliseconds = Mathf.FloorToInt((remainingTime - seconds) * 100); // Lấy phần mili giây
+
+            explosionControl.textTime.text = $"{seconds:D2}:{milliseconds:D3}"; // Định dạng XX:XXX (giây:mili giây)
+
+            remainingTime -= Time.deltaTime;
+            yield return null; // Chờ frame tiếp theo
+        }
+
+        // Khi countdown kết thúc
+        explosionControl.textTime.text = "00:00";
+
+    }
 
     void InvokeBombAnim(GameObject bombObj, float explosionTime)
     {
         if (bombObj == null) return;
+        var explosionControl = bombObj.GetComponent<ExplosionControl>();
+        if (explosionControl == null) return;
 
-        UpdateTextCoudoutTime();
+        // Gọi hàm update countdown text bằng Coroutine
+        UpdateTextCoudoutTime(explosionControl, explosionTime);
 
         Sequence seq = DOTween.Sequence();
-        int shakeSteps = Mathf.RoundToInt(explosionTime * 5); // Số lần rung (càng cao càng dồn dập)
-        float totalShakeTime = explosionTime * 0.9f; // Dành 90% thời gian cho hiệu ứng rung trước khi nổ
-        float postExplosionShakeTime = explosionTime * 0.1f; // Dành 10% thời gian cho hiệu ứng rung mạnh sau khi nổ
+        int shakeSteps = Mathf.RoundToInt(explosionTime * 5); // Số lần rung
+        float shakeTime = explosionTime; // Thời gian rung trước nổ
+        float postExplosionShakeTime = 0.1f; // Dư chấn sau nổ
+
+        float stepDuration = shakeTime / shakeSteps; // Chia đều thời gian rung để đảm bảo tổng thời gian đúng
 
         for (int i = 0; i < shakeSteps; i++)
         {
-            float stepProgress = (float)i / shakeSteps; // Tỷ lệ hoàn thành (0 -> 1)
-            float stepDuration = Mathf.Lerp(totalShakeTime / shakeSteps, (totalShakeTime / shakeSteps) * 0.3f, stepProgress); // Giảm thời gian rung dần
-
-            float shakeStrength = Mathf.Lerp(0.05f, 0.2f, stepProgress); // Cường độ rung tăng dần
+            float stepProgress = (float)i / shakeSteps;
+            float shakeStrength = Mathf.Lerp(0.05f, 0.2f, stepProgress); // Tăng cường độ rung dần
 
             seq.Append(bombObj.transform.DOShakePosition(stepDuration, shakeStrength, 10 + i * 2, 90, false, true));
         }
 
-        // *** Giai đoạn NỔ ***
+        // *** Giai đoạn NỔ - Xảy ra ngay sau khi explosionTime kết thúc ***
         seq.AppendCallback(() =>
         {
-            Debug.Log("💥 BOM NỔ!!!");
-
-            // Hiệu ứng khói bốc lên
             var muzzlePosition = bombObj.GetComponent<IdExplosion>().GetMuzzlePosition();
             EffectSystem.Instance.SpawnExplosionEfxAt(muzzlePosition, bombObj.GetComponent<ExplosionControl>().ExplosionType);
 
-            // Flashlight bật để tạo hiệu ứng sáng
             flashlightController.ToggleFlashlight();
-
-            // Âm thanh vụ nổ
             SoundSystem.Instance.PlayExplosionSound();
         });
 
@@ -188,6 +195,7 @@ public partial class ItemSystem
             GameSystem.Instance.isBombing = false;
         });
 
-        // seq.SetUpdate(UpdateType.Normal, true); // Đảm bảo tween chạy theo thời gian thực
+        seq.SetUpdate(UpdateType.Normal, true);
     }
+
 }

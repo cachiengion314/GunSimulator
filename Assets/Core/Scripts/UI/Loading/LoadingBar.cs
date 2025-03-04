@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using HoangNam;
+using TMPro;
 
 public class LoadingBar : MonoBehaviour
 {
     [SerializeField] Slider loadingBar;
+    [SerializeField] private TMP_Text loadingText;
     public static string sceneName = KeyStr.NAME_SCENE_LOBBY;
     // static bool isStartGame = true;
     private void Awake()
@@ -22,6 +24,7 @@ public class LoadingBar : MonoBehaviour
         // }
         float timeLoading = Random.Range(0.6f, 1f);
         StartCoroutine(LoadSceneAysnc(timeLoading));
+        StartCoroutine(AnimateLoadingText());
     }
     IEnumerator LoadSceneAysnc(float duration, float elapsed = 0f)
     {
@@ -43,4 +46,20 @@ public class LoadingBar : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator AnimateLoadingText()
+    {
+        while (loadingBar.value < 1)
+        {
+            loadingText.text = $"Loading {loadingBar.value * 100:F0}%";
+            yield return new WaitForSeconds(0.1f);
+            loadingText.text = $"Loading {loadingBar.value * 100:F0}%.";
+            yield return new WaitForSeconds(0.1f);
+            loadingText.text = $"Loading {loadingBar.value * 100:F0}%..";
+            yield return new WaitForSeconds(0.1f);
+            loadingText.text = $"Loading {loadingBar.value * 100:F0}%...";
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
 }
