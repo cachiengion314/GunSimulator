@@ -14,6 +14,7 @@ public partial class UiIngameRoot : BaseUIRoot
   [Header("--SetupIngame--")]
   [SerializeField] GameObject parentSetupTypeGun;
   [SerializeField] GameObject parentSetupTypeLight;
+  [SerializeField] GameObject parentSetupTypeTaser;
   [SerializeField] GameObject parentSetupTypeExplosion;
   [Header("---ShopIngame---")]
   public Button _btnShowShopCoin;
@@ -23,8 +24,10 @@ public partial class UiIngameRoot : BaseUIRoot
   [Header("--Bullet--")]
   [SerializeField] GameObject parentBullet;
   [SerializeField] GameObject PrefabBullet;
-  public ColorPickerControl colorPickerControl;
-  [SerializeField] Slider capacity;
+  public ColorPickerControl colorPickerLightsaberControl;
+  public ColorPickerControl colorPickerTaserControl;
+  [SerializeField] Slider capacityLightsaber;
+  [SerializeField] Slider capacityTaser;
   [Header("---Explosion---")]
   [SerializeField] TMP_Text valueExplosion;
   [SerializeField] TMP_Dropdown _valueTimeExplosion;
@@ -42,24 +45,32 @@ public partial class UiIngameRoot : BaseUIRoot
         parentSetupTypeGun.gameObject.SetActive(true);
         parentSetupTypeExplosion.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(false);
+        parentSetupTypeTaser.gameObject.SetActive(false);
 
         break;
       case 1:
         parentSetupTypeGun.gameObject.SetActive(false);
         parentSetupTypeExplosion.gameObject.SetActive(true);
         parentSetupTypeLight.gameObject.SetActive(false);
+        parentSetupTypeTaser.gameObject.SetActive(false);
 
         _valueTimeExplosion.value = 0;
         _valueTimeExplosion.onValueChanged.AddListener(UpdateExplosionTime);
 
         break;
       case 2:
+        StartCoroutine(AddActionToCurrenTaser());
+        parentSetupTypeGun.gameObject.SetActive(false);
+        parentSetupTypeExplosion.gameObject.SetActive(false);
+        parentSetupTypeLight.gameObject.SetActive(false);
+        parentSetupTypeTaser.gameObject.SetActive(true);
         break;
       case 3:
         StartCoroutine(AddActionToCurrentLightsaber());
         parentSetupTypeGun.gameObject.SetActive(false);
         parentSetupTypeExplosion.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(true);
+        parentSetupTypeTaser.gameObject.SetActive(false);
         break;
     }
   }
@@ -68,8 +79,15 @@ public partial class UiIngameRoot : BaseUIRoot
   IEnumerator AddActionToCurrentLightsaber()
   {
     yield return new WaitUntil(() => ItemSystem.Instance.CurrentLightsaber);
-    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange += OnCurrentCapacityChange;
+    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange += OnCurrentCapacityLightsaberChange;
     ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty += LightSaberShowPoPupBuyBullet;
+  }
+
+  IEnumerator AddActionToCurrenTaser()
+  {
+    yield return new WaitUntil(() => ItemSystem.Instance.CurrentTaser);
+    ItemSystem.Instance.CurrentTaser.OnCurrentCapacityChange += OnCurrentCapacityTaserChange;
+    ItemSystem.Instance.CurrentTaser.OnCapacityEmpty += TaserShowPopup;
   }
   void SetupTypeGun()
   {
@@ -87,17 +105,32 @@ public partial class UiIngameRoot : BaseUIRoot
 
   void OnDestroy()
   {
-    if (!ItemSystem.Instance.CurrentLightsaber) return;
-    ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange -= OnCurrentCapacityChange;
-    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty -= LightSaberShowPoPupBuyBullet;
+    if (ItemSystem.Instance.CurrentLightsaber)
+    {
+      ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange -= OnCurrentCapacityLightsaberChange;
+      ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty -= LightSaberShowPoPupBuyBullet;
+    }
+    if (ItemSystem.Instance.CurrentTaser)
+    {
+      ItemSystem.Instance.CurrentTaser.OnCurrentCapacityChange -= OnCurrentCapacityTaserChange;
+      ItemSystem.Instance.CurrentTaser.OnCapacityEmpty -= TaserShowPopup;
+    }
   }
 
-  void OnCurrentCapacityChange()
+  void OnCurrentCapacityLightsaberChange()
   {
     var maxCapacity = ItemSystem.Instance.CurrentLightsaber.Capacity;
     var currentCapacity = ItemSystem.Instance.CurrentLightsaber.CurrentCapacity;
     var value = currentCapacity / maxCapacity;
-    capacity.value = value;
+    capacityLightsaber.value = value;
+  }
+
+  void OnCurrentCapacityTaserChange()
+  {
+    var maxCapacity = ItemSystem.Instance.CurrentTaser.Capacity;
+    var currentCapacity = ItemSystem.Instance.CurrentTaser.CurrentCapacity;
+    var value = currentCapacity / maxCapacity;
+    capacityTaser.value = value;
   }
 
   void SetTypeSingleButton(float2 _test, float2 _test2)
@@ -170,6 +203,11 @@ public partial class UiIngameRoot : BaseUIRoot
   {
     var Test = ItemSystem.Instance.CurrentLightsaber;// Gameobjcet kiếm Tắt
     Test.gameObject.transform.GetChild(1).gameObject.SetActive(false);// Gameobjcet kiếm Tắt
+    UIManager.Instance.Show(KeyStr.NAME_BuyBullet_MODAL);
+  }
+
+  void TaserShowPopup()
+  {
     UIManager.Instance.Show(KeyStr.NAME_BuyBullet_MODAL);
   }
 

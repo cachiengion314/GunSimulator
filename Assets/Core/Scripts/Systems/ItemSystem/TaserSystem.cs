@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public partial class ItemSystem
@@ -22,5 +23,10 @@ public partial class ItemSystem
     public void OffTaser()
     {
         _currentTaser?.OffTaser();
+    }
+
+    public void ReduceCurrentCapacity()
+    {
+        _currentTaser?.ReduceCurrentCapacity();
     }
 }

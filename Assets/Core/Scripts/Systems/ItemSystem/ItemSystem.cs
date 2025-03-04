@@ -17,13 +17,15 @@ public partial class ItemSystem : MonoBehaviour
     }
     else Destroy(gameObject);
 
-    UiIngameRoot.Instance.colorPickerControl.OnColorChange += OnColorChange;
+    UiIngameRoot.Instance.colorPickerLightsaberControl.OnColorChange += OnColorChange;
+    UiIngameRoot.Instance.colorPickerTaserControl.OnColorChange += OnColorChange;
   }
 
   private void OnDestroy()
   {
     // DisposeCupGrid();
-    UiIngameRoot.Instance.colorPickerControl.OnColorChange -= OnColorChange;
+    UiIngameRoot.Instance.colorPickerLightsaberControl.OnColorChange -= OnColorChange;
+    UiIngameRoot.Instance.colorPickerTaserControl.OnColorChange += OnColorChange;
   }
 
   /// <summary>

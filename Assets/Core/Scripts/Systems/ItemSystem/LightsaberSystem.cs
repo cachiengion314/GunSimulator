@@ -38,13 +38,12 @@ public partial class ItemSystem
 
     public void SetExpanding(bool isExpanding)
     {
-        if (!_currentLightsaber) return;
         this.isExpanding = isExpanding;
     }
 
     public void OnColorChange(Color color)
     {
-        if (!_currentLightsaber) return;
-        _currentLightsaber.SetColorBlade(color);
+        _currentLightsaber?.SetColorBlade(color);
+        _currentTaser?.SetColor(color);
     }
 }
