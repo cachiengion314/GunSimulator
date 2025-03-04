@@ -13,6 +13,7 @@ public class UIBuyBullet : BaseUIRoot
             case 1:
                 break;
             case 2:
+                BuyBulletGunTaser();
                 break;
             case 3:
                 BuyBulletLight();
@@ -40,6 +41,13 @@ public class UIBuyBullet : BaseUIRoot
         // }, " BuyBullet");
     }
     void BuyBulletLight()
+    {
+        ItemSystem.Instance.CurrentLightsaber.Recharge();
+        var Test = ItemSystem.Instance.CurrentLightsaber;// Gameobjcet kiếm Tắt
+        Test.gameObject.transform.GetChild(1).gameObject.SetActive(true);// Gameobjcet kiếm Tắt
+        this.Exit();
+    }
+    void BuyBulletGunTaser()
     {
         ItemSystem.Instance.CurrentLightsaber.Recharge();
         var Test = ItemSystem.Instance.CurrentLightsaber;// Gameobjcet kiếm Tắt

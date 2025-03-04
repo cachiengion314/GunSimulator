@@ -25,10 +25,10 @@ public partial class UiIngameRoot : BaseUIRoot
   [Header("--Bullet--")]
   [SerializeField] GameObject parentBullet;
   [SerializeField] GameObject PrefabBullet;
-  public ColorPickerControl colorPickerLightsaberControl;
   public ColorPickerControl colorPickerTaserControl;
-  [SerializeField] Slider capacityLightsaber;
   [SerializeField] Slider capacityTaser;
+  public ColorPickerControl colorPickerLightsaberControl;
+  [SerializeField] Slider capacityLightsaber;
   [Header("---Explosion---")]
   [SerializeField] TMP_Text valueExplosion;
   [SerializeField] TMP_Dropdown _valueTimeExplosion;
