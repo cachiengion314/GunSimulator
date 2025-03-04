@@ -1178,6 +1178,7 @@ MonoBehaviour:
   easeTypeHide: 26
   parentSetupTypeGun: {fileID: 636209969081225069}
   parentSetupTypeLight: {fileID: 672710448232981346}
+  parentSetupTypeTaser: {fileID: 523960606133204756}
   parentSetupTypeExplosion: {fileID: 1530912241786101780}
   _btnShowShopCoin: {fileID: 0}
   textCurrentBullet: {fileID: 6044584885173597839}
@@ -1187,8 +1188,10 @@ MonoBehaviour:
   - {fileID: 5475984379061856718}
   parentBullet: {fileID: 6921953315423387038}
   PrefabBullet: {fileID: 2330195420675086801, guid: 82a247b2c11684e3a8b47b0465b3f446, type: 3}
-  colorPickerControl: {fileID: 7037407035110521216}
-  capacity: {fileID: 2433168118857533754}
+  colorPickerLightsaberControl: {fileID: 7037407035110521216}
+  colorPickerTaserControl: {fileID: 3820027526691903147}
+  capacityLightsaber: {fileID: 2433168118857533754}
+  capacityTaser: {fileID: 584297543431012649}
   valueExplosion: {fileID: 7962930352108435191}
   _valueTimeExplosion: {fileID: 8986283483882861655}
 --- !u!1 &2219888408054787949
