@@ -95,14 +95,16 @@ public class LightsaberControl : MonoBehaviour
 
         if (isExpanding && !_isCapacityEmpty)
         {
+
             size.y = Mathf.Lerp(size.y, _bladeLength, _speed * Time.deltaTime);
             if (_bladeLength - size.y < 0.05f) size.y = _bladeLength;
-
+            SoundSystem.Instance.StartLightsaberPlaySfx();
             ReduceCurrentCapacity();
         }
         else
         {
-            size.y = Mathf.Lerp(size.y, 0, _speed * Time.deltaTime);
+            SoundSystem.Instance.StopLightsaberPlaySfx();
+            size.y = Mathf.Lerp(size.y, 0, _speed * 2f * Time.deltaTime);
             if (size.y < 0.05f) size.y = 0;
         }
         pos.y = size.y / 2;
@@ -127,9 +129,9 @@ public class LightsaberControl : MonoBehaviour
         if (CurrentCapacity <= 0)
         {
             OnCapacityEmpty?.Invoke();
+            SoundSystem.Instance.StopLightsaberPlaySfx();
             _isCapacityEmpty = true;
         }
-
     }
 
     void SetPositionLightningBolt()

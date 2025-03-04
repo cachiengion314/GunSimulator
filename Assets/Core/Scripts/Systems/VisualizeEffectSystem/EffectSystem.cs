@@ -18,6 +18,9 @@ public class EffectSystem : MonoBehaviour
   [SerializeField] ParticleSystem shotGunMuzzleEfx;
   [SerializeField] ParticleSystem SMGMuzzleEfx;
   [SerializeField] ParticleSystem sniperRiflesMuzzleEfx;
+  [Header("---Explosion---")]
+  [SerializeField] ParticleSystem granade;
+  [SerializeField] ParticleSystem bomb;
 
   void Start()
   {
@@ -79,4 +82,19 @@ public class EffectSystem : MonoBehaviour
     var obj = Instantiate(bulletBurstUpEfx, pos, bulletBurstUpEfx.transform.rotation);
     return obj;
   }
+
+
+
+  public ParticleSystem SpawnExplosionEfxAt(float3 pos, int explosionType)
+  {
+    switch (explosionType)
+    {
+      case 0:
+        return Instantiate(granade, pos, granade.transform.rotation);
+      case 1:
+        return Instantiate(bomb, pos, bomb.transform.rotation);
+    }
+    return Instantiate(pistolMuzzleEfx, pos, pistolMuzzleEfx.transform.rotation);
+  }
+
 }

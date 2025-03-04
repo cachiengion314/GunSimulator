@@ -15,33 +15,29 @@ MonoBehaviour:
   ListDataExplosion:
   - _typExplosion: 0
     _idExplosion: 0
-    _strNameExplosion: Granade1
-    _currentStartValue: 25
-    _currentValue: 25
-    _speedExplosion: 0.3
+    _strNameExplosion: Granadeid0
+    _currentStartValue: 1
+    _currentValue: 1
     _isOwned: 1
     _isPick: 0
   - _typExplosion: 0
     _idExplosion: 1
-    _strNameExplosion: Granade2
-    _currentStartValue: 30
-    _currentValue: 30
-    _speedExplosion: 0.4
+    _strNameExplosion: Granadeid1
+    _currentStartValue: 1
+    _currentValue: 1
     _isOwned: 0
     _isPick: 0
-  - _typExplosion: 1
-    _idExplosion: 0
-    _strNameExplosion: Bomb1
-    _currentStartValue: 10
-    _currentValue: 10
-    _speedExplosion: 0.5
+  - _typExplosion: 0
+    _idExplosion: 2
+    _strNameExplosion: bombid0
+    _currentStartValue: 1
+    _currentValue: 1
     _isOwned: 1
     _isPick: 0
-  - _typExplosion: 1
-    _idExplosion: 1
-    _strNameExplosion: Bomb2
-    _currentStartValue: 15
-    _currentValue: 15
-    _speedExplosion: 0.6
+  - _typExplosion: 0
+    _idExplosion: 3
+    _strNameExplosion: bombid1
+    _currentStartValue: 1
+    _currentValue: 1
     _isOwned: 0
     _isPick: 0

@@ -32,15 +32,10 @@ public partial class LevelSystem : MonoBehaviour
     switch (GameSystem.Instance.IdShopMode)
     {
       case 0:
-        if (touchPos.x > 2.7f || touchPos.x < -2.7f) return;
-        if (GameSystem.Instance.IdFireModes == 2) return; // Burst mode
 
-        var currentGun = ItemSystem.Instance.GetCurrentGun();
-        if (currentGun == null) return;
-        if (currentGun.GetComponent<GunControl>().HaveAutoMode)
-        {
-          ItemSystem.Instance.AutoModeFireInvoke();
-        }
+        if (touchPos.x > 2.7f || touchPos.x < -2.7f) return;
+        GunHold();
+
         break;
       case 1:
         break;
@@ -60,17 +55,11 @@ public partial class LevelSystem : MonoBehaviour
     {
       case 0:
         if (touchPos.x > 2.7f || touchPos.x < -2.7f) return;
-        switch (GameSystem.Instance.IdFireModes)
-        {
-          case 0:
-            ItemSystem.Instance.SingleModeFireInvoke();
-            break;
-          case 2:
-            ItemSystem.Instance.BurstModeFireInvoke();
-            break;
-        }
+        GunTouch();
         break;
       case 1:
+        if (touchPos.x > 2f || touchPos.x < -2f) return;
+        ExplosionTouch();
         break;
       case 2:
         break;
@@ -78,6 +67,48 @@ public partial class LevelSystem : MonoBehaviour
         ItemSystem.Instance.SetExpanding(true);
         break;
 
+    }
+
+  }
+
+  void GunHold()
+  {
+    if (GameSystem.Instance.IdFireModes == 2) return; // Burst mode
+
+    var currentGun = ItemSystem.Instance.GetCurrentGun();
+    if (currentGun == null) return;
+    if (currentGun.GetComponent<GunControl>().HaveAutoMode)
+    {
+      ItemSystem.Instance.AutoModeFireInvoke();
+    }
+  }
+  void GunTouch()
+  {
+    switch (GameSystem.Instance.IdFireModes)
+    {
+      case 0:
+        ItemSystem.Instance.SingleModeFireInvoke();
+        break;
+      case 2:
+        ItemSystem.Instance.BurstModeFireInvoke();
+        break;
+    }
+  }
+
+
+  void ExplosionTouch()
+  {
+    Debug.Log("ExplosionTouch 1");
+    switch (GameSystem.Instance.IdTypePick)
+    {
+      case 0:
+        ItemSystem.Instance.GranadeModeInvoke();
+        Debug.Log("ExplosionTouch 2.1");
+        break;
+      case 1:
+        ItemSystem.Instance.BombModeInvoke();
+        Debug.Log("ExplosionTouch 2.2");
+        break;
     }
 
   }

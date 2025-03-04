@@ -119,26 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &552652270 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8535695673984208940, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
-  m_PrefabInstance: {fileID: 1610978342989365502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &552652280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552652270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad11f9f62d8349c591bb2f5fef4cc29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dataExplosion: {fileID: 11400000, guid: 1f0fd48c408104993b301757a68c697d, type: 2}
-  _ExplosionDataJsonBase:
-    ListExplosionsJson: []
 --- !u!1 &722756923
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +285,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09fa17b4b2834c048bf58e91384ebd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appIOSKey: 
+  bannerAdUnitIOSId: 
+  interstitialAdUnitIOSId: 
+  appAndroidKey: 
+  bannerAdUnitAndroidId: 
+  interstitialAdUnitAndroidId: 
 --- !u!4 &841232288
 Transform:
   m_ObjectHideFlags: 0
@@ -416,6 +402,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 722756925}
+    - target: {fileID: 5272064148995619595, guid: 58df3254d895c4d8896650f2171d07b0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowShopExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112242585786563775, guid: 58df3254d895c4d8896650f2171d07b0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowShopTaserGun
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -642,6 +636,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 413941260484417097, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
+      propertyPath: explosionTime
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8535695673984208940, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -649,10 +647,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8535695673984208940, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 552652280}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4172734c032b4e2f8180a06895d8873, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

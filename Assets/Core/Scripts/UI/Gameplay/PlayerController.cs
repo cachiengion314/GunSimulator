@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+        var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick);
        
         CreatPlayer(GameSystem.Instance.IdShopMode);
     }
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     void CreatGunTarget()
     {
         int TypePick = GameSystem.Instance.IdTypePick;
-        int GunPick = GameSystem.Instance.IdGunPick;
+        int GunPick = GameSystem.Instance.IdWeaponsPick;
         GameObject GunTarget = null;
 
         switch (TypePick)
@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
                 {
                     return;
                 }
-                Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 3);
+                Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick, 3);
             }
             return;
         }
@@ -294,7 +294,7 @@ public class PlayerController : MonoBehaviour
 
         if (_BoxCollider2D == _Collider2D)
         {
-            Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 1);
+            Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick, 1);
         }
     }
     void GunModeHold(float2 pos, Collider2D[] _Collider2D)
@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (_BoxCollider2D == _collider2d)
                 {
-                    Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 3);
+                    Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick, 3);
                     _isbursting = true;
                 }
             }
@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_BoxCollider2D == _collider2d)
             {
-                Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, 1);
+                Fire(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick, 1);
             }
         }
     }

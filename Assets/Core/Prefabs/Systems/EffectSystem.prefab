@@ -55,3 +55,5 @@ MonoBehaviour:
   shotGunMuzzleEfx: {fileID: 4869207491575185548, guid: 57df409bee52343b285bb8313459ed65, type: 3}
   SMGMuzzleEfx: {fileID: 4869207491575185548, guid: 9fd397374c6f34d4fb41e82968826f34, type: 3}
   sniperRiflesMuzzleEfx: {fileID: 4869207491575185548, guid: 1eb8612a8c49d4526828cfa48c50c503, type: 3}
+  granade: {fileID: 7444609072641118483, guid: 6809503f5784744e0aa111a0ca231b95, type: 3}
+  bomb: {fileID: 7444609072641118483, guid: 6809503f5784744e0aa111a0ca231b95, type: 3}

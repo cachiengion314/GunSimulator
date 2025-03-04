@@ -12,7 +12,6 @@ public class DataExplosion : ScriptableObject
         public string _strNameExplosion; // Tên Item
         public int _currentStartValue;   // Giá trị hiện tại
         public int _currentValue;   // Giá trị hiện tại
-        public float _speedExplosion; // thời gian nạp đạn
         public bool _isOwned; // súng đang được chọn
         public bool _isPick; // súng đang được chọn
     }

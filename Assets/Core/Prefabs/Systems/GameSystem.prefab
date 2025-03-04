@@ -1,5 +1,134 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4679200484869294969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3822693145955174761}
+  - component: {fileID: 1714516752203226597}
+  m_Layer: 0
+  m_Name: LightSaber
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3822693145955174761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4679200484869294969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 215936135121397012}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1714516752203226597
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4679200484869294969}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3eafa51e736594e52b85290393efff96, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3eafa51e736594e52b85290393efff96, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8535695673984208940
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,8 +144,8 @@ GameObject:
   - component: {fileID: 5549710880570897822}
   - component: {fileID: 2819048328933307269}
   - component: {fileID: 2105920711484421870}
-  - component: {fileID: 5874674426716678597}
   - component: {fileID: 2822116953369363130}
+  - component: {fileID: 1607490541894718299}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: Untagged
@@ -36,7 +165,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3822693145955174761}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &413941260484417097
@@ -51,9 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee71c6317d3df4c6d8b7590e74411281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBombing: 0
+  explosionTime: 2
   maxlevelIndex: 19
   IdTypePick: 0
-  IdGunPick: 0
+  IdWeaponsPick: 0
   IdFireModes: 0
   IdShopMode: 0
 --- !u!114 &782243895131351842
@@ -233,6 +365,7 @@ MonoBehaviour:
   _levelFail: {fileID: 8300000, guid: b69a1cae141d042dba1a202ec6b9e9b0, type: 3}
   pistolFireSfx: {fileID: 8300000, guid: 9f4557b78b40d421690cb67535d4b2bc, type: 3}
   gunReload: {fileID: 8300000, guid: 5e840f6bb84214069b7994827326de79, type: 3}
+  bombSFX: {fileID: 8300000, guid: ff4418c38089840d0855ab1870bc3a14, type: 3}
   gunAudioClipsArray:
   - idTypeGun: 0
     audioClips:
@@ -255,22 +388,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: aaae1fcc8d73c471d9f26433343b6bae, type: 3}
     - {fileID: 8300000, guid: 87e3abfb883be4078a8fb41e6632afb7, type: 3}
   audioSource: {fileID: 2819048328933307269}
---- !u!114 &5874674426716678597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8535695673984208940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f2b543bbdc6418c8543161165cab0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _taskData: {fileID: 11400000, guid: b35d1de163f94426193b48286fea31cd, type: 2}
-  _taskDataJsonBase:
-    TasksTodayJson: []
-  _idTestTask: 0
+  audioSourceLightSaber: {fileID: 1714516752203226597}
 --- !u!114 &2822116953369363130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,3 +404,18 @@ MonoBehaviour:
   _dataGun: {fileID: 11400000, guid: 3caad727aaa644d099eaf9a6f69ce030, type: 2}
   _GunDataJsonBase:
     ListGunsJson: []
+--- !u!114 &1607490541894718299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8535695673984208940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad11f9f62d8349c591bb2f5fef4cc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataExplosion: {fileID: 11400000, guid: 1f0fd48c408104993b301757a68c697d, type: 2}
+  _ExplosionDataJsonBase:
+    ListExplosionsJson: []

@@ -286,7 +286,7 @@ public partial class ItemSystem : MonoBehaviour
     if (gunObj == null) return;
 
     flashlightController.ToggleFlashlight();
-    SoundSystem.Instance.PlayGunSoundSfx(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+    SoundSystem.Instance.PlayGunSoundSfx(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick);
 
     var muzzlePosition = gunObj.GetComponent<IGunFire>().GetMuzzlePosition();
     EffectSystem.Instance.SpawnMuzzleEfxAt(

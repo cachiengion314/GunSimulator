@@ -95,5 +95,23 @@ public class RenderSystem : MonoBehaviour
   {
     return themes[CurrentThemeIndex].lightsaberDatas;
   }
+  public Sprite GetSpriteIconGranade(int _id)
+  {
+    if (_id <= themes[CurrentThemeIndex].SpriteIconGranade.Length)
+    {
+      return themes[CurrentThemeIndex].SpriteIconGranade[_id];
+    }
+    return null;
+
+  }
+  public Sprite GetSpriteIconBomb(int _id)
+  {
+    if (_id <= themes[CurrentThemeIndex].SpriteIconBomb.Length)
+    {
+      return themes[CurrentThemeIndex].SpriteIconBomb[_id];
+    }
+    return null;
+
+  }
 }
 

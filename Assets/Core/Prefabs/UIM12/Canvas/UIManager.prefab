@@ -58,7 +58,6 @@ MonoBehaviour:
   - {fileID: 1306657191323330826, guid: 279ae03d13ec442d3ac102b05515e7b1, type: 3}
   - {fileID: 8918166775802911449, guid: 86ca86d04723d49f1b122d78241aa777, type: 3}
   - {fileID: 1984148073019420700, guid: 5cd0cd2383d2346aaad4fcf587cfe7e3, type: 3}
-  - {fileID: 5399796598071652131, guid: 8ac57db806d2348a58fef3f03eb9823b, type: 3}
   - {fileID: 6676460503719194959, guid: bfbaabd6780394f7b8659468191b7ef6, type: 3}
   - {fileID: 1744035388222159604, guid: 7dde8c0142d5e461b8cacf47c5f9173c, type: 3}
   uIVerticalPrefabs:

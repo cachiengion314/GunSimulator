@@ -24,7 +24,7 @@ public class UIBuyBullet : BaseUIRoot
     {
         // LevelPlayAds.Instance.ShowRewardedAd(() =>
         // {
-        DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+        DataGunManager.Instance.ResetDataTest(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick);
         var Test = DataGunManager.Instance.GetGunDataClassPick();
         int valueTest = Test._currentValue;
         Debug.Log("Test.valueTest" + valueTest);
@@ -42,6 +42,8 @@ public class UIBuyBullet : BaseUIRoot
     void BuyBulletLight()
     {
         ItemSystem.Instance.CurrentLightsaber.Recharge();
+        var Test = ItemSystem.Instance.CurrentLightsaber;// Gameobjcet kiếm Tắt
+        Test.gameObject.transform.GetChild(1).gameObject.SetActive(true);// Gameobjcet kiếm Tắt
         this.Exit();
     }
     protected override void OnHideCompleted()

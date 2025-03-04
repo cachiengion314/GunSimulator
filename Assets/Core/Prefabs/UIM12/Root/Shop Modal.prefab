@@ -1758,7 +1758,7 @@ MonoBehaviour:
   - {fileID: 7216640148458408093, guid: 41e265374e9c043bbbdd8a96a161092a, type: 3}
   - {fileID: 4574600582851432480, guid: c146395cdd58f49c39459bb3a2b5055d, type: 3}
   - {fileID: 9053768141792683542, guid: bfad3fbab0a2e4c91aef63ad661b1545, type: 3}
-  _arrayPrefabItemExplosion: []
+  _arrayPrefabItemExplosion: {fileID: 1796350738479963541, guid: 829f8a7d593b24adebdb25a94ad17e06, type: 3}
   _arrayPrefabItemTaserGun: []
   _arrayPrefabItemLightSaber: []
   ItemLightSaber: {fileID: 1796350738479963541, guid: 65b6d50a687934644b61b5725f8d9e7c, type: 3}

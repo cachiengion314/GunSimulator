@@ -17,12 +17,12 @@ public class HeaderModal : MonoBehaviour
 
   private void OnEnable()
   {
-    LevelSystem.onInitedLevel += OnInitedLevel;
+    // LevelSystem.onInitedLevel += OnInitedLevel;
   }
 
   private void OnDisable()
   {
-    LevelSystem.onInitedLevel -= OnInitedLevel;
+    // LevelSystem.onInitedLevel -= OnInitedLevel;
   }
 
   private void Start()

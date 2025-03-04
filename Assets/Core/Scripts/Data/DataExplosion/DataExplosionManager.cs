@@ -44,8 +44,7 @@ public class DataExplosionManager : MonoBehaviour
                 _strNameExplosion = Explosion._strNameExplosion,
                 _currentStartValue = Explosion._currentStartValue,
                 _currentValue = Explosion._currentValue,
-                _speedExplosion = Explosion._speedExplosion,
-                _typExplosion = (int)Explosion._typExplosion,
+                _idTypeExplosion = (int)Explosion._typExplosion,
                 _isOwned = Explosion._isOwned,
                 _isPick = Explosion._isPick,
             });
@@ -65,7 +64,7 @@ public class DataExplosionManager : MonoBehaviour
 
     public void UpdateGunCurrenValue(int IdTypeExplosion, int IdExplosion, int minusCurrent)
     {
-        var explosionData = GetGunDataClass(IdTypeExplosion, IdExplosion);
+        var explosionData = GetExplosionDataClass(IdTypeExplosion, IdExplosion);
         if (explosionData != null)
         {
             // Trừ đạn nhưng không cho xuống dưới 0
@@ -85,16 +84,16 @@ public class DataExplosionManager : MonoBehaviour
     }
     public void ResetDataTest(int IdTypeGun, int IdGun)
     {
-        var GunData = GetGunDataClass(IdTypeGun, IdGun);
+        var GunData = GetExplosionDataClass(IdTypeGun, IdGun);
         GunData._currentValue = GunData._currentStartValue;
         SaveDataJsonTask();
     }
-    public ExplosionDataJsonBase.ExplosionDataClassSave GetGunDataClass(int IdTypeGun, int IdGun) // lấy ra data của gun đó (chiều vào dạng sung , chiều tiếp id súng)
+    public ExplosionDataJsonBase.ExplosionDataClassSave GetExplosionDataClass(int IdTypeGun, int IdGun) // lấy ra data của gun đó (chiều vào dạng sung , chiều tiếp id súng)
     {
-        var GunData = _ExplosionDataJsonBase.ListExplosionsJson.Find(t => t._typExplosion == IdTypeGun && t._idExplosion == IdGun);
+        var GunData = _ExplosionDataJsonBase.ListExplosionsJson.Find(t => t._idTypeExplosion == IdTypeGun && t._idExplosion == IdGun);
         return GunData;
     }
-    public ExplosionDataJsonBase.ExplosionDataClassSave GetGunDataClassPick() // lấy ra data của gun đó (chiều vào dạng sung , chiều tiếp id súng)
+    public ExplosionDataJsonBase.ExplosionDataClassSave GetExplosionDataClassPick() // lấy ra data của gun đó (chiều vào dạng sung , chiều tiếp id súng)
     {
         var pickedGun = _ExplosionDataJsonBase.ListExplosionsJson.Find(gun => gun._isPick == true);
 
@@ -116,28 +115,28 @@ public class DataExplosionManager : MonoBehaviour
         }
         SaveDataJsonTask();
     }
-    public ExplosionDataJsonBase.ExplosionDataClassSave SelectGun(int typeGun, int idGun)
+    public ExplosionDataJsonBase.ExplosionDataClassSave SelectExplosion(int typeGun, int idGun)
     {
         // Reset tất cả súng trước khi chọn mới
         ResetIsPickData();
         // Tìm súng theo type và id
-        var selectedGun = _ExplosionDataJsonBase.ListExplosionsJson.Find(gun => gun._typExplosion == typeGun && gun._idExplosion == idGun);
+        var selectedGun = _ExplosionDataJsonBase.ListExplosionsJson.Find(gun => gun._idTypeExplosion == typeGun && gun._idExplosion == idGun);
 
         selectedGun._isPick = true;
         SaveDataJsonTask();
-        Debug.Log($"✅ Súng {selectedGun._strNameExplosion} (ID: {idGun}, Type: {typeGun}) đã được chọn.");
+        Debug.Log($"✅ Explosion {selectedGun._strNameExplosion} (ID: {idGun}, Type: {typeGun}) đã được chọn.");
         return selectedGun;
     }
 
-    public void BuyGun(int typeGun, int idGun)
+    public void BuyExplosion(int typeGun, int idGun)
     {
         if (_ExplosionDataJsonBase == null || _ExplosionDataJsonBase.ListExplosionsJson == null)
         {
-            Debug.LogError("❌ _GunDataJsonBase hoặc ListGunsJson chưa được khởi tạo!");
+            Debug.LogError("❌ _ExplosionDataJsonBase hoặc ListExplosionsJson chưa được khởi tạo!");
             return;
         }
 
-        var gunToBuy = _ExplosionDataJsonBase.ListExplosionsJson.Find(gun => gun._typExplosion == typeGun && gun._idExplosion == idGun);
+        var gunToBuy = _ExplosionDataJsonBase.ListExplosionsJson.Find(gun => gun._idTypeExplosion == typeGun && gun._idExplosion == idGun);
 
         if (gunToBuy != null)
         {
@@ -149,11 +148,11 @@ public class DataExplosionManager : MonoBehaviour
 
             gunToBuy._isOwned = true;
             SaveDataJsonTask();
-            Debug.Log($"✅ Đã mua súng {gunToBuy._strNameExplosion} (ID: {idGun}, Type: {typeGun}).");
+            Debug.Log($"✅ Đã mua Explosion {gunToBuy._strNameExplosion} (ID: {idGun}, Type: {typeGun}).");
         }
         else
         {
-            Debug.LogWarning($"⚠️ Không tìm thấy súng với ID {idGun} và Type {typeGun}.");
+            Debug.LogWarning($"⚠️ Không tìm thấy Explosion với ID {idGun} và Type {typeGun}.");
         }
     }
     [System.Serializable]
@@ -164,12 +163,11 @@ public class DataExplosionManager : MonoBehaviour
         [Serializable]
         public class ExplosionDataClassSave
         {
-            public int _typExplosion; // Loại súng
+            public int _idTypeExplosion; // Loại súng
             public int _idExplosion;// ID của Item
             public string _strNameExplosion; // Tên Item
             public int _currentStartValue;   // Giá trị hiện tại
             public int _currentValue;   // Giá trị hiện tại
-            public float _speedExplosion; // thời gian nạp đạn
             public bool _isOwned; // súng đang được chọn
             public bool _isPick; // súng đang được chọn
         }

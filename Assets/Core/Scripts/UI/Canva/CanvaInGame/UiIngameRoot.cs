@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Mathematics;
 using System.Collections;
+using DG.Tweening;
+using System;
 
 
 public partial class UiIngameRoot : BaseUIRoot
@@ -12,6 +14,7 @@ public partial class UiIngameRoot : BaseUIRoot
   [Header("--SetupIngame--")]
   [SerializeField] GameObject parentSetupTypeGun;
   [SerializeField] GameObject parentSetupTypeLight;
+  [SerializeField] GameObject parentSetupTypeExplosion;
   [Header("---ShopIngame---")]
   public Button _btnShowShopCoin;
   [Header("---Gun---")]
@@ -22,6 +25,9 @@ public partial class UiIngameRoot : BaseUIRoot
   [SerializeField] GameObject PrefabBullet;
   public ColorPickerControl colorPickerControl;
   [SerializeField] Slider capacity;
+  [Header("---Explosion---")]
+  [SerializeField] TMP_Text valueExplosion;
+  [SerializeField] TMP_Dropdown _valueTimeExplosion;
   private void Awake()
   {
     Instance = this;
@@ -34,15 +40,25 @@ public partial class UiIngameRoot : BaseUIRoot
       case 0:
         SetupTypeGun();
         parentSetupTypeGun.gameObject.SetActive(true);
+        parentSetupTypeExplosion.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(false);
+
         break;
       case 1:
+        parentSetupTypeGun.gameObject.SetActive(false);
+        parentSetupTypeExplosion.gameObject.SetActive(true);
+        parentSetupTypeLight.gameObject.SetActive(false);
+
+        _valueTimeExplosion.value = 0;
+        _valueTimeExplosion.onValueChanged.AddListener(UpdateExplosionTime);
+      
         break;
       case 2:
         break;
       case 3:
         StartCoroutine(AddActionToCurrentLightsaber());
         parentSetupTypeGun.gameObject.SetActive(false);
+        parentSetupTypeExplosion.gameObject.SetActive(false);
         parentSetupTypeLight.gameObject.SetActive(true);
         break;
     }
@@ -53,7 +69,7 @@ public partial class UiIngameRoot : BaseUIRoot
   {
     yield return new WaitUntil(() => ItemSystem.Instance.CurrentLightsaber);
     ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange += OnCurrentCapacityChange;
-    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty += ShowPoPupBuyBullet;
+    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty += LightSaberShowPoPupBuyBullet;
   }
   void SetupTypeGun()
   {
@@ -63,7 +79,7 @@ public partial class UiIngameRoot : BaseUIRoot
     TouchDetect.Instance.onTouchEnd += SetTypeSingleButton;
     ItemSystem.Instance.OnOutOfAmmo += ShowPoPupBuyBullet;
 
-    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick);
+    var gunData = DataGunManager.Instance.GetGunDataClass(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick);
     int _currentValueGun = gunData._currentValue;
     textCurrentBullet.text = _currentValueGun.ToString();
     SetUpBullet();
@@ -73,7 +89,7 @@ public partial class UiIngameRoot : BaseUIRoot
   {
     if (!ItemSystem.Instance.CurrentLightsaber) return;
     ItemSystem.Instance.CurrentLightsaber.OnCurrentCapacityChange -= OnCurrentCapacityChange;
-    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty -= ShowPoPupBuyBullet;
+    ItemSystem.Instance.CurrentLightsaber.OnCapacityEmpty -= LightSaberShowPoPupBuyBullet;
   }
 
   void OnCurrentCapacityChange()
@@ -98,7 +114,7 @@ public partial class UiIngameRoot : BaseUIRoot
 
   public void UpdateBullet(int _value)
   {
-    DataGunManager.Instance.UpdateGunCurrenValue(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdGunPick, _value);
+    DataGunManager.Instance.UpdateGunCurrenValue(GameSystem.Instance.IdTypePick, GameSystem.Instance.IdWeaponsPick, _value);
     // UpdateTextCurrentBullet();
     UpdateBullet();
   }
@@ -150,6 +166,12 @@ public partial class UiIngameRoot : BaseUIRoot
   {
     UIManager.Instance.Show(KeyStr.NAME_BuyBullet_MODAL);
   }
+  void LightSaberShowPoPupBuyBullet()
+  {
+    var Test = ItemSystem.Instance.CurrentLightsaber;// Gameobjcet kiếm Tắt
+    Test.gameObject.transform.GetChild(1).gameObject.SetActive(false);// Gameobjcet kiếm Tắt
+    UIManager.Instance.Show(KeyStr.NAME_BuyBullet_MODAL);
+  }
 
   public void BtnSettingIngame()
   {
@@ -163,8 +185,11 @@ public partial class UiIngameRoot : BaseUIRoot
 
   }
 
-  public void BtnBackLobbyIngame()
+  public void BtnBackLobbyIngame() // gắn vào button back home
   {
+    DOTween.KillAll();
+    GameSystem.Instance.isBombing = false;
+    GameSystem.Instance.explosionTime = 5f;
     GameSystem.Instance.LoadSceneByName(KeyStr.NAME_SCENE_LOBBY);
 
   }
@@ -191,18 +216,50 @@ public partial class UiIngameRoot : BaseUIRoot
       }
     }
 
-
   }
 
   public void BtnSetTypeGun(int _idType) // gắn ở button từ 0 - 2 0= single 1= auto. 2  = bủrt  
   {
     GameSystem.Instance.IdFireModes = _idType;
   }
-  void GunHaveBurt()
-  {
-    TypeFireModes[2].gameObject.SetActive(true);
-  }
+  // void GunHaveBurt()
+  // {
+  //   TypeFireModes[2].gameObject.SetActive(true);
+  // }
 
+  private void UpdateExplosionTime(int index)
+  {
+    var currenExplosion = ItemSystem.Instance.GetCurrentExplosion();
+    switch (index)
+    {
+      case 0:
+        GameSystem.Instance.explosionTime = 5f;
+        currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:05";
+        break;
+      case 1:
+        GameSystem.Instance.explosionTime = 10f;
+        currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:10";
+        break;
+      case 2:
+        GameSystem.Instance.explosionTime = 15f;
+        currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:15";
+        break;
+      case 3:
+        GameSystem.Instance.explosionTime = 30f;
+        currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:30";
+        break;
+      case 4:
+        GameSystem.Instance.explosionTime = 45f;
+        currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:45";
+        break;
+      case 5:
+        GameSystem.Instance.explosionTime = 60f;
+        currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:60";
+        break;
+    }
+
+    Debug.Log($"⏳ Thời gian phát nổ đã cập nhật: {GameSystem.Instance.explosionTime}s");
+  }
 
 
 }

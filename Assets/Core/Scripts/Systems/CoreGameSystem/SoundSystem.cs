@@ -29,6 +29,7 @@ public class SoundSystem : MonoBehaviour
   [SerializeField] AudioClip _levelFail;
   [SerializeField] AudioClip pistolFireSfx;
   [SerializeField] AudioClip gunReload;
+  [SerializeField] AudioClip bombSFX;
   [System.Serializable]
   public struct GunAudioClips
   {
@@ -49,6 +50,7 @@ public class SoundSystem : MonoBehaviour
 
   [Header("Components")]
   [SerializeField] AudioSource audioSource;
+  [SerializeField] AudioSource audioSourceLightSaber;
   private void Awake()
   {
     if (Instance == null)
@@ -256,6 +258,7 @@ public class SoundSystem : MonoBehaviour
 
   HapticPatterns.PresetType GetTypeHaptic(int idType)
   {
+
     switch (idType)
     {
       case 0: return HapticPatterns.PresetType.LightImpact;  // 🔹 Nhẹ, rung ngắn, phù hợp với bắn lẻ, chạm nhẹ UI
@@ -268,6 +271,7 @@ public class SoundSystem : MonoBehaviour
         Debug.LogWarning($"⚠️ idType {idType} không hợp lệ, mặc định sử dụng LightImpact");
         return HapticPatterns.PresetType.LightImpact;
     }
+
   }
   public void GunReloadSfx()
   {
@@ -278,6 +282,27 @@ public class SoundSystem : MonoBehaviour
     if (!GameSystem.Instance.IsSoundOn) return;
     AudioSource.PlayClipAtPoint(gunReload, Vector3.forward * -9, 1f);
   }
-
+  public void StartLightsaberPlaySfx()
+  {
+    if (GameSystem.Instance.IsHapticOn)
+    {
+      HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+    }
+    if (!GameSystem.Instance.IsSoundOn) return;
+    audioSourceLightSaber.gameObject.SetActive(true);
+  }
+  public void StopLightsaberPlaySfx()
+  {
+    audioSourceLightSaber.gameObject.SetActive(false);
+  }
+  public void PlayExplosionSound()
+  {
+    if (GameSystem.Instance.IsHapticOn)
+    {
+      HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+    }
+    if (!GameSystem.Instance.IsSoundOn) return;
+    AudioSource.PlayClipAtPoint(bombSFX, Vector3.forward * -9, 1f);
+  }
 
 }

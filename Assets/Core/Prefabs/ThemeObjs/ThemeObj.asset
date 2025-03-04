@@ -64,3 +64,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5634ed7c1825c4069b9dc77ec251e4f8, type: 2}
   - {fileID: 11400000, guid: fee0ac3ce64a0473a83931c4b2428dfa, type: 2}
   - {fileID: 11400000, guid: 5572dd4e00ee74f9399c6c389dafa5fb, type: 2}
+  SpriteIconGranade:
+  - {fileID: 3651930036444197199, guid: 89505130fc50f4d419da5fb6517df5ba, type: 3}
+  - {fileID: 7030840003083035237, guid: e6c780e16e41445d8a5274a59952c9e9, type: 3}
+  - {fileID: -6849471827217387175, guid: ecdba989ef5374c6993d145f7116f902, type: 3}
+  - {fileID: -5811333371068195914, guid: 4b74d312a17294c98a9a0c98a541356d, type: 3}
+  SpriteIconBomb:
+  - {fileID: 7030840003083035237, guid: e6c780e16e41445d8a5274a59952c9e9, type: 3}
+  - {fileID: -5811333371068195914, guid: 4b74d312a17294c98a9a0c98a541356d, type: 3}

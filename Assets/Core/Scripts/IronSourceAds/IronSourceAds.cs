@@ -19,19 +19,17 @@ public class LevelPlayAds : MonoBehaviour
   private LevelPlayBannerAd bannerAd;
   private LevelPlayInterstitialAd interstitialAd;
 
-#if UNITY_ANDROID
-  string appKey = "20e56aea5";
-  string bannerAdUnitId = "yhyb1cucflyobepc";
-  string interstitialAdUnitId = "tgs5md7s309shsf1";
-#elif UNITY_IPHONE
-  string appKey = "8545d445";
-  string bannerAdUnitId = "iep3rxsyp9na3rw8";
-  string interstitialAdUnitId = "wmgt0712uuux8ju4";
-#else
-  string appKey = "unexpected_platform";
-  string bannerAdUnitId = "unexpected_platform";
-  string interstitialAdUnitId = "unexpected_platform";
-#endif
+  [SerializeField] string appIOSKey;
+  [SerializeField] string bannerAdUnitIOSId;
+  [SerializeField] string interstitialAdUnitIOSId;
+  [SerializeField] string appAndroidKey;
+  [SerializeField] string bannerAdUnitAndroidId;
+  [SerializeField] string interstitialAdUnitAndroidId;
+
+  string _appKey;
+  string _bannerAdUnitId;
+  string _interstitialAdUnitId;
+
 
   bool isMusicOn;
   private bool _isSucceed;
@@ -41,6 +39,22 @@ public class LevelPlayAds : MonoBehaviour
     if (Instance == null)
     {
       Instance = this;
+
+#if UNITY_ANDROID
+      _appKey = appAndroidKey;
+      _bannerAdUnitId = bannerAdUnitAndroidId;
+      _interstitialAdUnitId = interstitialAdUnitAndroidId;
+#elif UNITY_IPHONE
+      _appKey = appIOSKey;
+      _bannerAdUnitId = bannerAdUnitIOSId;
+      _interstitialAdUnitId = interstitialAdUnitIOSId;
+#else
+      _appKey = "unexpected_platform";
+      _bannerAdUnitId = "unexpected_platform";
+      _interstitialAdUnitId = "unexpected_platform";
+#endif
+
+      InitIronSource();
     }
     else
     {
@@ -50,8 +64,10 @@ public class LevelPlayAds : MonoBehaviour
     DontDestroyOnLoad(gameObject);
   }
 
-  public void Start()
+  public void InitIronSource()
   {
+    EnableAds();
+
     Debug.Log("unity-script: IronSource.Agent.validateIntegration");
     IronSource.Agent.validateIntegration();
 
@@ -59,10 +75,15 @@ public class LevelPlayAds : MonoBehaviour
 
     // SDK init
     Debug.Log("unity-script: LevelPlay SDK initialization");
-    LevelPlay.Init(appKey, adFormats: new[] { LevelPlayAdFormat.REWARDED });
+    LevelPlay.Init(_appKey, adFormats: new[] { LevelPlayAdFormat.REWARDED });
 
     LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
     LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+  }
+
+  void OnDestroy()
+  {
+    DisableAds();
   }
 
   void EnableAds()
@@ -79,7 +100,7 @@ public class LevelPlayAds : MonoBehaviour
     IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
     IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
-    bannerAd = new LevelPlayBannerAd(bannerAdUnitId, LevelPlayAdSize.CreateAdaptiveAdSize(), LevelPlayBannerPosition.BottomCenter);
+    bannerAd = new LevelPlayBannerAd(_bannerAdUnitId, LevelPlayAdSize.CreateAdaptiveAdSize(), LevelPlayBannerPosition.BottomCenter);
 
     // Register to Banner events
     bannerAd.OnAdLoaded += BannerOnAdLoadedEvent;
@@ -91,10 +112,8 @@ public class LevelPlayAds : MonoBehaviour
     bannerAd.OnAdLeftApplication += BannerOnAdLeftApplicationEvent;
     bannerAd.OnAdExpanded += BannerOnAdExpandedEvent;
 
-    bannerAd.LoadAd();
-
     // Create Interstitial object
-    interstitialAd = new LevelPlayInterstitialAd(interstitialAdUnitId);
+    interstitialAd = new LevelPlayInterstitialAd(_interstitialAdUnitId);
 
     // Register to Interstitial events
     interstitialAd.OnAdLoaded += InterstitialOnAdLoadedEvent;
@@ -104,8 +123,46 @@ public class LevelPlayAds : MonoBehaviour
     interstitialAd.OnAdClicked += InterstitialOnAdClickedEvent;
     interstitialAd.OnAdClosed += InterstitialOnAdClosedEvent;
     interstitialAd.OnAdInfoChanged += InterstitialOnAdInfoChangedEvent;
+  }
 
-    interstitialAd.LoadAd();
+  void DisableAds()
+  {
+    //Add ImpressionSuccess Event 
+    IronSourceEvents.onImpressionDataReadyEvent -= ImpressionDataReadyEvent;
+
+    //Add AdInfo Rewarded Video Events 
+    IronSourceRewardedVideoEvents.onAdOpenedEvent -= RewardedVideoOnAdOpenedEvent;
+    IronSourceRewardedVideoEvents.onAdClosedEvent -= RewardedVideoOnAdClosedEvent;
+    IronSourceRewardedVideoEvents.onAdAvailableEvent -= RewardedVideoOnAdAvailable;
+    IronSourceRewardedVideoEvents.onAdUnavailableEvent -= RewardedVideoOnAdUnavailable;
+    IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
+    IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
+    IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
+
+    // Register to Banner events 
+    if (bannerAd != null)
+    {
+      bannerAd.OnAdLoaded -= BannerOnAdLoadedEvent;
+      bannerAd.OnAdLoadFailed -= BannerOnAdLoadFailedEvent;
+      bannerAd.OnAdDisplayed -= BannerOnAdDisplayedEvent;
+      bannerAd.OnAdDisplayFailed -= BannerOnAdDisplayFailedEvent;
+      bannerAd.OnAdClicked -= BannerOnAdClickedEvent;
+      bannerAd.OnAdCollapsed -= BannerOnAdCollapsedEvent;
+      bannerAd.OnAdLeftApplication -= BannerOnAdLeftApplicationEvent;
+      bannerAd.OnAdExpanded -= BannerOnAdExpandedEvent;
+    }
+
+    // Register to Interstitial events 
+    if (interstitialAd != null)
+    {
+      interstitialAd.OnAdLoaded -= InterstitialOnAdLoadedEvent;
+      interstitialAd.OnAdLoadFailed -= InterstitialOnAdLoadFailedEvent;
+      interstitialAd.OnAdDisplayed -= InterstitialOnAdDisplayedEvent;
+      interstitialAd.OnAdDisplayFailed -= InterstitialOnAdDisplayFailedEvent;
+      interstitialAd.OnAdClicked -= InterstitialOnAdClickedEvent;
+      interstitialAd.OnAdClosed -= InterstitialOnAdClosedEvent;
+      interstitialAd.OnAdInfoChanged -= InterstitialOnAdInfoChangedEvent;
+    }
   }
 
   void OnApplicationPause(bool isPaused)
@@ -119,7 +176,9 @@ public class LevelPlayAds : MonoBehaviour
   void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
   {
     Debug.Log("unity-script: I got SdkInitializationCompletedEvent with config: " + config);
-    EnableAds();
+
+    interstitialAd.LoadAd();
+    bannerAd.LoadAd();
   }
 
   void SdkInitializationFailedEvent(LevelPlayInitError error)
@@ -207,9 +266,6 @@ public class LevelPlayAds : MonoBehaviour
 
     if (FirebaseSetup.Instance.IsFirebaseReady)
       FirebaseAnalytics.LogEvent(KeyStr.FIREBASE_AD_INTER_FAIL);
-
-    onShowInterstitialFail?.Invoke();
-    StartCoroutine(TryLoadInterstitial());
   }
 
   void InterstitialOnAdDisplayedEvent(LevelPlayAdInfo adInfo)

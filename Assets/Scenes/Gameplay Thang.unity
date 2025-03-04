@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: useHover
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2739269330396249901, guid: 51873abcceb054192af981681313d6cd, type: 3}
+      propertyPath: ToggleAction.m_Name
+      value: Toggle
+      objectReference: {fileID: 0}
     - target: {fileID: 3266940091590976919, guid: 51873abcceb054192af981681313d6cd, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.16981131

@@ -24,7 +24,7 @@ public class UIShopIngame : UiShop
   [SerializeField] GameObject[] _arrayPrefabItemGunSound;
 
   [Header("---ItemExplosion---")]
-  [SerializeField] GameObject[] _arrayPrefabItemExplosion;
+  [SerializeField] GameObject _arrayPrefabItemExplosion;
   [Header("---ItemTaserGun---")]
   [SerializeField] GameObject[] _arrayPrefabItemTaserGun;
   [Header("---ItemTLightSaber---")] //kích cỡ kiếm , dạng kiếm dài ngắn KHÁC NHAU thì dùng cái này 
@@ -51,6 +51,7 @@ public class UIShopIngame : UiShop
   void CreatItemShopNew() // chuyền IdTypeGun  ,chuyền _prefabItem , chuyền parent
   {
     CreatShopGunSound();
+    CreatShopExploSion();
     CreatShopLightSaber();
   }
   void ClearContentAllShop()
@@ -92,7 +93,7 @@ public class UIShopIngame : UiShop
         ButtonUse.onClick.RemoveAllListeners();
         ButtonUse.onClick.AddListener(() =>
         {
-          BTNClickUse(IdTypeGun, idGun);
+          BTNClickUse(GameSystem.Instance.IdShopMode, IdTypeGun, idGun);
         });
       }
       else // đã chưa sổ hữu
@@ -102,7 +103,7 @@ public class UIShopIngame : UiShop
         ButtonBuy.onClick.RemoveAllListeners();
         ButtonBuy.onClick.AddListener(() =>
         {
-          BTNClickBuy(ButtonBuy, ButtonUse, IdTypeGun, idGun);
+          BTNClickBuy(ButtonBuy, ButtonUse, GameSystem.Instance.IdShopMode, IdTypeGun, idGun);
 
         });
       }
@@ -126,6 +127,52 @@ public class UIShopIngame : UiShop
       }
     }
   }
+  void CreatShopExploSion()
+  {
+    foreach (var Item in DataExplosionManager.Instance._ExplosionDataJsonBase.ListExplosionsJson)
+    {
+      int IdTypeExplosion = Item._idTypeExplosion;
+      int idExplosion = Item._idExplosion; // lấy ra IdGun
+      GameObject ItemGunShop = Instantiate(_arrayPrefabItemExplosion, _arrayParentItem[1].transform); // khởi tạo Item
+      Image _ImageIcon = ItemGunShop.transform.GetChild(1).GetComponent<Image>();
+      TMP_Text _TextInfo = ItemGunShop.transform.GetChild(2).GetComponent<TMP_Text>();
+      Button ButtonBuy = ItemGunShop.transform.GetChild(3).GetComponent<Button>();
+      Button ButtonUse = ItemGunShop.transform.GetChild(4).GetComponent<Button>();
+      GameObject ObjPick = ItemGunShop.transform.GetChild(5).gameObject;
+      ObjPick.gameObject.SetActive(false);
+
+      if (Item._isOwned == true) // đã sở hữu
+      {
+        ButtonUse.gameObject.SetActive(true);
+        ButtonBuy.gameObject.SetActive(false);
+        ButtonUse.onClick.RemoveAllListeners();
+        ButtonUse.onClick.AddListener(() =>
+        {
+          BTNClickUse(GameSystem.Instance.IdShopMode, IdTypeExplosion, idExplosion);
+        });
+      }
+      else // đã chưa sổ hữu
+      {
+        ButtonUse.gameObject.SetActive(false);
+        ButtonBuy.gameObject.SetActive(true);
+        ButtonBuy.onClick.RemoveAllListeners();
+        ButtonBuy.onClick.AddListener(() =>
+        {
+          BTNClickBuy(ButtonBuy, ButtonUse, GameSystem.Instance.IdShopMode, IdTypeExplosion, idExplosion);
+
+        });
+      }
+      switch (IdTypeExplosion) // có 2 dạng bomb . 0 = Granade .1 = Bomb .
+      {
+        case 0:
+          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconGranade(idExplosion);
+          break;
+        case 1:
+          _ImageIcon.sprite = RenderSystem.Instance.GetSpriteIconBomb(idExplosion);
+          break;
+      }
+    }
+  }
 
   void CreatShopLightSaber()
   {
@@ -141,7 +188,7 @@ public class UIShopIngame : UiShop
       GameObject ObjPick = ItemLightSaberShop.transform.GetChild(5).gameObject;
 
       LightsaberData data = lightsaberDatas[i];
-      
+
       _ImageIcon.sprite = data.SwordHilt;
       _TextInfo.text = data.Name;
 
@@ -158,39 +205,74 @@ public class UIShopIngame : UiShop
 
     }
   }
-  void BTNClickUse(int _idTypeGun, int _IdGun)
+  void BTNClickUse(int idShop, int _idTypeGun, int _IdGun)
   {
-    var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
-    GameSystem.Instance.IdTypePick = Gunpick._typeGun;
-    GameSystem.Instance.IdGunPick = Gunpick._idGun;
-    PlayGame();
+    switch (idShop)
+    {
+      case 0:// shop gun
+        var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
+        GameSystem.Instance.IdTypePick = Gunpick._typeGun;
+        GameSystem.Instance.IdWeaponsPick = Gunpick._idGun;
+        PlayGame();
+        break;
 
+      case 1:// shop =Explosion
+        var Explosionpick = DataExplosionManager.Instance.SelectExplosion(_idTypeGun, _IdGun);
+        GameSystem.Instance.IdTypePick = Explosionpick._idTypeExplosion;
+        GameSystem.Instance.IdWeaponsPick = Explosionpick._idExplosion;
+        PlayGame();
+        break;
+    }
   }
-  void BTNClickBuy(Button _ButtonBuy, Button _ButtonSelect, int _idTypeGun, int _IdGun) // button buy
+  void BTNClickBuy(Button _ButtonBuy, Button _ButtonSelect, int IdShopMode, int _idTypeGun, int _IdGun) // button buy
   {
-    DataGunManager.Instance.BuyGun(_idTypeGun, _IdGun);
+    // DataGunManager.Instance.BuyGun(_idTypeGun, _IdGun);
 
-    _ButtonSelect.gameObject.SetActive(true);
-    _ButtonBuy.gameObject.SetActive(false);
-    // _ButtonSelect.onClick.RemoveAllListeners();
-    // _ButtonSelect.onClick.AddListener(() =>
-    // {
-    //   BTNClickUse(_idTypeGun, _IdGun, _objPick);
-    // }); 
-    // xem quảng cáo xong thì vào Gameplay
-    // LevelPlayAds.Instance.ShowRewardedAd(() =>
-    // {
-    //   var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
-    //   GameSystem.Instance._idTypePick = Gunpick._typeGun;
-    //   GameSystem.Instance._idGunPick = Gunpick._idGun;
-    //   PlayGame();
-    // }, "BuyGun",
-    // () =>
-    // {
-    var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
-    GameSystem.Instance.IdTypePick = Gunpick._typeGun;
-    GameSystem.Instance.IdGunPick = Gunpick._idGun;
-    PlayGame();
+    // _ButtonSelect.gameObject.SetActive(true);
+    // _ButtonBuy.gameObject.SetActive(false);
+    // // _ButtonSelect.onClick.RemoveAllListeners();
+    // // _ButtonSelect.onClick.AddListener(() =>
+    // // {
+    // //   BTNClickUse(_idTypeGun, _IdGun, _objPick);
+    // // }); 
+    // // xem quảng cáo xong thì vào Gameplay
+    // // LevelPlayAds.Instance.ShowRewardedAd(() =>
+    // // {
+    // //   var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
+    // //   GameSystem.Instance._idTypePick = Gunpick._typeGun;
+    // //   GameSystem.Instance._idGunPick = Gunpick._idGun;
+    // //   PlayGame();
+    // // }, "BuyGun",
+    // // () =>
+    // // {
+    // var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
+    // GameSystem.Instance.IdTypePick = Gunpick._typeGun;
+    // GameSystem.Instance.IdWeaponsPick = Gunpick._idGun;
+    // PlayGame();
+    switch (IdShopMode)
+    {
+      case 0:
+        DataGunManager.Instance.BuyGun(_idTypeGun, _IdGun);
+
+        _ButtonSelect.gameObject.SetActive(true);
+        _ButtonBuy.gameObject.SetActive(false);
+        var Gunpick = DataGunManager.Instance.SelectGun(_idTypeGun, _IdGun);
+        GameSystem.Instance.IdTypePick = Gunpick._typeGun;
+        GameSystem.Instance.IdWeaponsPick = Gunpick._idGun;
+        PlayGame();
+        break;
+      case 1:
+        DataExplosionManager.Instance.BuyExplosion(_idTypeGun, _IdGun);
+
+        _ButtonSelect.gameObject.SetActive(true);
+        _ButtonBuy.gameObject.SetActive(false);
+        var Explosion = DataExplosionManager.Instance.SelectExplosion(_idTypeGun, _IdGun);
+        GameSystem.Instance.IdTypePick = Explosion._idTypeExplosion;
+        GameSystem.Instance.IdWeaponsPick = Explosion._idExplosion;
+        PlayGame();
+        break;
+
+    }
   }
   void SetDefault()
   {
