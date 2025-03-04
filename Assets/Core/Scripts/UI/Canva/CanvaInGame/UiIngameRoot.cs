@@ -51,7 +51,7 @@ public partial class UiIngameRoot : BaseUIRoot
 
         _valueTimeExplosion.value = 0;
         _valueTimeExplosion.onValueChanged.AddListener(UpdateExplosionTime);
-      
+
         break;
       case 2:
         break;
@@ -233,27 +233,39 @@ public partial class UiIngameRoot : BaseUIRoot
     switch (index)
     {
       case 0:
+        DOTween.KillAll();
         GameSystem.Instance.explosionTime = 5f;
+        GameSystem.Instance.isBombing = false;
         currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:05";
         break;
       case 1:
+        DOTween.KillAll();
         GameSystem.Instance.explosionTime = 10f;
+        GameSystem.Instance.isBombing = false;
         currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:10";
         break;
       case 2:
+        DOTween.KillAll();
         GameSystem.Instance.explosionTime = 15f;
+        GameSystem.Instance.isBombing = false;
         currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:15";
         break;
       case 3:
+        DOTween.KillAll();
         GameSystem.Instance.explosionTime = 30f;
+        GameSystem.Instance.isBombing = false;
         currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:30";
         break;
       case 4:
+        DOTween.KillAll();
         GameSystem.Instance.explosionTime = 45f;
+        GameSystem.Instance.isBombing = false;
         currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:45";
         break;
       case 5:
+        DOTween.KillAll();
         GameSystem.Instance.explosionTime = 60f;
+        GameSystem.Instance.isBombing = false;
         currenExplosion.GetComponent<ExplosionControl>().textTime.text = "00:60";
         break;
     }

@@ -118,7 +118,7 @@ public partial class ItemSystem
         );
 
     }
-    void UpdateTextCoudoutTime(GameObject bombObj)
+    void UpdateTextCoudoutTime()
     {
         var currentExplosion = GetCurrentExplosion();
         if (currentExplosion == null) return;
@@ -137,96 +137,57 @@ public partial class ItemSystem
             .OnComplete(() =>
             {
                 explosionControl.textTime.text = "00:00";
-                Sequence seq = DOTween.Sequence();
-                seq.Append(bombObj.transform.DOShakePosition(0.2f, 0.7f, 30, 90, false, true));
-
-                seq.OnComplete(() =>
-                {
-                    Debug.Log("BOM!!!");
-                    // Hiệu ứng khói bốc lên
-                    var muzzlePosition = bombObj.GetComponent<IdExplosion>().GetMuzzlePosition();
-                    EffectSystem.Instance.SpawnExplosionEfxAt(muzzlePosition, bombObj.GetComponent<ExplosionControl>().ExplosionType);
-
-                    // Flashlight bật để tạo hiệu ứng sáng
-                    flashlightController.ToggleFlashlight();
-
-                    SoundSystem.Instance.PlayExplosionSound();
-                    GameSystem.Instance.isBombing = false;
-                });
-
+                Debug.Log("Bom!");
             });
     }
+
+   
 
     void InvokeBombAnim(GameObject bombObj, float explosionTime)
     {
         if (bombObj == null) return;
-        UpdateTextCoudoutTime(bombObj);
-        // Rung lắc bom với mật độ tăng dần
+
+        UpdateTextCoudoutTime();
+
         Sequence seq = DOTween.Sequence();
-        int shakeSteps = Mathf.RoundToInt(explosionTime / 2f); // Số lần rung trước khi phát nổ
+        int shakeSteps = Mathf.RoundToInt(explosionTime * 5); // Số lần rung (càng cao càng dồn dập)
+        float totalShakeTime = explosionTime * 0.9f; // Dành 90% thời gian cho hiệu ứng rung trước khi nổ
+        float postExplosionShakeTime = explosionTime * 0.1f; // Dành 10% thời gian cho hiệu ứng rung mạnh sau khi nổ
+
         for (int i = 0; i < shakeSteps; i++)
         {
-            float stepDuration = (explosionTime * 0.8f) / (shakeSteps - i); // Giảm thời gian giữa các lần rung
-            float shakeStrength = 0.05f + (0.1f * (i / (float)shakeSteps)); // Rung mạnh hơn về cuối
-            seq.Append(bombObj.transform.DOShakePosition(stepDuration, shakeStrength, 15 + i * 2, 90, false, true));
+            float stepProgress = (float)i / shakeSteps; // Tỷ lệ hoàn thành (0 -> 1)
+            float stepDuration = Mathf.Lerp(totalShakeTime / shakeSteps, (totalShakeTime / shakeSteps) * 0.3f, stepProgress); // Giảm thời gian rung dần
+
+            float shakeStrength = Mathf.Lerp(0.05f, 0.2f, stepProgress); // Cường độ rung tăng dần
+
+            seq.Append(bombObj.transform.DOShakePosition(stepDuration, shakeStrength, 10 + i * 2, 90, false, true));
         }
-        // seq.Append(bombObj.transform.DOShakePosition(0.2f, 0.7f, 30, 90, false, true));
 
-        // seq.OnComplete(() =>
-        // {
-        //     Debug.Log("BOM!!!");
-        //     // Hiệu ứng khói bốc lên
-        //     var muzzlePosition = bombObj.GetComponent<IdExplosion>().GetMuzzlePosition();
-        //     EffectSystem.Instance.SpawnExplosionEfxAt(muzzlePosition, bombObj.GetComponent<ExplosionControl>().ExplosionType);
+        // *** Giai đoạn NỔ ***
+        seq.AppendCallback(() =>
+        {
+            Debug.Log("💥 BOM NỔ!!!");
 
-        //     // Flashlight bật để tạo hiệu ứng sáng
-        //     flashlightController.ToggleFlashlight();
+            // Hiệu ứng khói bốc lên
+            var muzzlePosition = bombObj.GetComponent<IdExplosion>().GetMuzzlePosition();
+            EffectSystem.Instance.SpawnExplosionEfxAt(muzzlePosition, bombObj.GetComponent<ExplosionControl>().ExplosionType);
 
-        //     SoundSystem.Instance.PlayExplosionSound();
-        //     GameSystem.Instance.isBombing = false;
-        // });
+            // Flashlight bật để tạo hiệu ứng sáng
+            flashlightController.ToggleFlashlight();
+
+            // Âm thanh vụ nổ
+            SoundSystem.Instance.PlayExplosionSound();
+        });
+
+        // *** Dư chấn sau vụ nổ ***
+        seq.Append(bombObj.transform.DOShakePosition(postExplosionShakeTime, 0.8f, 40, 90, false, true));
+
+        seq.OnComplete(() =>
+        {
+            GameSystem.Instance.isBombing = false;
+        });
+
+        // seq.SetUpdate(UpdateType.Normal, true); // Đảm bảo tween chạy theo thời gian thực
     }
-    // void InvokeBombAnim(GameObject bombObj, float explosionTime, int explosionType)
-    // {
-    //     if (bombObj == null) return;
-    //     // Rung lắc bom với mật độ tăng dần
-    //     UpdateTextCoudoutTime();
-    //     Sequence seq = DOTween.Sequence();
-    //     int shakeSteps = Mathf.RoundToInt(explosionTime / 2f); // Số lần rung trước khi phát nổ
-    //     for (int i = 0; i < shakeSteps; i++)
-    //     {
-    //         float stepDuration = (explosionTime * 0.8f) / (shakeSteps - i); // Giảm thời gian giữa các lần rung
-    //         float shakeStrength = 0.05f + (0.1f * (i / (float)shakeSteps)); // Rung mạnh hơn về cuối
-    //         seq.Append(bombObj.transform.DOShakePosition(stepDuration, shakeStrength, 15 + i * 2, 90, false, true));
-    //     }// Xử lý dựa trên loại vụ nổ
-    //     switch (explosionType)
-    //     {
-    //         case 0: // Loại vụ nổ Granade
-    //             seq.Append(bombObj.transform.DOShakePosition(0.2f, 0.7f, 30, 90, false, true))
-    //                 .OnComplete(() => HandleExplosionEffects(bombObj));
-    //             break;
-
-    //         case 1: // Loại vụ nổ Bomb (phát nổ ngay lập tức)
-    //             HandleExplosionEffects(bombObj);
-    //             break;
-
-    //         default:
-    //             Debug.LogWarning($"Explosion type {explosionType} is not handled!");
-    //             break;
-    //     }
-    // }
-
-    // void HandleExplosionEffects(GameObject bombObj)
-    // {
-    //     Debug.Log("BOM!!!");
-
-    //     var muzzlePosition = bombObj.GetComponent<IdExplosion>().GetMuzzlePosition();
-    //     EffectSystem.Instance.SpawnExplosionEfxAt(muzzlePosition, bombObj.GetComponent<ExplosionControl>().ExplosionType);
-
-    //     // Flashlight bật để tạo hiệu ứng sáng
-    //     flashlightController.ToggleFlashlight();
-
-    //     SoundSystem.Instance.PlayExplosionSound();
-    //     GameSystem.Instance.isBombing = false;
-    // }
 }
